@@ -1,8 +1,10 @@
 var videoViewerApp = angular.module('videoViewerApp', []);
 
 videoViewerApp.controller('ViewerController', function ViewerController($scope) {
+    // TODO: pull this from service
+    // TODO: Make service provide duration
     $scope.video = {
-        name: 'beamcoffer/20161029/GOPRO/123.mp4',
+        filename: 'beamcoffer/20161029/GOPRO/123.mp4',
         length: 72000,
         instances: [
             {
