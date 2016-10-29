@@ -1,7 +1,15 @@
+<!doctype html>
+<html lang="en" ng-app>
 <head>
+    <meta charset="utf-8">
+
     <!-- <link href="http://vjs.zencdn.net/5.11.8/video-js.css" rel="stylesheet">-->
     <link href="node_modules/video.js/dist/video-js.css" rel="stylesheet">
     <link href="video.css" rel="stylesheet">
+
+    <script src="./node_modules/angular/angular.js"></script>
+
+    <title>{{'video name goes here'}}</title>
 </head>
 <body>
 
@@ -11,6 +19,7 @@
     <p>Video: beamcoffer/blah/blah/GOPRO123.mp4</p>
     <p>Length: 00:01:23</p>
 </header>
+
 
 <div id="video-panel">
   <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
@@ -24,8 +33,9 @@
 
   <div id="control-panel">
       <!-- slider for playback rate -->
-      <div>
+      <div id="playback-control">
           <label>Playback Rate</label>
+          <br>
           <input onchange="changeRate()" type="range" min="-3" max="3" value="1" step="0.05" id="rate-slider" list="rate-ticks">
           <datalist id="rate-ticks">
             <option>-3</option>
@@ -42,7 +52,8 @@
             <option>2.5</option>
             <option>3</option>
           </datalist>
-          <span id="rate-num">1</span>
+          <br>
+          <div id="rate-num">1</div>
 
           <br>
 
@@ -52,7 +63,7 @@
 
       <br>
 
-      <div>
+      <div id="seek-control">
           <p>Seek by seconds</p>
           <button onclick="skipBack()">&larr;</button>
           <input id="skip-amt" type="text" size="2" value="10">
@@ -65,10 +76,19 @@
   <!-- Target instances (in this case, laughter) -->
   <div id="target-instances-map">
 
+      <!-- Vertical timeline of video
+             - Should scale relative to size of video (longer overflows in div?)
+             - Should include indicators that map to instance items       
+      -->
       <div id="timeline-map">
          timeline 
       </div>
 
+      <!-- Instance list
+             - Should allow user to add tags
+               - Open up hidden sub-menu where categories / tags can be added?
+             - Should have timestamps provided by service
+      -->
       <div id="instances">
           <div class="instance">
               <ul class="tags">
@@ -76,12 +96,12 @@
                   <li>#Isolated</li>
                   <li>#Mark</li>
               </ul>
-              <div>
-                  <span class="instance-start">Start: 00:00:34</span>
+              <div class="timestamp">
+                  <span class="instance-start">Start: 00:00:15</span>
                   <br>
-                  <span class="instance-stop">Stop: 00:00:38</span>
+                  <span class="instance-stop">Stop: 00:00:20</span>
               </div>
-              <button>Go there</button>
+              <button class="goto-instance" onclick="goToTime(15)">Go there</button>
           </div>
           <div class="instance">
               <ul class="tags">
@@ -90,12 +110,12 @@
                   <li>#David</li>
                   <li>#Aytul</li>
               </ul>
-              <div>
-                  <span class="instance-start">Start: 00:00:34</span>
+              <div class="timestamp">
+                  <span class="instance-start">Start: 00:00:43</span>
                   <br>
-                  <span class="instance-stop">Stop: 00:00:38</span>
+                  <span class="instance-stop">Stop: 00:00:47</span>
               </div>
-              <button>Go there</button>
+              <button class="goto-instance" onclick="goToTime(43)">Go there</button>
           </div>
           <div class="instance">
               <ul class="tags">
@@ -104,12 +124,12 @@
                   <li>#David</li>
                   <li>#Aytul</li>
               </ul>
-              <div>
-                  <span class="instance-start">Start: 00:00:34</span>
+              <div class="timestamp">
+                  <span class="instance-start">Start: 00:00:56</span>
                   <br>
-                  <span class="instance-stop">Stop: 00:00:38</span>
+                  <span class="instance-stop">Stop: 00:00:59</span>
               </div>
-              <button>Go there</button>
+              <button class="goto-instance" onclick="goToTime(56)">Go there</button>
           </div>
           <div class="instance">
               <ul class="tags">
@@ -118,12 +138,12 @@
                   <li>#David</li>
                   <li>#Aytul</li>
               </ul>
-              <div>
-                  <span class="instance-start">Start: 00:00:34</span>
+              <div class="timestamp">
+                  <span class="instance-start">Start: 00:01:03</span>
                   <br>
-                  <span class="instance-stop">Stop: 00:00:38</span>
+                  <span class="instance-stop">Stop: 00:01:05</span>
               </div>
-              <button>Go there</button>
+              <button class="goto-instance" onclick="goToTime(63)">Go there</button>
           </div>
       </div>
   </div>
@@ -138,18 +158,14 @@
 <script src="node_modules/video.js/dist/video.js"></script>
 
 <!-- Video playback options -->
-<script src="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.js"></script>
-<link href="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.css" rel="stylesheet"></link>
+<!-- <script src="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.js"></script>
+<link href="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.css" rel="stylesheet"></link>-->
 
 <!-- Video settings adjustments -->
 <script src="node_modules/videojs-settings-menu/dist/videojs-settings-menu.js"></script>
 <script>
     var player = videojs('my-video');
 
-    player.playlist([{
-        forward: 20,
-        back: 20
-    }]);
 
     // playback rate function (tied to slider)
     function changeRate() {
@@ -169,12 +185,16 @@
 
     function skipBack() {
         var skipAmt = document.getElementById('skip-amt').value;
-        player.currentTime(player.currentTime() - skipAmt);
+        goToTime(player.currentTime() - skipAmt);
     }
 
     function skipForward() {
         var skipAmt = document.getElementById('skip-amt').value;
-        player.currentTime(player.currentTime() + skipAmt);
+        goToTime(player.currentTime() + skipAmt);
+    }
+
+    function goToTime(value) {
+        player.currentTime(value);
     }
 
 </script>
@@ -182,3 +202,4 @@
 
 
 </body>
+<html>
