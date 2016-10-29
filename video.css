@@ -8,11 +8,23 @@ header {
     margin-bottom: 1em;
 }
 
-video {
-    width: inherit;
+div#video-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/**********************************************/
+/* VIDEO                                      */
+/**********************************************/
+div#my-video {
 }
 
+/**********************************************/
+/* CONTROL PANEL                              */
+/**********************************************/
 div#control-panel {
+    padding: 1em;
+    border: 1px dashed black;
     margin-top: 3em;
 }
 
@@ -20,7 +32,51 @@ input#rate-slider {
     width:500px;
 }
 
+/**********************************************/
+/* TARGET INSTANCES                           */
+/**********************************************/
+div#target-instances-map {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 
+    width: 40em;
+    height: 20em;
+    overflow-y: scroll;
+
+    border: 1px dashed black;
+    margin-top: 3em;
+}
+/** Timeline map **/
+div#timeline-map {
+    flex: 1;
+    border: 1px dashed red;
+    border-right: 8px solid red;
+}
+/** Instance list **/
+div#instances {
+    display:flex;
+    flex-direction: column;
+    flex: 4 0em;
+}
+div.instance {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    border: 1px dashed green;
+}
+div.instance ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+
+/**********************************************/
+/**********************************************/
 /*
   Player Skin Designer for Video.js
   http://videojs.com

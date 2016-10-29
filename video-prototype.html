@@ -5,6 +5,8 @@
 </head>
 <body>
 
+
+<!-- Heading, with video meta info, and a back button to go back to previous page -->
 <header>
     <p>Video: beamcoffer/blah/blah/GOPRO123.mp4</p>
     <p>Length: 00:01:23</p>
@@ -22,50 +24,132 @@
 
   <div id="control-panel">
       <!-- slider for playback rate -->
-      <label>Playback Rate</label>
-      <input onchange="changeRate()" type="range" min="-3" max="3" value="1" step="0.05" id="rate-slider" list="rate-ticks">
-      <datalist id="rate-ticks">
-        <option>-3</option>
-        <option>-2.5</option>
-        <option>-2</option>
-        <option>-1.5</option>
-        <option>-1</option>
-        <option>-0.5</option>
-        <option>0</option>
-        <option>0.5</option>
-        <option>1</option>
-        <option>1.5</option>
-        <option>2</option>
-        <option>2.5</option>
-        <option>3</option>
-      </datalist>
-      <span id="rate-num">1</span>
+      <div>
+          <label>Playback Rate</label>
+          <input onchange="changeRate()" type="range" min="-3" max="3" value="1" step="0.05" id="rate-slider" list="rate-ticks">
+          <datalist id="rate-ticks">
+            <option>-3</option>
+            <option>-2.5</option>
+            <option>-2</option>
+            <option>-1.5</option>
+            <option>-1</option>
+            <option>-0.5</option>
+            <option>0</option>
+            <option>0.5</option>
+            <option>1</option>
+            <option>1.5</option>
+            <option>2</option>
+            <option>2.5</option>
+            <option>3</option>
+          </datalist>
+          <span id="rate-num">1</span>
+
+          <br>
+
+          <!-- Reset playback speed to 1 -->
+          <button onclick="playNormally()" id="play-normal">Reset Playback Speed</button>
+      </div>
 
       <br>
 
-      <!-- Reset playback speed to 1 -->
-      <button onclick="playNormally()" id="play-normal">Reset Playback Speed</button>
+      <div>
+          <p>Seek by seconds</p>
+          <button onclick="skipBack()">&larr;</button>
+          <input id="skip-amt" type="text" size="2" value="10">
+          <button onclick="skipForward()">&rarr;</button>
+      </div>
 
-      <br>
+  </div>
 
-      <button onclick="skipBack()">&larr;</button>
-      <input id="skip-amt" type="text" value="10">
-      <button onclick="skipForward()">&rarr;</button>
 
+  <!-- Target instances (in this case, laughter) -->
+  <div id="target-instances-map">
+
+      <div id="timeline-map">
+         timeline 
+      </div>
+
+      <div id="instances">
+          <div class="instance">
+              <ul class="tags">
+                  <li>#Unilateral</li>
+                  <li>#Isolated</li>
+                  <li>#Mark</li>
+              </ul>
+              <div>
+                  <span class="instance-start">Start: 00:00:34</span>
+                  <br>
+                  <span class="instance-stop">Stop: 00:00:38</span>
+              </div>
+              <button>Go there</button>
+          </div>
+          <div class="instance">
+              <ul class="tags">
+                  <li>#Joint</li>
+                  <li>#Diffusing</li>
+                  <li>#David</li>
+                  <li>#Aytul</li>
+              </ul>
+              <div>
+                  <span class="instance-start">Start: 00:00:34</span>
+                  <br>
+                  <span class="instance-stop">Stop: 00:00:38</span>
+              </div>
+              <button>Go there</button>
+          </div>
+          <div class="instance">
+              <ul class="tags">
+                  <li>#Joint</li>
+                  <li>#Diffusing</li>
+                  <li>#David</li>
+                  <li>#Aytul</li>
+              </ul>
+              <div>
+                  <span class="instance-start">Start: 00:00:34</span>
+                  <br>
+                  <span class="instance-stop">Stop: 00:00:38</span>
+              </div>
+              <button>Go there</button>
+          </div>
+          <div class="instance">
+              <ul class="tags">
+                  <li>#Joint</li>
+                  <li>#Diffusing</li>
+                  <li>#David</li>
+                  <li>#Aytul</li>
+              </ul>
+              <div>
+                  <span class="instance-start">Start: 00:00:34</span>
+                  <br>
+                  <span class="instance-stop">Stop: 00:00:38</span>
+              </div>
+              <button>Go there</button>
+          </div>
+      </div>
   </div>
 </div>
 
+
+
+
+
+<!-- JavaScript, etc. -->
 <!--<script src="http://vjs.zencdn.net/5.11.8/video.js"></script>-->
 <script src="node_modules/video.js/dist/video.js"></script>
 
 <!-- Video playback options -->
-<!--<script src="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.js"></script>
-<link href="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.css" rel="stylesheet"></link>-->
+<script src="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.js"></script>
+<link href="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.css" rel="stylesheet"></link>
 
 <!-- Video settings adjustments -->
 <script src="node_modules/videojs-settings-menu/dist/videojs-settings-menu.js"></script>
 <script>
     var player = videojs('my-video');
+
+    player.playlist([{
+        forward: 20,
+        back: 20
+    }]);
 
     // playback rate function (tied to slider)
     function changeRate() {
