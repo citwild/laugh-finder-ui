@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" ng-app="videoViewerApp">
+<head>
+    <meta charset="utf-8">
+
+    <!-- <link href="http://vjs.zencdn.net/5.11.8/video-js.css" rel="stylesheet">-->
+    <link href="./node_modules/video.js/dist/video-js.css" rel="stylesheet">
+    <link href="./style/video.css" rel="stylesheet">
+
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./app/app.js"></script>
+
+    <title>Video Viewer</title>
+</head>
+
+
+<body ng-controller="ViewerController">
+
+<!-- Heading, with video meta info, and a back button to go back to previous page -->
+<header>
+    <p>Video: {{video.name}}</p>
+    <p>Length: {{video.length}}</p>
+</header>
+
+
+<div id="video-panel">
+  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+  poster="I_DUNNO.jpg" data-setup="{}">
+    <source src="video/GOPR2128-hb.mp4" type='video/mp4'>
+    <p class="vjs-no-js">
+      To view this video please enable JavaScript, and consider upgrading to a web browser that
+      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+    </p>
+  </video>
+
+  <div id="control-panel">
+      <!-- slider for playback rate -->
+      <div id="playback-control">
+          <label>Playback Rate</label>
+          <br>
+          <input ng-click="changeRate()" type="range" min="-3" max="3" value="1" step="0.05" id="rate-slider" list="rate-ticks">
+          <datalist id="rate-ticks">
+            <option>-3</option>
+            <option>-2.5</option>
+            <option>-2</option>
+            <option>-1.5</option>
+            <option>-1</option>
+            <option>-0.5</option>
+            <option>0</option>
+            <option>0.5</option>
+            <option>1</option>
+            <option>1.5</option>
+            <option>2</option>
+            <option>2.5</option>
+            <option>3</option>
+          </datalist>
+          <br>
+          <div id="rate-num">1</div>
+
+          <br>
+
+          <!-- Reset playback speed to 1 -->
+          <button ng-click="playNormally()" id="play-normal">Reset Playback Speed</button>
+      </div>
+
+      <br>
+
+      <div id="seek-control">
+          <p>Seek by seconds</p>
+          <button ng-click="skipBack()">&larr;</button>
+          <input id="skip-amt" type="text" size="2" value="10">
+          <button ng-click="skipForward()">&rarr;</button>
+      </div>
+
+  </div>
+
+
+  <!-- Target instances (in this case, laughter) -->
+  <div id="target-instances-map">
+
+      <!-- Vertical timeline of video
+             - Should scale relative to size of video (longer overflows in div?)
+             - Should include indicators that map to instance items       
+      -->
+      <div id="timeline-map">
+         timeline 
+      </div>
+
+      <!-- Instance list
+             - Should allow user to add tags
+               - Open up hidden sub-menu where categories / tags can be added?
+             - Should have timestamps provided by service
+      -->
+      <div id="instances" ng-repeat="instance in video.instances">
+          <div class="instance">
+              <ul class="tags" ng-repeat="category in instance.categories">
+                  <li>{{category}}</li>
+              </ul>
+              <div class="timestamp">
+                  <span class="instance-start">Start: {{instance.start}}</span>
+                  <br>
+                  <span class="instance-stop">Stop: {{instance.stop}}</span>
+              </div>
+              <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- JavaScript, etc. -->
+<!--<script src="http://vjs.zencdn.net/5.11.8/video.js"></script>-->
+<script src="node_modules/video.js/dist/video.js"></script>
+
+<!-- Video playback options -->
+<!-- <script src="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.js"></script>
+<link href="node_modules/videojs-seek-buttons/dist/videojs-seek-buttons.css" rel="stylesheet"></link>-->
+<!-- Video settings adjustments -->
+<!--<script src="node_modules/videojs-settings-menu/dist/videojs-settings-menu.js"></script>-->
+
+<script>
+    var player = videojs('my-video');
+</script>
+
+
+
+</body>
+<html>
