@@ -1,2 +1,6 @@
-video
-node_modules
+# ignore sensitive material (for testing, provided by service in future)
+video/
+
+# local files to be built per environment
+node_modules/
+.idea/
