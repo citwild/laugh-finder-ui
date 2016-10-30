@@ -10,6 +10,7 @@
     <script src="./node_modules/angular/angular.js"></script>
     <script src="./app/app.js"></script>
     <script src="./app/components/instance-list.component.js"></script>
+    <script src="./app/components/control-panel.component.js"></script>
 
     <title>Video Viewer</title>
 </head>
@@ -25,7 +26,7 @@
 
 
 <div id="video-panel">
-  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+    <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
   poster="I_DUNNO.jpg" data-setup="{}">
     <source src="video/GOPR2128-hb.mp4" type='video/mp4'>
     <p class="vjs-no-js">
@@ -34,62 +35,16 @@
     </p>
   </video>
 
-  <div id="control-panel">
-      <div id="playback-control">
-          <label>Playback Rate</label>
-          <br>
-          <input ng-click="changeRate()" type="range" min="-3" max="3" value="1" step="0.05" id="rate-slider" list="rate-ticks">
-          <datalist id="rate-ticks">
-            <option>-3</option>
-            <option>-2.5</option>
-            <option>-2</option>
-            <option>-1.5</option>
-            <option>-1</option>
-            <option>-0.5</option>
-            <option>0</option>
-            <option>0.5</option>
-            <option>1</option>
-            <option>1.5</option>
-            <option>2</option>
-            <option>2.5</option>
-            <option>3</option>
-          </datalist>
-          <br>
-          <div id="rate-num">1</div>
-          <br>
-          <button ng-click="playNormally()" id="play-normal">Reset Playback Speed</button>
-      </div>
-      <br>
-      <div id="seek-control">
-          <p>Seek by seconds</p>
-          <button ng-click="skipBack()">&larr;</button>
-          <input id="skip-amt" type="text" size="2" value="10">
-          <button ng-click="skipForward()">&rarr;</button>
-      </div>
-  </div>
+    <control-panel></control-panel>
 
+    <!-- Target instances (in this case, laughter) -->
+    <div id="target-instances-map">
+        <div id="timeline-map">timeline</div>
 
-  <!-- Target instances (in this case, laughter) -->
-  <div id="target-instances-map">
-      <div id="timeline-map">
-         timeline 
-      </div>
-
-      <div id="instances">
-          <!--<div class="instance" ng-repeat="instance in video.instances">-->
-              <!--<ul class="tags">-->
-                  <!--<li ng-repeat="category in instance.categories">{{category}}</li>-->
-              <!--</ul>-->
-              <!--<div class="timestamp">-->
-                  <!--<span class="instance-start">Start: {{instance.start}}</span>-->
-                  <!--<br>-->
-                  <!--<span class="instance-stop">Stop: {{instance.stop}}</span>-->
-              <!--</div>-->
-              <!--<button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>-->
-          <!--</div>-->
-          <instance-list></instance-list>
-      </div>
-  </div>
+        <div id="instances">
+            <instance-list></instance-list>
+        </div>
+    </div>
 </div>
 
 <!-- JavaScript, etc. -->

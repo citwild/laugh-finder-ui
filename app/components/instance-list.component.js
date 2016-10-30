@@ -13,7 +13,10 @@ angular
             '</div>' +
             '<button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>' +
         '</div>',
+
     controller: function InstanceListController($scope) {
         this.instances = $scope.$parent.video.instances;
+
+        $scope.goToTime = $scope.$parent.goToTime;
     }
 });
