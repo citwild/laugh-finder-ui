@@ -17,6 +17,8 @@ angular
     controller: function InstanceListController($scope) {
         this.instances = $scope.$parent.video.instances;
 
-        $scope.goToTime = $scope.$parent.goToTime;
+        $scope.goToTime = function goToTime(value) {
+            $scope.$parent.player.currentTime(value);
+        };
     }
 });
