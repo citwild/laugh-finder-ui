@@ -4,6 +4,8 @@ angular
     template:
     '<div id="control-panel">' +
         '<div id="playback-control">' +
+            '<button ng-click="playStop()">Play / Stop</button>' +
+            '<br>' +
             '<label>Playback Rate</label>' +
             '<br>' +
             '<input ng-click="changeRate()" type="range" min="-3" max="3" value="1" step="0.05" id="rate-slider" list="rate-ticks">' +
@@ -37,20 +39,30 @@ angular
     '</div>',
 
     controller: function ControlPanelController($scope) {
+        var player = $scope.$parent.player;
+
         $scope.goToTime = function goToTime(value) {
-            $scope.$parent.player.currentTime(value);
+            player.currentTime(value);
         };
 
         // playback rate function (tied to slider)
         $scope.changeRate = function changeRate() {
             var rate = document.getElementById('rate-slider').value;
-            $scope.$parent.player.playbackRate(rate);
+            player.playbackRate(rate);
             document.getElementById('rate-num').innerHTML = rate;
         };
 
+        $scope.playStop = function playStop() {
+            if (player.paused()) {
+                player.play();
+            } else {
+                player.pause();
+            }
+        }
+
         $scope.playNormally = function playNormally() {
             // reset rate values
-            $scope.$parent.player.playbackRate(1);
+            player.playbackRate(1);
             document.getElementById('rate-num').innerHTML = '1';
 
             // reset slider position
@@ -59,12 +71,12 @@ angular
 
         $scope.skipBack = function skipBack() {
             var skipAmt = document.getElementById('skip-amt').value;
-            this.goToTime($scope.$parent.player.currentTime() - skipAmt);
+            this.goToTime(player.currentTime() - skipAmt);
         };
 
         $scope.skipForward = function skipForward() {
             var skipAmt = document.getElementById('skip-amt').value;
-            this.goToTime($scope.$parent.player.currentTime() + skipAmt);
+            this.goToTime(player.currentTime() + skipAmt);
         };
     }
 });
