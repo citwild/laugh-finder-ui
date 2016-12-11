@@ -70,12 +70,12 @@ angular
         };
 
         $scope.skipBack = function skipBack() {
-            var skipAmt = document.getElementById('skip-amt').value;
+            var skipAmt = parseInt(document.getElementById('skip-amt').value);
             this.goToTime(player.currentTime() - skipAmt);
         };
 
         $scope.skipForward = function skipForward() {
-            var skipAmt = document.getElementById('skip-amt').value;
+            var skipAmt = parseInt(document.getElementById('skip-amt').value);
             this.goToTime(player.currentTime() + skipAmt);
         };
     }
