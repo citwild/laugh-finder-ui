@@ -13,7 +13,9 @@
     "protractor": "^4.0.10",
     "video.js": "^5.11.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "angular-route": "^1.6.1"
+  },
   "scripts": {
     "start": "node server.js",
     "test": "karma start karma.conf.js",

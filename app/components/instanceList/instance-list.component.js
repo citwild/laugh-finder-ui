@@ -1,5 +1,5 @@
 angular
-.module('videoViewerApp')
+.module('laughResearchApp')
 .component('instanceList', {
     template:
         '<div class="instance" ng-repeat="instance in $ctrl.instances">' +
