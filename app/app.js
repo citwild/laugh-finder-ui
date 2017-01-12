@@ -1,9 +1,9 @@
 var laughResearchApp = angular.module('laughResearchApp', ['ngRoute']);
 
-laughResearchApp.config(['$routeProvider', function ($routeProvider) {
+laughResearchApp.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
 
-    // home page
     $routeProvider
+    // home page
         .when('/', {
             templateUrl: 'pages/home.html',
             controller: 'mainController'
@@ -22,6 +22,8 @@ laughResearchApp.config(['$routeProvider', function ($routeProvider) {
         })
 
         .otherwise({redirectTo: '/'});
+
+    $locationProvider.hashPrefix('!');
 }]);
 
 laughResearchApp
