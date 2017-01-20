@@ -46,7 +46,7 @@ laughResearchApp
         $scope.videoId = $routeParams.id;
 
         $scope.video = {
-            filename: $scope.videoId, //'beamcoffer/20161029/GOPRO/123.mp4',
+            filename: $scope.videoId,
             length: 72000,
             instances: [
                 {
