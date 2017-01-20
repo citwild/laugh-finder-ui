@@ -11,9 +11,7 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.0.2",
     "protractor": "^4.0.10",
-    "video.js": "^5.11.9"
-  },
-  "devDependencies": {
+    "video.js": "^5.11.9",
     "angular-route": "^1.6.1"
   },
   "scripts": {
