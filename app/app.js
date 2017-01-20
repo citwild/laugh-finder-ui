@@ -5,19 +5,19 @@ laughResearchApp.config(['$routeProvider', '$locationProvider', function ($route
     $routeProvider
     // home page
         .when('/', {
-            templateUrl: 'pages/home.html',
+            templateUrl: 'app/home/homeView.html',
             controller: 'mainController'
         })
 
     // list of videos page
         .when('/list', {
-            templateUrl: 'pages/list.html',
+            templateUrl: 'app/list/listView.html',
             controller: 'listController'
         })
 
     // viewer page
         .when('/viewer', {
-            templateUrl: 'pages/viewer.html',
+            templateUrl: 'app/viewer/viewerView.html',
             controller: 'viewerController'
         })
 
