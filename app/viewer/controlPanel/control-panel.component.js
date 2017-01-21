@@ -1,5 +1,5 @@
-angular
-.module('laughResearchApp')
+angular.module('laughResearchApp.viewer')
+
 .component('controlPanel', {
     template:
     '<div id="control-panel">' +
