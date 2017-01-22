@@ -13,7 +13,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 .controller('viewerController', ['$scope', '$http', '$routeParams', function ViewerController($scope, $http, $routeParams) {
     $scope.player = videojs('my-video');
 
-    $scope.videoId = $routeParams.id;
+    $scope.videoId = $routeParams.bucket + "/" + $routeParams.key;
 
     $scope.video = {
         filename: $scope.videoId,
