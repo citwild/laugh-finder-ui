@@ -1,5 +1,6 @@
-# ignore sensitive material (for testing, provided by service in future)
+# ignore sensitive material
 video/
+aws.js
 
 # local files to be built per environment
 node_modules/
