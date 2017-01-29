@@ -17,12 +17,24 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     var s3Domain = "https://s3-us-west-2.amazonaws.com/",
         videoUrl = s3Domain + $scope.videoId;
 
-    // HACK: create video element's source, since angular binding doesn't work >:(
+    // HACK: set video element's source, since angular binding doesn't work >:(
     var source = document.getElementById('source');
     source.setAttribute('src', videoUrl);
 
-    // initialize videojs after elements are created
-    $scope.player = videojs('my-video');
+    // Have to kill VideoJS when moving away from page
+    //   See: https://log.rowanto.com/angularjs-and-videojs-problem-video-only-loaded-on-hard-refresh-but-not-on-switching-page/
+    // initialize videojs after element source is created
+    $scope.player;
+    $scope.$on('$destroy', function() {
+        // Destroy the object if it exists
+        if (($scope.player !== undefined) && ($scope.player !== null)) {
+            $scope.player.dispose();
+        }
+    });
+    // Manually loading the videojs
+    videojs('my-video').ready(function() {
+        $scope.player = this; // Store the object on a variable
+    });
 
     $scope.video = {
         filename: $scope.videoId,
