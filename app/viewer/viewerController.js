@@ -12,11 +12,16 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
 .controller('viewerController', ['$scope', '$http', '$routeParams', function ViewerController($scope, $http, $routeParams) {
 
-    var s3Domain = "https://s3-us-west-2.amazonaws.com/";
-
     $scope.videoId = $routeParams.bucket + "/" + $routeParams.key;
-    $scope.videoUrl = s3Domain + $scope.videoId;
 
+    var s3Domain = "https://s3-us-west-2.amazonaws.com/",
+        videoUrl = s3Domain + $scope.videoId;
+
+    // HACK: create video element's source, since angular binding doesn't work >:(
+    var source = document.getElementById('source');
+    source.setAttribute('src', videoUrl);
+
+    // initialize videojs after elements are created
     $scope.player = videojs('my-video');
 
     $scope.video = {
