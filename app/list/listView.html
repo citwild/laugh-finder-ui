@@ -3,7 +3,7 @@
 <p>List of videos:</p>
 <ul>
     <li ng-repeat="video in videoList">
-        <a href="#!/viewer?bucket=beamcoffer&key=20161029/GOPRO/123.mp4">{{video}}</a>
+    <a href="#!/viewer?bucket={{video.bucket}}&key={{video.key}}">{{video.name}}</a>
     </li>
 </ul>
 <a href="#!/">Back to home</a>

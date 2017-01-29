@@ -11,8 +11,17 @@ angular.module('laughResearchApp.videoList', ['ngRoute'])
 }])
 
 .controller('listController', ['$scope', '$http', function ListController($scope, $http) {
+
     $scope.videoList = [
-        "video1",
-        "video2"
+        {
+            "name": "expert-carpenter.mp4",
+            "bucket": "miles-test-assets",
+            "key": "folder1/folder2/expert-carpenter.mp4"
+        },
+        {
+            "name": "expert-carpenter.mp4",
+            "bucket": "miles-test-assets",
+            "key": "folder1/folder2/expert-carpenter.mp4"
+        }
     ];
 }]);

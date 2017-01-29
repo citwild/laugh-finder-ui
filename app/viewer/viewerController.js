@@ -11,9 +11,13 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 }])
 
 .controller('viewerController', ['$scope', '$http', '$routeParams', function ViewerController($scope, $http, $routeParams) {
-    $scope.player = videojs('my-video');
+
+    var s3Domain = "https://s3-us-west-2.amazonaws.com/";
 
     $scope.videoId = $routeParams.bucket + "/" + $routeParams.key;
+    $scope.videoUrl = s3Domain + $scope.videoId;
+
+    $scope.player = videojs('my-video');
 
     $scope.video = {
         filename: $scope.videoId,
@@ -40,28 +44,6 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                 participants: [
                     "Aytul",
                     "Fida"
-                ]
-            },
-            {
-                start: 56000,
-                stop: 59000,
-                categories: [
-                    "Joint",
-                    "Isolated"
-                ],
-                participants: [
-                    "Socha",
-                    "Wei"
-                ]
-            },
-            {
-                start: 63000,
-                stop: 65000,
-                categories: [
-                    "Unilateral"
-                ],
-                participants: [
-                    "Miles"
                 ]
             }
         ]
