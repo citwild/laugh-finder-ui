@@ -42,7 +42,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
     // 4. Get video's laugh data and metadata from web service
     //$http.get( getRestUrl(bucket, key) )
-    $scope.getTimestamps = function() {
+    /*$scope.getTimestamps = function() {
         $http.get('https://52.37.207.59:16000/analyze/video?bucket=beamcoffer&key=Compressed/2014-01-31/Huddle/00079-320.MP4')
         .then(
             function success(response) {
@@ -53,7 +53,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                 alert("Failed to load video laugh data and metadata. See console for details.")
             }
         );
-    }
+    }*/
 
 
 
@@ -65,35 +65,37 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     }
 
     // hardcoded mock data
-    /*$scope.video = { foundLaughters: {
-        filename: $scope.videoId,
-        length: 72000,
-        timestamps: [
-            {
-                start: 15000,
-                stop: 20000,
-                categories: [
-                    "Unilateral",
-                    "Isolated",
-                ],
-                participants: [
-                    "Mark"
-                ]
-            },
-            {
-                start: 43000,
-                stop: 47000,
-                categories: [
-                    "Joint",
-                    "Diffusing"
-                ],
-                participants: [
-                    "Aytul",
-                    "Fida"
-                ]
-            }
-        ]
-    }};*/
+    $scope.video = {
+        foundLaughters: {
+            filename: $scope.videoId,
+            length: 72000,
+            timestamps: [
+                {
+                    start: 15000,
+                    stop: 20000,
+                    categories: [
+                        "Unilateral",
+                        "Isolated",
+                    ],
+                    participants: [
+                        "Mark"
+                    ]
+                },
+                {
+                    start: 43000,
+                    stop: 47000,
+                    categories: [
+                        "Joint",
+                        "Diffusing"
+                    ],
+                    participants: [
+                        "Aytul",
+                        "Fida"
+                    ]
+                }
+            ]
+        }
+    };
 
     // P.S.:
     //   Method used to refresh VideoJS in one-page app context was taken from here:

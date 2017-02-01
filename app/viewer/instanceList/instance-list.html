@@ -1,11 +1,14 @@
-<div class="instance" ng-repeat="instance in $ctrl.instances">
-    <ul class="tags">
-        <li ng-repeat="category in instance.categories">{{category}}</li>
-    </ul>
+<div class="instance" ng-repeat="instance in instances">
     <div class="timestamp">
         <span class="instance-start">Start: {{instance.start}}</span>
         <br>
         <span class="instance-stop">Stop: {{instance.stop}}</span>
+        <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
     </div>
-    <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
+    <ul class="tags">
+        <li ng-repeat="category in instance.categories">{{category}}</li>
+    </ul>
+    <div>
+        <metadata-form></metadata-form>
+    </div>
 </div>
