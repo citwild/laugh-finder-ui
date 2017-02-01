@@ -77,6 +77,9 @@ div.instance {
     border: 1px dashed green;
 
     margin-bottom: 0.5em;
+    margin-left: 10%;
+    margin-right: 10%;
+
     padding: 0.75em 0.1em 0.75em 0.1em;
 }
 div.instance ul.tags {
@@ -115,6 +118,11 @@ span.instance-start, span.instance-stop, button.goto-instance {
 metadata-form form {
     display: flex;
     flex-direction: column;
+}
+metadata-form form fieldset {
+    border: none;
+    margin-left:3%;
+    margin-bottom: 10px;
 }
 metadata-form form input#save {
     margin-top: 20px;
