@@ -12,18 +12,22 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
 .controller('viewerController', ['$scope', '$http', '$routeParams', function ViewerController($scope, $http, $routeParams) {
 
-    $scope.videoId = $routeParams.bucket + "/" + $routeParams.key;
-
+    // 1. Establish video asset's source (domain, bucket, key)
     var s3Domain = "https://s3-us-west-2.amazonaws.com/",
-        videoUrl = s3Domain + $scope.videoId;
+        bucket = $routeParams.bucket,
+        key = $routeParams.key;
 
-    // HACK: set video element's source, since angular binding doesn't work >:(
+    $scope.videoId = bucket + "/" + key;
+
+    var videoUrl = s3Domain + $scope.videoId;
+
+
+    // 2. Create video source element (since ng-src does not work as expected)
     var source = document.getElementById('source');
     source.setAttribute('src', videoUrl);
 
-    // Have to kill VideoJS when moving away from page
-    //   See: https://log.rowanto.com/angularjs-and-videojs-problem-video-only-loaded-on-hard-refresh-but-not-on-switching-page/
-    // initialize videojs after element source is created
+
+    // 3. Kill and reinitialize VideoJS, if necessary
     $scope.player;
     $scope.$on('$destroy', function() {
         // Destroy the object if it exists
@@ -31,15 +35,40 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             $scope.player.dispose();
         }
     });
-    // Manually loading the videojs
     videojs('my-video').ready(function() {
-        $scope.player = this; // Store the object on a variable
+        $scope.player = this;
     });
 
-    $scope.video = {
+
+    // 4. Get video's laugh data and metadata from web service
+    //$http.get( getRestUrl(bucket, key) )
+    $scope.getTimestamps = function() {
+        $http.get('https://52.37.207.59:16000/analyze/video?bucket=beamcoffer&key=Compressed/2014-01-31/Huddle/00079-320.MP4')
+        .then(
+            function success(response) {
+                //$scope.video = response.data;
+                return response.data;
+            },
+            function error(error) {
+                alert("Failed to load video laugh data and metadata. See console for details.")
+            }
+        );
+    }
+
+
+
+    /////////////////////////////////////////////////////////////////////////////
+    // Helper Methods
+    /////////////////////////////////////////////////////////////////////////////
+    function getRestUrl(bucket, key) {
+        return 'https://52.37.207.59:16000/analyze/video?bucket=' + bucket + '&key=' + key;
+    }
+
+    // hardcoded mock data
+    /*$scope.video = { foundLaughters: {
         filename: $scope.videoId,
         length: 72000,
-        instances: [
+        timestamps: [
             {
                 start: 15000,
                 stop: 20000,
@@ -64,5 +93,9 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                 ]
             }
         ]
-    };
+    }};*/
+
+    // P.S.:
+    //   Method used to refresh VideoJS in one-page app context was taken from here:
+    //     https://log.rowanto.com/angularjs-and-videojs-problem-video-only-loaded-on-hard-refresh-but-not-on-switching-page/
 }]);
