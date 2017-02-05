@@ -76,6 +76,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                     categories: [
                         "Unilateral",
                         "Isolated",
+                        "Alleviating"
                     ],
                     participants: [
                         "Mark"

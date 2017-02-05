@@ -22,7 +22,7 @@ instance-list {
 div#instances {
     display:flex;
     flex-direction: column;
-    flex: 4 0em;
+    flex: 4 0;
 }
 div.instance {
     background-color: white;
@@ -52,6 +52,7 @@ div.instance ul.tags {
 }
 div.instance ul.tags li {
     border: 1px dashed orange;
+    display: inline-table;
 }
 div.instance {
     flex: 0.5 0;
