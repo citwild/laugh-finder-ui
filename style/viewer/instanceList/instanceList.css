@@ -1,0 +1,72 @@
+/** Instance list **/
+div#target-instances-map {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    height: 30em;
+    overflow-x: scroll;
+
+    background-color: #b3b3b3;
+
+    border: 3px dashed black;
+    margin-top: 1em;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+instance-list {
+    display: flex;
+}
+
+div#instances {
+    display:flex;
+    flex-direction: column;
+    flex: 4 0em;
+}
+div.instance {
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    border: 1px dashed green;
+
+    height: 26em;
+
+    margin-bottom: 0.5em;
+    padding: 1em 1em 1em 1em;
+}
+div.instance ul.tags {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+
+    flex: 2 0;
+
+    list-style: none;
+
+    margin-bottom: 20px;
+}
+div.instance ul.tags li {
+    border: 1px dashed orange;
+}
+div.instance {
+    flex: 0.5 0;
+}
+div.instance button.goto-instance {
+    flex: 1 0;
+}
+
+div.timestamp {
+    display: flex;
+    flex-direction: row;
+    flex: 1 0;
+    margin-bottom: 20px;
+    height: 30px;
+}
+span.instance-start, span.instance-stop, button.goto-instance {
+    flex: 1 0;
+}
