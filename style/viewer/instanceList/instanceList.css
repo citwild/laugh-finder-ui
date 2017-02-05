@@ -4,7 +4,6 @@ div#target-instances-map {
     flex-direction: row;
     align-items: flex-start;
 
-    height: 30em;
     overflow-x: scroll;
 
     background-color: #b3b3b3;
@@ -32,8 +31,6 @@ div.instance {
     justify-content: space-between;
 
     border: 1px dashed green;
-
-    height: 26em;
 
     margin-bottom: 0.5em;
     padding: 1em 1em 1em 1em;
