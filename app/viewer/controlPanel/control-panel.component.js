@@ -46,7 +46,7 @@ angular.module('laughResearchApp.viewer')
         $scope.playNormally = function playNormally() {
             // reset rate values
             $scope.player.playbackRate(1);
-            document.getElementById('rate-num').innerHTML = '1';
+            $scope.currRate = 1;
 
             // reset slider position
             document.getElementById('rate-slider').value = 1;
