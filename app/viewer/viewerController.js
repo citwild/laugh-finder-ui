@@ -1,6 +1,6 @@
 angular.module('laughResearchApp.viewer', ['ngRoute'])
 
-.config(['$routeProvider', function viewerConfig($routeProvider) {
+.config(['$routeProvider', function ($routeProvider) {
     // viewer page
     $routeProvider
         .when('/viewer', {
@@ -10,7 +10,16 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
 }])
 
-.controller('viewerController', ['$scope', '$http', '$routeParams', function ViewerController($scope, $http, $routeParams) {
+.service('instanceService', ['$http', function ($http) {
+    return {
+        getInstances: function getInstances(bucket, key) {
+            // return $http.get('https://52.37.207.59:16000/analyze/video?bucket=' + bucket + '&key=' + key)
+            return $http.get('http://localhost:8080');
+        }
+    }
+}])
+
+.controller('viewerController', ['$scope', '$routeParams', 'instanceService', function ($scope, $routeParams, instanceService) {
 
     // 1. Establish video asset's source (domain, bucket, key)
     var s3Domain = "https://s3-us-west-2.amazonaws.com/",
@@ -39,64 +48,39 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         $scope.player = this;
     });
 
+    // 4. Get video's laugh data and metadata from web service 
 
-    // 4. Get video's laugh data and metadata from web service
-    //$http.get( getRestUrl(bucket, key) )
-    /*$scope.getTimestamps = function() {
-        $http.get('https://52.37.207.59:16000/analyze/video?bucket=beamcoffer&key=Compressed/2014-01-31/Huddle/00079-320.MP4')
-        .then(
-            function success(response) {
-                //$scope.video = response.data;
-                return response.data;
-            },
-            function error(error) {
-                alert("Failed to load video laugh data and metadata. See console for details.")
-            }
-        );
-    }*/
+    $scope.$watch('video', function (){});
 
-
-
-    /////////////////////////////////////////////////////////////////////////////
-    // Helper Methods
-    /////////////////////////////////////////////////////////////////////////////
-    function getRestUrl(bucket, key) {
-        return 'https://52.37.207.59:16000/analyze/video?bucket=' + bucket + '&key=' + key;
-    }
-
-    // hardcoded mock data
-    $scope.video = {
-        foundLaughters: {
-            filename: $scope.videoId,
-            length: 72000,
-            timestamps: [
-                {
-                    start: 15000,
-                    stop: 20000,
-                    categories: [
-                        "Unilateral",
-                        "Isolated",
-                        "Alleviating"
-                    ],
-                    participants: [
-                        "Mark"
-                    ]
-                },
-                {
-                    start: 43000,
-                    stop: 47000,
-                    categories: [
-                        "Joint",
-                        "Diffusing"
-                    ],
-                    participants: [
-                        "Aytul",
-                        "Fida"
+    instanceService.getInstances("bucket", "key").then(
+        function success(response) {
+            // $scope.video = response.data;
+            $scope.video = {
+                foundLaughters: {
+                    filename: "testurl",
+                    length: 72000,
+                    timestamps: [
+                        {
+                            start: 15000,
+                            stop: 20000,
+                            categories: [
+                                "unilateral",
+                                "isolated",
+                                "alleviating"
+                            ],
+                            participants: [
+                                "mark"
+                            ]
+                        }
                     ]
                 }
-            ]
+            };
+        },
+        function error(response) {
+            alert("failed to load video laugh data and metadata. see console for details.");
         }
-    };
+    );
+
 
     // P.S.:
     //   Method used to refresh VideoJS in one-page app context was taken from here:

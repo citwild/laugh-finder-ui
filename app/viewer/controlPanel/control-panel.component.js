@@ -2,7 +2,9 @@ angular.module('laughResearchApp.viewer')
 
 .component('controlPanel', {
     templateUrl: 'app/viewer/controlPanel/control-panel.html',
-    controller: function ControlPanelController($scope) {
+    controller: function ($scope) {
+
+        $scope.currRate = 1;
 
         //////////////////////////////////////////////////////
         // Copied from parent scope. So video player is reset
@@ -28,10 +30,9 @@ angular.module('laughResearchApp.viewer')
         };
 
         // playback rate function (tied to slider)
-        $scope.changeRate = function changeRate() {
-            var rate = document.getElementById('rate-slider').value;
+        $scope.changeRate = function changeRate(rate) {
             $scope.player.playbackRate(rate);
-            document.getElementById('rate-num').innerHTML = rate;
+            $scope.currRate = rate;
         };
 
         $scope.playStop = function playStop() {
@@ -40,7 +41,7 @@ angular.module('laughResearchApp.viewer')
             } else {
                 $scope.player.pause();
             }
-        }
+        };
 
         $scope.playNormally = function playNormally() {
             // reset rate values
