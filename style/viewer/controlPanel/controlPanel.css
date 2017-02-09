@@ -22,3 +22,21 @@ div#rate-num {
     height: 1.5em;
     border: 2px solid grey;
 }
+
+button#play-stop{
+    width: 100%;
+}
+button#play-normal{
+    width: 100%;
+}
+
+div#seek-control div#buttons {
+    display: flex;
+    flex-direction: row;
+}
+div#seek-control div#buttons button {
+    flex: 1 0;
+}
+div#seek-control div#buttons input {
+    flex: 1 0;
+}
