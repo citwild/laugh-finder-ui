@@ -8,9 +8,11 @@
                 <span class="instance-stop">Stop: {{instance.stop}}</span>
                 <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
             </div>
-            <ul class="tags">
-                <li ng-repeat="category in instance.categories">{{category}}</li>
-            </ul>
+            <div>
+                <ul class="tags">
+                    <li ng-repeat="category in instance.categories">{{category}}</li>
+                </ul>
+            </div>
             <metadata-form></metadata-form>
         </div>
     </div>

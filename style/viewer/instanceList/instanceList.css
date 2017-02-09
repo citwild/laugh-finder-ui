@@ -60,6 +60,7 @@ div.instance {
 }
 div.instance button.goto-instance {
     flex: 1 0;
+    height: 100%;
 }
 
 div.timestamp {
