@@ -1,12 +1,17 @@
-<div class="instance" ng-repeat="instance in instances">
-    <div class="timestamp">
-        <span class="instance-start">Start: {{instance.start}}</span>
-        <br>
-        <span class="instance-stop">Stop: {{instance.stop}}</span>
-        <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
+<div id="laughter-instances">
+    <h2>Laughter Instances</h2>
+    <div id="target-instances-map">
+        <div class="instance" ng-repeat="instance in instances">
+            <div class="timestamp">
+                <span class="instance-start">Start: {{instance.start}}</span>
+                <br>
+                <span class="instance-stop">Stop: {{instance.stop}}</span>
+                <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
+            </div>
+            <ul class="tags">
+                <li ng-repeat="category in instance.categories">{{category}}</li>
+            </ul>
+            <metadata-form></metadata-form>
+        </div>
     </div>
-    <ul class="tags">
-        <li ng-repeat="category in instance.categories">{{category}}</li>
-    </ul>
-    <metadata-form></metadata-form>
 </div>
