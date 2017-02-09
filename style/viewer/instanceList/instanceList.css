@@ -1,6 +1,7 @@
 /** Instance list **/
 div#laughter-instances {
     margin-top: 2em;
+    flex: 1;
 }
 
 div#target-instances-map {

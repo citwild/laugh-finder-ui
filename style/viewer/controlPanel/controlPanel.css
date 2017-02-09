@@ -1,7 +1,7 @@
 /** Control Panel **/
 div#control-panel {
     border: 3px dashed black;
-    margin-top: 2em;
+    margin-top: 3.5em;
     padding: 1em 0 1em 0;
 }
 div#playback-control, div#seek-control {

@@ -17,7 +17,7 @@ div#video-panel {
 div#my-video {
 }
 
-div#control-panel, div#target-instances-map {
+control-panel, instance-list {
     width: 40em;
 }
 
@@ -26,10 +26,10 @@ div#control-panel, div#target-instances-map {
   Player Skin Designer for Video.js
   http://videojs.com
 
-  To customize the player skin edit 
-  the CSS below. Click "details" 
+  To customize the player skin edit
+  the CSS below. Click "details"
   below to add comments or questions.
-  This file uses some SCSS. Learn more  
+  This file uses some SCSS. Learn more
   at http://sass-lang.com/guide)
 
   This designer can be linked to at:
@@ -49,7 +49,7 @@ div#control-panel, div#target-instances-map {
    of the button is the center, but there is trend towards moving it to a corner
    where it gets out of the way of valuable content in the poster image.*/
 .vjs-default-skin .vjs-big-play-button {
-  /* The font size is what makes the big play button...big. 
+  /* The font size is what makes the big play button...big.
      All width/height values use ems, which are a multiple of the font size.
      If the .video-js font-size is 10px, then 3em equals 30px.*/
   font-size: 4em;
@@ -77,10 +77,13 @@ div#control-panel, div#target-instances-map {
 .video-js .vjs-control-bar,
 .video-js .vjs-big-play-button,
 .video-js .vjs-menu-button .vjs-menu-content {
-  /* IE8 - has no alpha support */
-  background-color: #6d34c2;
-  /* Opacity: 1.0 = 100%, 0.0 = 0% */
-  background-color: rgba(109, 52, 194, 0.7);
+  background-color: rgb(109, 52, 194);
+  visibility: visible;
+}
+
+.video-js .vjs-control-bar {
+  position: absolute;
+  top: 22.5em;
 }
 
 /* Slider - used for Volume bar and Progress bar */
@@ -99,8 +102,6 @@ div#control-panel, div#target-instances-map {
 
 /* The main progress bar also has a bar that shows how much has been loaded. */
 .video-js .vjs-load-progress {
-  /* For IE8 we'll lighten the color */
-  background: ligthen(#cab4eb, 25%);
   /* Otherwise we'll rely on stacked opacities */
   background: rgba(202, 180, 235, 0.5);
 }
