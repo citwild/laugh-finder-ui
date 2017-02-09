@@ -1,6 +1,6 @@
 angular.module('laughResearchApp.viewer', ['ngRoute'])
 
-.config(['$routeProvider', function viewerConfig($routeProvider) {
+.config(['$routeProvider', function ($routeProvider) {
     // viewer page
     $routeProvider
         .when('/viewer', {
@@ -10,7 +10,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
 }])
 
-.service('instanceService', ['$http', function instanceService($http) {
+.service('instanceService', ['$http', function ($http) {
     return {
         getInstances: function getInstances(bucket, key) {
             // return $http.get('https://52.37.207.59:16000/analyze/video?bucket=' + bucket + '&key=' + key)
@@ -19,7 +19,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     }
 }])
 
-.controller('viewerController', ['$scope', '$routeParams', 'instanceService', function ViewerController($scope, $routeParams, instanceService) {
+.controller('viewerController', ['$scope', '$routeParams', 'instanceService', function ($scope, $routeParams, instanceService) {
 
     // 1. Establish video asset's source (domain, bucket, key)
     var s3Domain = "https://s3-us-west-2.amazonaws.com/",
@@ -49,28 +49,32 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     });
 
     // 4. Get video's laugh data and metadata from web service 
+
+    $scope.$watch('video', function (){});
+
     instanceService.getInstances("bucket", "key").then(
         function success(response) {
-            console.log('success');
+            console.log("HTTP GET successful");
+            // $scope.video = response.data;
             $scope.video = {
                 foundLaughters: {
-                            filename: "testurl",
-                            length: 72000,
-                            timestamps: [
-                            {
+                    filename: "testurl",
+                    length: 72000,
+                    timestamps: [
+                        {
                             start: 15000,
                             stop: 20000,
                             categories: [
-                            "unilateral",
-                            "isolated",
-                            "alleviating"
+                                "unilateral",
+                                "isolated",
+                                "alleviating"
                             ],
                             participants: [
-                            "mark"
+                                "mark"
                             ]
-                            }
-                            ]
-                            }
+                        }
+                    ]
+                }
             };
         },
         function error(response) {
