@@ -15,7 +15,7 @@
         <option>3</option>
         </datalist>
         <br>
-        <div id="rate-num">{{currRate}}</div>
+        <div id="rate-num">{{currRate | number:2}}</div>
         <br>
         <button ng-click="playNormally()" id="play-normal">Reset Playback Speed</button>
     </div>
