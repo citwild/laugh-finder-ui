@@ -48,8 +48,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         $scope.player = this;
     });
 
-
-    // 4. Get video's laugh data and metadata from web service
+    // 4. Get video's laugh data and metadata from web service 
     instanceService.getInstances("bucket", "key").then(
         function success(response) {
             console.log('success');
