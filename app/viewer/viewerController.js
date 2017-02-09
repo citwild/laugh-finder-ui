@@ -54,7 +54,6 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
     instanceService.getInstances("bucket", "key").then(
         function success(response) {
-            console.log("HTTP GET successful");
             // $scope.video = response.data;
             $scope.video = {
                 foundLaughters: {
