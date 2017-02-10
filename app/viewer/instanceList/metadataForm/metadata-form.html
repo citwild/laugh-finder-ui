@@ -17,9 +17,11 @@ Ask:
     </fieldset>
     <fieldset>
         <legend>Was the laughter caused by a joke?</legend>
-        <input id="joke-true" type="radio">
+        <input name="joke" id="joke-true" type="radio"
+               onclick="document.getElementById('speaker').disabled=false">
         <label for="joke-true">Yes</label>
-        <input id="joke-false" type="radio">
+        <input name="joke" id="joke-false" type="radio"
+               onclick="document.getElementById('speaker').disabled=true">
         <label for="joke-false">No</label>
     </fieldset>
     <fieldset>
@@ -28,9 +30,9 @@ Ask:
     </fieldset>
     <fieldset>
         <legend>Was the algorithm correct?</legend>
-        <input id="accurate-true" type="radio">
+        <input name="correct" id="accurate-true" type="radio">
         <label for="accurate-true">Correct</label>
-        <input id="accurate-false" type="radio">
+        <input name="correct" id="accurate-false" type="radio">
         <label for="accurate-false">Incorrect</label>
     </fieldset>
     <input id="save" type="submit">

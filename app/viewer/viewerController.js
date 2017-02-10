@@ -46,10 +46,15 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     });
     videojs('my-video').ready(function() {
         $scope.player = this;
+
+        // remove following components
+        $scope.player.removeChild('BigPlayButton');
+        $scope.player.getChild('ControlBar').removeChild('PlayToggle');
+        $scope.player.getChild('ControlBar').removeChild('ChaptersButton');
+        $scope.player.getChild('ControlBar').removeChild('FullscreenToggle');
     });
 
-    // 4. Get video's laugh data and metadata from web service 
-
+    // 4. Get video's laugh data and metadata from web service
     $scope.$watch('video', function (){});
 
     instanceService.getInstances("bucket", "key").then(

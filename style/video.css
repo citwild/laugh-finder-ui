@@ -44,38 +44,9 @@ control-panel, instance-list {
   color: #ffee00;
 }
 
-/* The "Big Play Button" is the play button that shows before the video plays.
-   To center it set the align values to center and middle. The typical location
-   of the button is the center, but there is trend towards moving it to a corner
-   where it gets out of the way of valuable content in the poster image.*/
-.vjs-default-skin .vjs-big-play-button {
-  /* The font size is what makes the big play button...big.
-     All width/height values use ems, which are a multiple of the font size.
-     If the .video-js font-size is 10px, then 3em equals 30px.*/
-  font-size: 4em;
-  /* We're using SCSS vars here because the values are used in multiple places.
-     Now that font size is set, the following em values will be a multiple of the
-     new font size. If the font-size is 3em (30px), then setting any of
-     the following values to 3em would equal 30px. 3 * font-size. */
-  /* 1.5em = 45px default */
-  line-height: 1.5em;
-  height: 1.5em;
-  width: 1.5em;
-  /* 0.06666em = 2px default */
-  border: 0.06666em solid #ffee00;
-  /* 0.3em = 9px default */
-  border-radius: 0.9em;
-  /* Align center */
-  left: 50%;
-  top: 50%;
-  margin-left: -0.75em;
-  margin-top: -0.75em;
-}
-
 /* The default color of control backgrounds is mostly black but with a little
    bit of blue so it can still be seen on all-black video frames, which are common. */
 .video-js .vjs-control-bar,
-.video-js .vjs-big-play-button,
 .video-js .vjs-menu-button .vjs-menu-content {
   background-color: rgb(109, 52, 194);
   visibility: visible;
@@ -113,4 +84,10 @@ control-panel, instance-list {
   background: ligthen(#cab4eb, 50%);
   /* Otherwise we'll rely on stacked opacities */
   background: rgba(202, 180, 235, 0.75);
+}
+
+.video-js .vjs-current-time,
+.video-js .vjs-duration,
+.video-js .vjs-time-divider {
+  display: flex;
 }

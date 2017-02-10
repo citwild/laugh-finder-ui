@@ -12,7 +12,7 @@ angular.module('laughResearchApp.viewer')
         //////////////////////////////////////////////////////
         $scope.player;
         $scope.$on('$destroy', function() {
-            // Destroy the object if it exists
+            // destroy the object if it exists
             if (($scope.player !== undefined) && ($scope.player !== null)) {
                 $scope.player.dispose();
             }
