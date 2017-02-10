@@ -27,7 +27,6 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         key = $routeParams.key;
 
     $scope.videoId = bucket + "/" + key;
-
     var videoUrl = s3Domain + $scope.videoId;
 
 
