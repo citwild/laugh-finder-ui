@@ -1,9 +1,12 @@
-<script src="./listController.js"></script>
-
-<p>List of videos:</p>
+<h1>List of videos:</h1>
+<h2>{{bucket}}</h2>
 <ul>
-    <li ng-repeat="video in videoList">
-    <a href="#!/viewer?bucket={{video.bucket}}&key={{video.key}}">{{video.key}}</a>
+    <!--<li ng-repeat="video in videoList">-->
+        <!--<a href="#!/viewer?bucket={{video.bucket}}&key={{video.key}}">{{video.key}}</a>-->
+    <!--</li>-->
+    <li ng-repeat="key in s3Keys" ng-if="$even">
+        <a href="#!/viewer?bucket={{bucket}}&key={{key}}">{{key}}</a>
     </li>
 </ul>
+<br>
 <a href="#!/">Back to home</a>
