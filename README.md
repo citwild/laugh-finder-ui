@@ -1,6 +1,15 @@
 # laugh-finder-ui
 A general web application for documenting and viewing found laughter instances.
 
+# Todo
+
+- Manually add laugh instances
+  - Need to have service update `laugh_instance` table
+- Dynamically change laugh tags
+  - Have form for creation present in the viewer?
+  - Should update in database
+    - Only hide values previously created but then omitted
+
 # Notes About Laughter
 
 ## Potential Research Metrics
