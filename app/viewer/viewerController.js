@@ -63,18 +63,30 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                 foundLaughters: {
                     filename: "testurl",
                     length: 72000,
-                    timestamps: [
+                    instances: [
                         {
                             start: 15000,
                             stop: 20000,
-                            categories: [
-                                "unilateral",
-                                "isolated",
-                                "alleviating"
-                            ],
                             participants: [
-                                "mark"
-                            ]
+                                {
+                                    name: "mark",
+                                    tags: [
+                                        "alleviating"
+                                    ],
+                                    intensity: 1
+                                },
+                                {
+                                    name: "fida",
+                                    tags: [
+                                        "friendly",
+                                        "alleviating"
+                                    ],
+                                    intensity: 2
+                                }
+                            ],
+                            joke: true,
+                            speaker: "david",
+                            algCorrect: true
                         }
                     ]
                 }

@@ -20,7 +20,7 @@ angular.module('laughResearchApp.viewer')
 
         // Watch for changes in parent scope
         $scope.$parent.$watch('video', function() {
-            $scope.instances = $scope.$parent.video.foundLaughters.timestamps;
+            $scope.instances = $scope.$parent.video.foundLaughters.instances;
         });
 
         /////////////////////////////////////////////////////////
