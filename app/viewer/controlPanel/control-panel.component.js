@@ -24,42 +24,47 @@ angular.module('laughResearchApp.viewer')
 
         //////////////////////////////////////////////////////
         // Begin video controller methods
+        //   - Using $watch to avoid undefined console errors
         //////////////////////////////////////////////////////
-        $scope.goToTime = function goToTime(value) {
-            $scope.player.currentTime(value);
-        };
+        $scope.$watch('player', function() {
+            if ($scope.player) {
+                $scope.goToTime = function goToTime(value) {
+                    $scope.player.currentTime(value);
+                };
 
-        // playback rate function (tied to slider)
-        $scope.changeRate = function changeRate(rate) {
-            $scope.player.playbackRate(rate);
-            $scope.currRate = rate;
-        };
+                // playback rate function (tied to slider)
+                $scope.changeRate = function changeRate(rate) {
+                    $scope.player.playbackRate(rate);
+                    $scope.currRate = rate;
+                };
 
-        $scope.playStop = function playStop() {
-            if ($scope.player.paused()) {
-                $scope.player.play();
-            } else {
-                $scope.player.pause();
+                $scope.playStop = function playStop() {
+                    if ($scope.player.paused()) {
+                        $scope.player.play();
+                    } else {
+                        $scope.player.pause();
+                    }
+                };
+
+                $scope.playNormally = function playNormally() {
+                    // reset rate values
+                    $scope.player.playbackRate(1);
+                    $scope.currRate = 1;
+
+                    // reset slider position
+                    document.getElementById('rate-slider').value = 1;
+                };
+
+                $scope.skipBack = function skipBack() {
+                    var skipAmt = parseInt(document.getElementById('skip-amt').value);
+                    this.goToTime($scope.player.currentTime() - skipAmt);
+                };
+
+                $scope.skipForward = function skipForward() {
+                    var skipAmt = parseInt(document.getElementById('skip-amt').value);
+                    this.goToTime($scope.player.currentTime() + skipAmt);
+                };
             }
-        };
-
-        $scope.playNormally = function playNormally() {
-            // reset rate values
-            $scope.player.playbackRate(1);
-            $scope.currRate = 1;
-
-            // reset slider position
-            document.getElementById('rate-slider').value = 1;
-        };
-
-        $scope.skipBack = function skipBack() {
-            var skipAmt = parseInt(document.getElementById('skip-amt').value);
-            this.goToTime($scope.player.currentTime() - skipAmt);
-        };
-
-        $scope.skipForward = function skipForward() {
-            var skipAmt = parseInt(document.getElementById('skip-amt').value);
-            this.goToTime($scope.player.currentTime() + skipAmt);
-        };
+        });
     }
 });

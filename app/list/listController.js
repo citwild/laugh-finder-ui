@@ -35,10 +35,10 @@ angular.module('laughResearchApp.videoList', ['ngRoute'])
         videoRX = /<Key>([a-zA-Z0-9\/\-]*.mp4)<\/Key>/;
 
     $scope.$watch('assets', function () {
-        $scope.bucket = bucketRX.exec($scope.assets)[1];
-        $scope.s3Keys = videoRX.exec($scope.assets);
-        $scope.s3Keys.shift();
-        console.log($scope.bucket);
-        console.log($scope.s3Keys);
+        if ($scope.assets) {
+            $scope.bucket = bucketRX.exec($scope.assets)[1];
+            $scope.s3Keys = videoRX.exec($scope.assets);
+            $scope.s3Keys.shift();
+        }
     });
 }]);
