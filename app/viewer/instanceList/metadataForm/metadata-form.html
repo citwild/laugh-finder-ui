@@ -6,7 +6,7 @@ Ask:
     Who what is the type of laughter?
     Was the algorithm correct?
 -->
-<form method="post">
+<form method="put" ng-submit="submitForm(1, 'test', 'test')">
     <fieldset id="participant-field">
         <legend>Participant</legend>
         <input name="participant" type="text">
@@ -40,5 +40,5 @@ Ask:
         <input name="correct" id="accurate-false" type="radio" value="false">
         <label for="accurate-false">Incorrect</label>
     </fieldset>
-    <input id="save" type="submit">
+    <input id="save" type="submit" value="Submit">
 </form>

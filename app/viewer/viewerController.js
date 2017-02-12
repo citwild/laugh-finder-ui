@@ -12,7 +12,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
 .service('instanceService', ['$http', function ($http) {
     return {
-        getInstances: function getInstances(bucket, key) {
+        getInstances: function(bucket, key) {
             // return $http.get('https://52.37.207.59:16000/analyze/video?bucket=' + bucket + '&key=' + key)
             return $http.get('http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key)
         }

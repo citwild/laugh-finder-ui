@@ -17,7 +17,7 @@ div#video-panel {
 div#my-video {
 }
 
-control-panel, instance-list {
+control-panel, instance-list, type-manager {
     width: 40em;
 }
 
