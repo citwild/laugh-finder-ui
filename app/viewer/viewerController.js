@@ -61,7 +61,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             $scope.video = response.data;
         },
         function error(response) {
-            console.log("failed to load video laugh data and metadata");
+            console.log("[viewerController] failed to load video laugh data and metadata");
         }
     );
 

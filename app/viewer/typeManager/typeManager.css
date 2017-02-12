@@ -9,10 +9,14 @@ div#type-manager {
 
 div#type-manager-controls {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
 
     border: 3px dashed black;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding: 1em 1em 1em 1em;
+}
+
+table#laugh-type-table, form#add-type {
+    border: 1px dashed red;
+    width: 100%;
 }
