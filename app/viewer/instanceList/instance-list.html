@@ -11,13 +11,22 @@
                 <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
             </div>
             <div>
-                <ul class="tags">
-                    <li ng-repeat="category in instance.categories">{{category}}</li>
-                </ul>
+                <p>Participants</p>
                 <ul class="participants">
-                    <li ng-repeat="category in instance.categories">{{category}}</li>
+
+                    <li ng-if="instance.participants === null">No participants</li>
+
+                    <li ng-repeat="particpant in instance.participants" ng-if="instance.participants !== null">
+                        <p>Name: {{particpant}}</p>
+
+                        <p>Laugh descriptors:</p>
+                        <ul class="tags">
+                            <li ng-repeat="tag in instance.participants.tags">{{tag}}</li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
+            <hr>
             <metadata-form></metadata-form>
         </div>
     </div>

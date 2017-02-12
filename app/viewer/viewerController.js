@@ -14,7 +14,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     return {
         getInstances: function getInstances(bucket, key) {
             // return $http.get('https://52.37.207.59:16000/analyze/video?bucket=' + bucket + '&key=' + key)
-            return $http.get('http://localhost:8080');
+            return $http.get('http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key)
         }
     }
 }])
@@ -46,7 +46,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     videojs('my-video').ready(function() {
         $scope.player = this;
 
-        // remove following components
+        // remove following components, since they're not used
         $scope.player.removeChild('BigPlayButton');
         $scope.player.getChild('ControlBar').removeChild('PlayToggle');
         $scope.player.getChild('ControlBar').removeChild('ChaptersButton');
@@ -56,44 +56,12 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     // 4. Get video's laugh data and metadata from web service
     $scope.$watch('video', function (){});
 
-    instanceService.getInstances("bucket", "key").then(
+    instanceService.getInstances(bucket, key).then(
         function success(response) {
-            // $scope.video = response.data;
-            $scope.video = {
-                foundLaughters: {
-                    filename: "testurl",
-                    length: 72000,
-                    instances: [
-                        {
-                            start: 15000,
-                            stop: 20000,
-                            participants: [
-                                {
-                                    name: "mark",
-                                    tags: [
-                                        "alleviating"
-                                    ],
-                                    intensity: 1
-                                },
-                                {
-                                    name: "fida",
-                                    tags: [
-                                        "friendly",
-                                        "alleviating"
-                                    ],
-                                    intensity: 2
-                                }
-                            ],
-                            joke: true,
-                            speaker: "david",
-                            algCorrect: true
-                        }
-                    ]
-                }
-            };
+            $scope.video = response.data;
         },
         function error(response) {
-            alert("failed to load video laugh data and metadata. see console for details.");
+            console.log("failed to load video laugh data and metadata");
         }
     );
 

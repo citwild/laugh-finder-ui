@@ -1,7 +1,6 @@
 angular.module('laughResearchApp.viewer')
 
 .filter('hmsTime', function(){
-
     return function (s) {
         var ms = s % 1000;
         s = (s - ms) / 1000;
@@ -9,7 +8,6 @@ angular.module('laughResearchApp.viewer')
         s = (s - secs) / 60;
         var mins = s % 60;
         var hrs = (s - mins) / 60;
-
         return hrs + ':' + mins + ':' + secs;
     };
 })
