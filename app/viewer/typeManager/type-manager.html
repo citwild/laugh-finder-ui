@@ -8,25 +8,25 @@
                 <th>In Use</th>
             </tr>
             <tr ng-repeat="type in laughTypes">
+                <!-- id isn't important to the user -->
+                <td style="display: none;">{{type.id}}</td>
                 <td>{{type.type}}</td>
                 <td>{{type.description}}</td>
                 <td>{{type.considered}}</td>
             </tr>
         </table>
-        <form id="add-type">
+        <form id="add-type" ng-submit="postNewType()">
+              <!--method="post"-->
+              <!--action="http://localhost:16000/types/add">-->
             <fieldset id="type-name-field">
-                <label for="type-name">Name</label>
-                <input id="type-name" type="text">
+                <label for="type">Name</label>
+                <input id="type" type="text" ng-model="typeName">
             </fieldset>
             <fieldset id="type-description-field">
-                <label for="type-description">Description</label>
-                <input id="type-description" type="text">
+                <label for="description">Description</label>
+                <input id="description" type="text" ng-model="typeDesc">
             </fieldset>
-            <fieldset id="type-considered-field">
-                <label for="type-considered">Considered</label>
-                <input id="type-considered" type="checkbox">
-            </fieldset>
-            <input id="save-type" type="submit" value="Submit">
+            <input type="submit" value="Save new type">
         </form>
     </div>
 </div>
