@@ -1,30 +1,38 @@
 <div id="type-manager">
    <h2>Laugh Type Manager</h2>
     <div id="type-manager-controls">
-        <table id="laugh-type-table">
-            <tr>
-                <th>Type</th>
-                <th>Description</th>
-                <th>In Use</th>
-            </tr>
-            <tr ng-repeat="type in laughTypes">
-                <!-- id isn't important to the user -->
-                <td style="display: none;">{{type.id}}</td>
-                <td>{{type.type}}</td>
-                <td>{{type.description}}</td>
-                <td>{{type.considered}}</td>
-            </tr>
-        </table>
+        <form id="laugh-type-table" ng-submit="updateTypes()">
+            <table>
+                <tr>
+                    <th class="typeName">Type</th>
+                    <th class="typeDesc">Description</th>
+                    <th class="typeConsidered">In Use</th>
+                </tr>
+                <tr ng-repeat="type in laughTypes">
+                    <td style="display: none;">
+                        <input ng-model="type.typeId" type="number" disabled="disabled" ng-init="type.typeId=type.id">
+                    </td>
+                    <td class="typeName">
+                        <input ng-model="type.typeName" type="text" disabled="disabled" ng-init="type.typeName=type.type">
+                    </td>
+                    <td class="typeDesc">
+                        <input ng-model="type.typeDesc" type="text" disabled="disabled" ng-init="type.typeDesc=type.description">
+                    </td>
+                    <td class="typeConsidered">
+                        <input ng-model="type.typeConsidered" type="checkbox" ng-init="type.typeConsidered=type.considered"> <!--checked="{{type.considered}}">-->
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Update types">
+        </form>
         <form id="add-type" ng-submit="postNewType()">
-              <!--method="post"-->
-              <!--action="http://localhost:16000/types/add">-->
             <fieldset id="type-name-field">
                 <label for="type">Name</label>
-                <input id="type" type="text" ng-model="typeName">
+                <input ng-model="typeName" id="type" type="text">
             </fieldset>
             <fieldset id="type-description-field">
                 <label for="description">Description</label>
-                <input id="description" type="text" ng-model="typeDesc">
+                <input ng-model="typeDesc" id="description" type="text">
             </fieldset>
             <input type="submit" value="Save new type">
         </form>

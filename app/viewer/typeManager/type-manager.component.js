@@ -12,6 +12,12 @@ angular.module('laughResearchApp.viewer')
                 'http://localhost:16000/types/add',
                 json
             );
+        },
+        postConsideredUpdate: function(json) {
+            return $http.post(
+                'http://localhost:16000/types/update',
+                json
+            );
         }
     }
 }])
@@ -32,6 +38,13 @@ angular.module('laughResearchApp.viewer')
         );
 
         // 2. Define helper methods
+        $scope.updateTypes = function() {
+            // get from ng-model values
+            console.log(JSON.stringify($scope.laughTypes));
+
+            typeService.postConsideredUpdate($scope.laughTypes);
+        };
+
         $scope.postNewType = function() {
             // get from ng-model values
             var typeName = $scope.typeName,
