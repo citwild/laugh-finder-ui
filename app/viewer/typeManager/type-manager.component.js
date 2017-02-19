@@ -39,9 +39,6 @@ angular.module('laughResearchApp.viewer')
 
         // 2. Define helper methods
         $scope.updateTypes = function() {
-            // get from ng-model values
-            console.log(JSON.stringify($scope.laughTypes));
-
             typeService.postConsideredUpdate($scope.laughTypes);
         };
 
