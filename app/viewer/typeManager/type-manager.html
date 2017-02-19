@@ -10,16 +10,16 @@
                 </tr>
                 <tr ng-repeat="type in laughTypes">
                     <td style="display: none;">
-                        <input ng-model="type.typeId" type="number" disabled="disabled" ng-init="type.typeId=type.id">
+                        <input ng-model="type.id" type="number" disabled="disabled" ng-init="type.id">
                     </td>
                     <td class="typeName">
-                        <input ng-model="type.typeName" type="text" disabled="disabled" ng-init="type.typeName=type.type">
+                        <input ng-model="type.type" type="text" disabled="disabled" ng-init="type.type">
                     </td>
                     <td class="typeDesc">
-                        <input ng-model="type.typeDesc" type="text" disabled="disabled" ng-init="type.typeDesc=type.description">
+                        <input ng-model="type.description" type="text" disabled="disabled" ng-init="type.description">
                     </td>
                     <td class="typeConsidered">
-                        <input ng-model="type.typeConsidered" type="checkbox" ng-init="type.typeConsidered=type.considered"> <!--checked="{{type.considered}}">-->
+                        <input ng-model="type.considered" type="checkbox" ng-init="type.considered"> <!--checked="{{type.considered}}">-->
                     </td>
                 </tr>
             </table>

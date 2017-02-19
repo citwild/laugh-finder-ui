@@ -50,8 +50,8 @@ angular.module('laughResearchApp.viewer')
             var typeName = $scope.typeName,
                 typeDesc = $scope.typeDesc,
                 result = {
-                    name: typeName,
-                    desc: typeDesc
+                    type: typeName,
+                    description: typeDesc
                 };
 
             // reset form
