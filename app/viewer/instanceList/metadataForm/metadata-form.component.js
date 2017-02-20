@@ -2,10 +2,15 @@ angular.module('laughResearchApp.viewer')
 
 .service('metadataService', ['$http', function($http) {
     return {
-        putMetadata: function(instanceId, bucket, key, requestBody) {
-            return $http.put(
+        updateParticipantData: function(instanceId, bucket, key, json) {
+            return $http.post(
                 'http://localhost:16000/metadata/put/instanceId/' + instanceId + '?bucket=' + bucket + '&key=' + key,
-                requestBody);
+                json);
+        },
+        updateInstanceData: function(instanceId, bucket, key, json) {
+            return $http.post(
+                'http://localhost:16000/metadata/put/instanceId/' + instanceId + '?bucket=' + bucket + '&key=' + key,
+                json);
         }
     }
 }])
@@ -13,10 +18,13 @@ angular.module('laughResearchApp.viewer')
 .component('metadataForm', {
     templateUrl: 'app/viewer/instanceList/metadataForm/metadata-form.html',
     controller: function($scope, metadataService) {
+        // 0. Sync component before grabbing data
         this.$onInit = function() {
+
             // 1. Get data from parent scope
             var ctrl = this;
             console.log(ctrl.instance);
+            $scope.instance = ctrl.instance;
 
             // 2. Define helper functions
             $scope.hideSpeakerField = true;

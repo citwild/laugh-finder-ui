@@ -1,12 +1,10 @@
 <!-- Metadata form -->
+
 <!--
-Ask:
-    Was there an instigator?
-    Who is participating?
-    Who what is the type of laughter?
-    Was the algorithm correct?
+Per participant data [individuals]
 -->
-<form method="put" ng-submit="updateInstance()">
+<h4>Participant Data</h4>
+<form method="post" ng-submit="updateParticipantData()">
     <fieldset id="participant-field">
         <legend>Participant</legend>
         <input name="participant" type="text">
@@ -23,11 +21,28 @@ Ask:
         <!-- TODO: make a checkbox list of types from database -->
         <input name="description" type="text">
     </fieldset>
+</form>
+
+<hr>
+
+<!--
+Per instance data [entire group]
+-->
+<h4>Group Data</h4>
+<form method="post" ng-submit="updateInstanceData()">
     <fieldset id="joke-field">
         <legend>Was the laughter caused by a joke?</legend>
-        <input name="joke" id="joke-true" type="radio" ng-click="disableSpeakerField(false)">
+        <input name="joke"
+               id="joke-true"
+               type="radio"
+               ng-click="disableSpeakerField(false)"
+               ng-checked="instance.joke">
         <label for="joke-true">Yes</label>
-        <input name="joke" id="joke-false" type="radio" ng-click="disableSpeakerField(true)">
+        <input name="joke"
+               id="joke-false"
+               type="radio"
+               ng-click="disableSpeakerField(true)"
+               ng-checked="!instance.joke">
         <label for="joke-false">No</label>
     </fieldset>
     <fieldset id="speaker-field" ng-hide="hideSpeakerField">
@@ -36,9 +51,17 @@ Ask:
     </fieldset>
     <fieldset id="correct-field">
         <legend>Was the algorithm correct?</legend>
-        <input name="correct" id="accurate-true" type="radio" value="true">
+        <input name="correct"
+               id="accurate-true"
+               type="radio"
+               value="true"
+               ng-checked="instance.algCorrect">
         <label for="accurate-true">Correct</label>
-        <input name="correct" id="accurate-false" type="radio" value="false">
+        <input name="correct"
+               id="accurate-false"
+               type="radio"
+               value="false"
+               ng-checked="!instance.algCorrect">
         <label for="accurate-false">Incorrect</label>
     </fieldset>
     <input id="save-instance" type="submit" value="Update">
