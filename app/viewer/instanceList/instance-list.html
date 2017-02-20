@@ -8,14 +8,14 @@
                 <span class="instance-stop">Stop: {{instance.stop | hmsTime}}</span>
                 <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
             </div>
-            <div>
+            <!--<div>
                 <p>Participants</p>
                 <ul class="participants">
 
-                    <li ng-if="instance.participants === null">No participants</li>
+                    <li ng-if="instance.participants === []">No participants</li>
 
-                    <li ng-repeat="particpant in instance.participants" ng-if="instance.participants !== null">
-                        <p>Name: {{particpant}}</p>
+                    <li ng-repeat="particpant in instance.participants" ng-if="instance.participants !== []">
+                        <p>Name: {{participant}}</p>
 
                         <p>Laugh descriptors:</p>
                         <ul class="tags">
@@ -23,9 +23,10 @@
                         </ul>
                     </li>
                 </ul>
-            </div>
+            </div>-->
             <hr>
-            <metadata-form></metadata-form>
+            <!--<metadata-form instance="instance"></metadata-form>-->
+            <metadata-form instance="instance"></metadata-form>
         </div>
     </div>
     <button ng-click="">Add Instance</button>

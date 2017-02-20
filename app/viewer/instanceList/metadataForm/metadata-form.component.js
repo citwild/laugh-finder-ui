@@ -1,10 +1,5 @@
 angular.module('laughResearchApp.viewer')
 
-//.config(['$httpProvider', function($httpProvider) {
-//    $httpProvider.defaults.useXDomain = true;
-//    delete $httpProvider.defaults.headers.common['X-Requested-With'];
-//}])
-
 .service('metadataService', ['$http', function($http) {
     return {
         putMetadata: function(instanceId, bucket, key, requestBody) {
@@ -18,24 +13,31 @@ angular.module('laughResearchApp.viewer')
 .component('metadataForm', {
     templateUrl: 'app/viewer/instanceList/metadataForm/metadata-form.html',
     controller: function($scope, metadataService) {
-        // maybe some logic to POST to web service
+        this.$onInit = function() {
+            // 1. Get data from parent scope
+            var ctrl = this;
+            console.log(ctrl.instance);
 
-        $scope.hideSpeakerField = true;
+            // 2. Define helper functions
+            $scope.hideSpeakerField = true;
+            $scope.disableSpeakerField = function (bool) {
+                document.getElementById('speaker').disabled = bool;
+                $scope.hideSpeakerField = bool;
+            };
 
-        $scope.disableSpeakerField = function(bool) {
-            document.getElementById('speaker').disabled = bool;
-            $scope.hideSpeakerField = bool;
-        };
-
-        $scope.submitForm = function(instanceId, bucket, key, requestBody) {
-            metadataService.putMetadata(instanceId, bucket, key, requestBody).then(
-                function success(response) {
-                    console.log(response);
-                },
-                function error(response) {
-                    console.log(response);
-                }
-            );
+            $scope.submitForm = function (instanceId, bucket, key, requestBody) {
+                metadataService.putMetadata(instanceId, bucket, key, requestBody).then(
+                    function success(response) {
+                        console.log(response);
+                    },
+                    function error(response) {
+                        console.log(response);
+                    }
+                );
+            }
         }
+    },
+    bindings: {
+        instance: '<'
     }
 });

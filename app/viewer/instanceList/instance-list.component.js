@@ -16,16 +16,14 @@ angular.module('laughResearchApp.viewer')
     templateUrl: 'app/viewer/instanceList/instance-list.html',
     controller: function InstanceListController($scope) {
 
-        // Watch for changes in parent scope
+        // 1. Watch for changes in parent scope
         $scope.$parent.$watch('video', function() {
             if ($scope.$parent.video) {
                 $scope.instances = $scope.$parent.video.foundLaughters.instances;
             }
         });
 
-        /////////////////////////////////////////////////////////
-        // Helper methods
-        /////////////////////////////////////////////////////////
+        // 2. Begin helper methods
         $scope.goToTime = function goToTime(value) {
             $scope.$parent.player.currentTime(value);
         };
