@@ -36,7 +36,6 @@ div.instance {
 
     border: 1px dashed green;
 
-    margin-bottom: 0.5em;
     padding: 1em 1em 1em 1em;
 }
 div.instance ul.tags {
@@ -72,4 +71,9 @@ div.timestamp {
 }
 span.instance-start, span.instance-stop, button.goto-instance {
     flex: 1 0;
+}
+
+li.participant {
+    list-style: none;
+    border: 1px dashed blue;
 }

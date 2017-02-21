@@ -3,7 +3,7 @@
 <!--
 Per participant data [individuals]
 -->
-<h4>Participant Data</h4>
+<h4>Add Participant</h4>
 <form method="post" ng-submit="updateParticipantData()">
     <fieldset id="participant-field">
         <legend>Participant</legend>
@@ -21,6 +21,7 @@ Per participant data [individuals]
         <!-- TODO: make a checkbox list of types from database -->
         <input name="description" type="text">
     </fieldset>
+    <input id="add-participant" type="submit" value="Add Participant">
 </form>
 
 <hr>
@@ -64,5 +65,5 @@ Per instance data [entire group]
                ng-checked="!instance.algCorrect">
         <label for="accurate-false">Incorrect</label>
     </fieldset>
-    <input id="save-instance" type="submit" value="Update">
+    <input id="update-instance" type="submit" value="Update">
 </form>
