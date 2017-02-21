@@ -19,7 +19,10 @@ Per participant data [individuals]
     <fieldset id="tag-field">
         <legend>How would you describe the laughter?</legend>
         <!-- TODO: make a checkbox list of types from database -->
-        <input name="description" type="text">
+        <div ng-repeat="type in types">
+            <input type="checkbox" name="desc{{$index}}">
+            <label>{{type.type}}</label>
+        </div>
     </fieldset>
     <input id="add-participant" type="submit" value="Add Participant">
 </form>

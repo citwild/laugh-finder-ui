@@ -2,6 +2,11 @@ angular.module('laughResearchApp.viewer')
 
 .service('metadataService', ['$http', function($http) {
     return {
+        getTypes: function() {
+            return $http.get(
+                'http://localhost:16000/types/get/all'
+            );
+        },
         updateParticipantData: function(instanceId, bucket, key, json) {
             return $http.post(
                 'http://localhost:16000/metadata/put/instanceId/' + instanceId + '?bucket=' + bucket + '&key=' + key,
@@ -26,7 +31,17 @@ angular.module('laughResearchApp.viewer')
             console.log(ctrl.instance);
             $scope.instance = ctrl.instance;
 
-            // 2. Define helper functions
+            // 2. Get additional data
+            metadataService.getTypes().then(
+                function success(response) {
+                    $scope.types = response.data;
+                },
+                function error(response) {
+                    console.log("[metadataForm] failed to load laugh types");
+                }
+            );
+
+            // 3. Define helper functions
             $scope.hideSpeakerField = true;
             $scope.disableSpeakerField = function (bool) {
                 document.getElementById('speaker').disabled = bool;
