@@ -1,5 +1,5 @@
 <div id="type-manager">
-   <h2>Laugh Type Manager</h2>
+   <h2>Manage Laugh Types</h2>
     <div id="type-manager-controls">
         <form id="laugh-type-table" ng-submit="updateTypes()">
             <table>
@@ -27,11 +27,11 @@
         </form>
         <form id="add-type" ng-submit="postNewType()">
             <fieldset id="type-name-field">
-                <label for="type">Name</label>
+                <legend for="type">Name</legend>
                 <input ng-model="typeName" id="type" type="text">
             </fieldset>
             <fieldset id="type-description-field">
-                <label for="description">Description</label>
+                <legend for="description">Description</legend>
                 <input ng-model="typeDesc" id="description" type="text">
             </fieldset>
             <input type="submit" value="Save new type">
