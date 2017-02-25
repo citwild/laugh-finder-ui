@@ -2,11 +2,6 @@ angular.module('laughResearchApp.viewer')
 
 .service('typeService', ['$http', function($http) {
     return {
-        getTypes: function() {
-            return $http.get(
-                'http://localhost:16000/types/get/all'
-            );
-        },
         postNewType: function(json) {
             return $http.post(
                 'http://localhost:16000/types/add',
@@ -27,22 +22,19 @@ angular.module('laughResearchApp.viewer')
     controller: function($scope, typeService) {
 
         // 1. Get laugh types
-        $scope.$watch('laughTypes', function () {});
-        typeService.getTypes().then(
-            function success(response) {
-                $scope.laughTypes = response.data;
-            },
-            function error(response) {
-                console.log("[typeManager] failed to load laugh types");
+        $scope.$parent.$watch('laughTypes', function () {
+            if ($scope.$parent.laughTypes) {
+                $scope.laughTypes= $scope.$parent.laughTypes;
+                console.log("[typeManager] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
             }
-        );
+        });
 
         // 2. Define helper methods
-        $scope.updateTypes = function() {
+        $scope.updateTypes = function () {
             typeService.postConsideredUpdate($scope.laughTypes);
         };
 
-        $scope.postNewType = function() {
+        $scope.postNewType = function () {
             // get from ng-model values
             var typeName = $scope.typeName,
                 typeDesc = $scope.typeDesc,
@@ -58,7 +50,7 @@ angular.module('laughResearchApp.viewer')
             typeService.postNewType(result);
 
             // refresh types (set to timeout so not run before database has as chance to update)
-            setTimeout(function() {
+            setTimeout(function () {
                 typeService.getTypes().then(
                     function success(response) {
                         $scope.laughTypes = response.data;

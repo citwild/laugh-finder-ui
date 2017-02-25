@@ -17,9 +17,16 @@ angular.module('laughResearchApp.viewer')
     controller: function InstanceListController($scope) {
 
         // 1. Watch for changes in parent scope
-        $scope.$parent.$watch('video', function() {
+        $scope.$parent.$watch('video', function () {
             if ($scope.$parent.video) {
                 $scope.instances = $scope.$parent.video.foundLaughters.instances;
+                console.log("[instanceList] Retrieved laugh instances: " + JSON.stringify($scope.instances));
+            }
+        });
+        $scope.$parent.$watch('laughTypes', function () {
+            if ($scope.$parent.laughTypes) {
+                $scope.laughTypes= $scope.$parent.laughTypes;
+                console.log("[instanceList] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
             }
         });
 

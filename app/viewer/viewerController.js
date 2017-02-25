@@ -12,9 +12,15 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
 .service('instanceService', ['$http', function ($http) {
     return {
+        getTypes: function() {
+            return $http.get(
+                'http://localhost:16000/types/get/all'
+            );
+        },
         getInstances: function(bucket, key) {
-            // return $http.get('https://52.37.207.59:16000/analyze/video?bucket=' + bucket + '&key=' + key)
-            return $http.get('http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key)
+            return $http.get(
+                'http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key
+            );
         }
     }
 }])
@@ -53,6 +59,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         $scope.player.getChild('ControlBar').removeChild('FullscreenToggle');
     });
 
+
     // 4. Get video's laugh data and metadata from web service
     $scope.$watch('video', function (){});
 
@@ -62,6 +69,19 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         },
         function error(response) {
             console.log("[viewerController] failed to load video laugh data and metadata");
+        }
+    );
+
+
+    // 5. Get video's laugh type data from web service
+    console.log("[viewerController] Getting laugh types");
+    instanceService.getTypes().then(
+        function success(response) {
+            $scope.laughTypes = response.data;
+            console.log("[viewerController] Laugh types: " + JSON.stringify($scope.laughTypes));
+        },
+        function error(response) {
+            console.log("[viewerController] failed to load laugh type data");
         }
     );
 
