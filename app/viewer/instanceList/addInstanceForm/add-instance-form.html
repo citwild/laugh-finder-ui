@@ -1,0 +1,15 @@
+<h2>Add Instance</h2>
+<p>Sometimes the algorithm is wrong. Please add any missed moments of laughter here.</p>
+<form method="post" ng-submit="addInstance()">
+    <fieldset>
+        <legend>Start time (in seconds)</legend>
+        <!-- TODO: have max be determined by length of video? -->
+        <input name="start-time" type="number">
+    </fieldset>
+    <fieldset>
+        <legend>Stop time (in seconds)</legend>
+        <!-- TODO: have max be determined by length of video? -->
+        <input name="stop-time" type="number">
+    </fieldset>
+    <input type="submit" value="Add instance">
+</form>

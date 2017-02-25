@@ -1,0 +1,13 @@
+add-instance-form {
+    display: block;
+    margin-top: 2em;
+}
+
+add-instance-form form {
+    border: 3px dashed black;
+    padding: 1em;
+}
+
+add-instance-form form fieldset {
+    border: none;
+}
