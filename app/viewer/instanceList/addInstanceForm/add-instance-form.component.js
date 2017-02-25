@@ -4,7 +4,7 @@ angular.module('laughResearchApp.viewer')
     return {
         postNewInstance: function (videoId, json) {
             return $http.post(
-                'http://localhost:16000/instances/add/videoId/' + videoId,
+                'http://localhost:16000/metadata/video/' + videoId + '/instances/add',
                 json
             );
         }
@@ -13,15 +13,21 @@ angular.module('laughResearchApp.viewer')
 
 .component('addInstanceForm', {
     templateUrl: 'app/viewer/instanceList/addInstanceForm/add-instance-form.html',
-    controller: function AddInstanceFormController($scope) {
+    controller: function ($scope, addInstanceService) {
 
         // 1. Get values from parent scope
         $scope.$parent.$watch('laughTypes', function () {
             if ($scope.$parent.laughTypes) {
-                $scope.laughTypes= $scope.$parent.laughTypes;
+                $scope.laughTypes = $scope.$parent.laughTypes;
                 console.log("[addInstanceFormController] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
             }
         });
+        /*$scope.$parent.$watch('videoId', function () {
+            if ($scope.$parent.videoId) {
+                $scope.videoId = $scope.$parent.videoId;
+                console.log("[addInstanceFormController] Retrieved videoId: " + $scope.videoId);
+            }
+        });*/
 
         // 2. Define helper methods
         $scope.hideSpeakerField = true;
@@ -32,18 +38,24 @@ angular.module('laughResearchApp.viewer')
         $scope.addInstance = function () {
             // get values
             var result = {
-                    videoId: $scope.$parent.videoId,
                     start: $scope.start,
                     stop: $scope.stop,
-                    joke: $scope.joke,
-                    speaker: $scope.speaker
+                    joke: ($scope.joke) ? $scope.joke : false,
+                    speaker: ($scope.speaker) ? $scope.speaker : null
                 };
 
             // reset form
             document.getElementById("add-instance").reset();
 
             // post to service
-            // addInstanceService.postNewInstance(videoId, result);
+            addInstanceService.postNewInstance($scope.$parent.videoId, result).then(
+                function success(response) {
+                    console.log("[addInstanceFormController] New instance created: " + response.data);
+                },
+                function error(response) {
+                    console.log("[addInstanceFormController] Failed to submit new instance");
+                }
+            );
             console.log(result)
         }
     }
