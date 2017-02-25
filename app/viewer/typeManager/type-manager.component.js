@@ -36,11 +36,9 @@ angular.module('laughResearchApp.viewer')
 
         $scope.postNewType = function () {
             // get from ng-model values
-            var typeName = $scope.typeName,
-                typeDesc = $scope.typeDesc,
-                result = {
-                    type: typeName,
-                    description: typeDesc
+            var result = {
+                    type: $scope.typeName,
+                    description: $scope.typeDesc
                 };
 
             // reset form

@@ -2,8 +2,11 @@ angular.module('laughResearchApp.viewer')
 
 .service('addInstanceService', ['$http', function($http) {
     return {
-        postNewInstance: function (bucket, id, json) {
-
+        postNewInstance: function (videoId, json) {
+            return $http.post(
+                'http://localhost:16000/instances/add/videoId/' + videoId,
+                json
+            );
         }
     }
 }])
@@ -12,8 +15,27 @@ angular.module('laughResearchApp.viewer')
     templateUrl: 'app/viewer/instanceList/addInstanceForm/add-instance-form.html',
     controller: function AddInstanceFormController($scope) {
 
-        $scope.addInstance = function () {
+        // 1. Define helper methods
+        $scope.hideSpeakerField = true;
+        $scope.disableSpeakerField = function (bool) {
+            document.getElementById('speaker').disabled = bool;
+            $scope.hideSpeakerField = bool;
+        };
 
+        $scope.addInstance = function () {
+            // get values
+            var result = {
+                    start: $scope.start,
+                    stop: $scope.stop,
+                    joke: $scope.joke,
+                    speaker: $scope.speaker
+                };
+
+            // reset form
+            document.getElementById("add-instance").reset();
+
+            // post to service
+            addInstanceService.postNewInstance(videoId, result);
         }
     }
 });

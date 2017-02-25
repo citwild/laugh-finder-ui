@@ -1,6 +1,6 @@
 <h2>Add Instance</h2>
 <p>Sometimes the algorithm is wrong. Please add any missed moments of laughter here.</p>
-<form method="post" ng-submit="addInstance()">
+<form id="add-instance" method="post" ng-submit="addInstance()">
     <fieldset>
         <legend>Start time (in seconds)</legend>
         <!-- TODO: have max be determined by length of video? -->
@@ -10,6 +10,25 @@
         <legend>Stop time (in seconds)</legend>
         <!-- TODO: have max be determined by length of video? -->
         <input name="stop-time" type="number">
+    </fieldset>
+    <fieldset>
+        <legend>Was laughter caused by a joke?</legend>
+        <input name="joke"
+               id="joke-true"
+               type="radio"
+               ng-click="disableSpeakerField(false)"
+               ng-checked="instance.joke">
+        <label for="joke-true">Yes</label>
+        <input name="joke"
+               id="joke-false"
+               type="radio"
+               ng-click="disableSpeakerField(true)"
+               ng-checked="!instance.joke">
+        <label for="joke-false">No</label>
+    </fieldset>
+    <fieldset id="speaker-field" ng-hide="hideSpeakerField">
+        <legend>Who told the joke?</legend>
+        <input id="speaker" type="text">
     </fieldset>
     <input type="submit" value="Add instance">
 </form>

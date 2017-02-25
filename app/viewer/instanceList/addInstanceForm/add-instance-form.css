@@ -10,4 +10,5 @@ add-instance-form form {
 
 add-instance-form form fieldset {
     border: none;
+    margin-bottom: 10px;
 }

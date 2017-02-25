@@ -66,6 +66,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     instanceService.getInstances(bucket, key).then(
         function success(response) {
             $scope.video = response.data;
+            console.log("[viewerController] Instance data: " + JSON.stringify($scope.video));
         },
         function error(response) {
             console.log("[viewerController] failed to load video laugh data and metadata");
