@@ -19,6 +19,8 @@ angular.module('laughResearchApp.viewer')
         // 1. Watch for changes in parent scope
         $scope.$parent.$watch('video', function () {
             if ($scope.$parent.video) {
+                $scope.videoId = $scope.$parent.video.foundLaughters.videoId;
+                console.log("[instanceList] Retrieved video ID: " + JSON.stringify($scope.videoId));
                 $scope.instances = $scope.$parent.video.foundLaughters.instances;
                 console.log("[instanceList] Retrieved laugh instances: " + JSON.stringify($scope.instances));
             }

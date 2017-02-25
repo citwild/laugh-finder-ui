@@ -15,16 +15,24 @@ angular.module('laughResearchApp.viewer')
     templateUrl: 'app/viewer/instanceList/addInstanceForm/add-instance-form.html',
     controller: function AddInstanceFormController($scope) {
 
-        // 1. Define helper methods
+        // 1. Get values from parent scope
+        $scope.$parent.$watch('laughTypes', function () {
+            if ($scope.$parent.laughTypes) {
+                $scope.laughTypes= $scope.$parent.laughTypes;
+                console.log("[addInstanceFormController] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
+            }
+        });
+
+        // 2. Define helper methods
         $scope.hideSpeakerField = true;
-        $scope.disableSpeakerField = function (bool) {
-            document.getElementById('speaker').disabled = bool;
-            $scope.hideSpeakerField = bool;
+        $scope.disableSpeakerField = function () {
+            $scope.hideSpeakerField = document.getElementById('speaker').checked;
         };
 
         $scope.addInstance = function () {
             // get values
             var result = {
+                    videoId: $scope.$parent.videoId,
                     start: $scope.start,
                     stop: $scope.stop,
                     joke: $scope.joke,
@@ -35,7 +43,8 @@ angular.module('laughResearchApp.viewer')
             document.getElementById("add-instance").reset();
 
             // post to service
-            addInstanceService.postNewInstance(videoId, result);
+            // addInstanceService.postNewInstance(videoId, result);
+            console.log(result)
         }
     }
 });
