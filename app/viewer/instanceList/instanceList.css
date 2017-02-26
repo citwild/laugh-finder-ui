@@ -1,15 +1,13 @@
 /** Instance list **/
 instance-list {
     display: flex;
-}
-
-div#laughter-instances {
     margin-top: 2em;
-    flex: 1;
+    flex-direction: column;
 }
 
 div#target-instances-map {
     display: flex;
+    flex: 1;
     flex-direction: row;
     align-items: flex-start;
 
@@ -30,13 +28,18 @@ div#instances {
 div.instance {
     background-color: white;
 
+    flex: 0.5 0;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     border: 1px dashed green;
-
     padding: 1em 1em 1em 1em;
+    flex-basis: 30em;
+
+    margin-left: 0.25em;
+    margin-right: 0.25em;
 }
 div.instance ul.tags {
     display: flex;
@@ -53,9 +56,6 @@ div.instance ul.tags {
 div.instance ul.tags li {
     border: 1px dashed orange;
     display: inline-table;
-}
-div.instance {
-    flex: 0.5 0;
 }
 div.instance button.goto-instance {
     flex: 1 0;
@@ -76,4 +76,9 @@ span.instance-start, span.instance-stop, button.goto-instance {
 li.participant {
     list-style: none;
     border: 1px dashed blue;
+}
+
+instance-list hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

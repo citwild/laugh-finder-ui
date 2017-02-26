@@ -1,50 +1,50 @@
-<div id="laughter-instances">
-    <h2>Laughter Instances</h2>
-    <div id="target-instances-map">
-        <div class="instance" ng-repeat="instance in instances">
-            <div class="timestamp">
-                <span class="instance-start">Start: {{instance.start | hmsTime}}</span>
-                <br>
-                <span class="instance-stop">Stop: {{instance.stop | hmsTime}}</span>
-                <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
-            </div>
-            <hr>
-            <div>
-                <h4>Participants</h4>
-                <ul class="participants">
-
-                    <li ng-if="instance.participants === []">
-                        No participants
-                    </li>
-
-                    <li class="participant"
-                        ng-repeat="participant in instance.participants"
-                        ng-if="instance.participants !== []">
-                        <table>
-                            <tr>
-                                <td>Name</td>
-                                <td>{{participant.name}}</td>
-                            </tr>
-                            <tr>
-                                <td>Intensity</td>
-                                <td>{{participant.intensity}}</td>
-                            </tr>
-                            <tr>
-                                <td>Laugh descriptors</td>
-                                <td>
-                                    <ul class="tags">
-                                        <li ng-repeat="tag in participant.tags">{{tag}}</li>
-                                    </ul>
-                                </td>
-                            </tr>
-                        </table>
-                    </li>
-                </ul>
-            </div>
-            <hr>
-            <metadata-form instance="instance" laugh-types="laughTypes"></metadata-form>
+<h2>Laughter Instances</h2>
+<p>Number of instances: <strong>{{instances.length}}</strong></p>
+<div id="target-instances-map">
+    <div class="instance" ng-repeat="instance in instances">
+        <div class="timestamp">
+            <span class="instance-start">Start: {{instance.start | hmsTime}}</span>
+            <br>
+            <span class="instance-stop">Stop: {{instance.stop | hmsTime}}</span>
+            <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
         </div>
-    </div>
-    <add-instance-form></add-instance-form>
+        <hr>
+        <div>
+            <h4>Participants</h4>
+            <ul class="participants">
 
+                <li ng-if="instance.participants === []">
+                    No participants
+                </li>
+
+                <li class="participant"
+                    ng-repeat="participant in instance.participants"
+                    ng-if="instance.participants !== []">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{participant.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Intensity</td>
+                            <td>{{participant.intensity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Laugh descriptors</td>
+                            <td>
+                                <ul class="tags">
+                                    <li ng-repeat="tag in participant.tags">{{tag}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <!-- Updating metadata for instance -->
+        <metadata-form instance="instance" laugh-types="laughTypes"></metadata-form>
+    </div>
 </div>
+<!-- Create new instance -->
+<add-instance-form></add-instance-form>
