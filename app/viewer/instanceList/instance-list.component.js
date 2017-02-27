@@ -48,8 +48,7 @@ angular.module('laughResearchApp.viewer')
         };
 
         $scope.removeParticipant = function(id) {
-            console.log(id);
-            // instanceListService.deleteParticipant(id);
-        }
+            instanceListService.deleteParticipant(id);
+        };
     }
 });
