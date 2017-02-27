@@ -2,15 +2,17 @@ angular.module('laughResearchApp.viewer')
 
 .service('metadataService', ['$http', function($http) {
     return {
-        updateParticipantData: function(instanceId, bucket, key, json) {
+        updateParticipantData: function(instanceId, json) {
             return $http.post(
-                'http://localhost:16000/metadata/put/instanceId/' + instanceId + '?bucket=' + bucket + '&key=' + key,
-                json);
+                'http://localhost:16000/metadata/instance/' + instanceId + '/participants/add',
+                json
+            );
         },
-        updateInstanceData: function(instanceId, bucket, key, json) {
+        updateInstanceData: function(instanceId, json) {
             return $http.post(
-                'http://localhost:16000/metadata/put/instanceId/' + instanceId + '?bucket=' + bucket + '&key=' + key,
-                json);
+                'http://localhost:16000/metadata/put/instanceId/' + instanceId,
+                json
+            );
         }
     }
 }])
@@ -39,8 +41,22 @@ angular.module('laughResearchApp.viewer')
             };
 
             // 2.b. Form submission methods
-            $scope.updateParticipantData = function (instanceId, bucket, key, requestBody) {
-                metadataService.updateParticipantData(instanceId, bucket, key, requestBody).then(
+            $scope.updateParticipantData = function () {
+                /*
+                 {
+                     "name":"test",
+                     "intensity":"1",
+                     "tags":{
+                         "1":true,
+                         "2":false,
+                         "3":false,
+                         "4":true,
+                         "5":true
+                     }
+                 }
+                 */
+                var requestBody = $scope.newParticipant;
+                metadataService.updateParticipantData($scope.instance.id, requestBody).then(
                     function success(response) {
                         console.log(response);
                     },
