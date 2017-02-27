@@ -12,9 +12,19 @@ angular.module('laughResearchApp.viewer')
     };
 })
 
+.service('instanceListService', ['$http', function($http) {
+    return {
+        deleteParticipant: function(id) {
+            return $http.delete(
+                'http://localhost:16000/metadata/participant/' + id + '/delete'
+            );
+        }
+    }
+}])
+
 .component('instanceList', {
     templateUrl: 'app/viewer/instanceList/instance-list.html',
-    controller: function InstanceListController($scope) {
+    controller: function InstanceListController($scope, instanceListService) {
 
         // 1. Watch for changes in parent scope
         $scope.$parent.$watch('video', function () {
@@ -36,5 +46,10 @@ angular.module('laughResearchApp.viewer')
         $scope.goToTime = function goToTime(value) {
             $scope.$parent.player.currentTime(value);
         };
+
+        $scope.removeParticipant = function(id) {
+            console.log(id);
+            // instanceListService.deleteParticipant(id);
+        }
     }
 });

@@ -76,6 +76,20 @@ span.instance-start, span.instance-stop, button.goto-instance {
 li.participant {
     list-style: none;
     border: 1px dashed blue;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+li.participant table {
+    flex: 3;
+}
+
+li.participant button {
+    flex: 1;
+
+    height: 3em;
+    flex-grow: 0.25;
 }
 
 instance-list hr {
