@@ -7,6 +7,14 @@ header {
     border: 1px dashed black;
 }
 
+div#video-container {
+    background-color: #414141;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
 div#video-panel {
     display: flex;
     flex-direction: column;
