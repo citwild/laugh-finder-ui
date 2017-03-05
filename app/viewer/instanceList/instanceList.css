@@ -58,7 +58,7 @@ div.instance ul.tags li {
 div.instance button.goto-instance {
     flex: 2 0;
     height: 100%;
-    margin-right: 3em;
+    margin-right: 4em;
 }
 
 div.timestamp {

@@ -61,8 +61,14 @@ angular.module('laughResearchApp.viewer')
             $scope.showMetadataForm = !$scope.showMetadataForm;
         }
 
-        $scope.deleteInstance = function(id) {
-            alert("ID: " + id);
+        $scope.deleteInstance = function(instance) {
+            var deleteInstance = confirm(
+                "This instance has " + instance.participants.length + " participants in it.\n\n" +
+                "Delete Instance ID #" + instance.id + "?"
+            );
+            if (deleteInstance) {
+                instanceListService.deleteInstance(instance.id);
+            }
         }
     }
 });
