@@ -6,6 +6,10 @@
             <br>
             <span class="instance-stop">Stop: {{instance.stop | hmsTime}}</span>
             <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
+            <span><a class="delete-instance"
+                     href="#"
+                     onclick="return false;"
+                     ng-click="deleteInstance(instance.id)">Delete</a></span>
         </div>
         <hr>
         <div>

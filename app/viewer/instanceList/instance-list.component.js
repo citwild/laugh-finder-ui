@@ -14,9 +14,14 @@ angular.module('laughResearchApp.viewer')
 
 .service('instanceListService', ['$http', function($http) {
     return {
-        deleteParticipant: function(id) {
+        deleteParticipant: function (id) {
             return $http.delete(
                 'http://localhost:16000/metadata/participant/' + id + '/delete'
+            );
+        },
+        deleteInstance: function (id) {
+            return $http.delete(
+                'http://localhost:16000/instance/' + id + '/delete'
             );
         }
     }
@@ -43,7 +48,7 @@ angular.module('laughResearchApp.viewer')
         });
 
         // 2. Begin helper methods
-        $scope.goToTime = function goToTime(value) {
+        $scope.goToTime = function (value) {
             $scope.$parent.player.currentTime(value);
         };
 
@@ -54,6 +59,10 @@ angular.module('laughResearchApp.viewer')
         $scope.showMetadataForm = true;
         $scope.toggleMetadataForm = function() {
             $scope.showMetadataForm = !$scope.showMetadataForm;
+        }
+
+        $scope.deleteInstance = function(id) {
+            alert("ID: " + id);
         }
     }
 });
