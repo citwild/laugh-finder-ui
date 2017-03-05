@@ -22,12 +22,6 @@ angular.module('laughResearchApp.viewer')
                 console.log("[addInstanceFormController] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
             }
         });
-        /*$scope.$parent.$watch('videoId', function () {
-            if ($scope.$parent.videoId) {
-                $scope.videoId = $scope.$parent.videoId;
-                console.log("[addInstanceFormController] Retrieved videoId: " + $scope.videoId);
-            }
-        });*/
 
         // 2. Define helper methods
         $scope.hideSpeakerField = true;
