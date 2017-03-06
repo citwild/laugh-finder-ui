@@ -1,0 +1,40 @@
+<div id="type-manager">
+   <h2>Manage Laugh Types</h2>
+    <div id="type-manager-controls">
+        <form id="laugh-type-table" ng-submit="updateTypes()">
+            <table>
+                <tr>
+                    <th class="typeName">Type</th>
+                    <th class="typeDesc">Description</th>
+                    <th class="typeConsidered">In Use</th>
+                </tr>
+                <tr ng-repeat="type in laughTypes">
+                    <td style="display: none;">
+                        <input ng-model="type.id" type="number" disabled="disabled" ng-init="type.id">
+                    </td>
+                    <td class="typeName">
+                        <input ng-model="type.type" type="text" disabled="disabled" ng-init="type.type">
+                    </td>
+                    <td class="typeDesc">
+                        <input ng-model="type.description" type="text" disabled="disabled" ng-init="type.description">
+                    </td>
+                    <td class="typeConsidered">
+                        <input ng-model="type.considered" type="checkbox" ng-init="type.considered">
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Update types">
+        </form>
+        <form id="add-type" ng-submit="postNewType()">
+            <fieldset id="type-name-field">
+                <legend for="type">Name</legend>
+                <input ng-model="typeName" id="type" type="text">
+            </fieldset>
+            <fieldset id="type-description-field">
+                <legend for="description">Description</legend>
+                <input ng-model="typeDesc" id="description" type="text">
+            </fieldset>
+            <input type="submit" value="Save new type">
+        </form>
+    </div>
+</div>

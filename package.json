@@ -1,0 +1,38 @@
+{
+  "name": "laugh-finder-ui",
+  "version": "1.0.0",
+  "description": "A UI for viewing laughter in videos",
+  "main": "index.js",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-mocks": "^1.5.8",
+    "jasmine-core": "^2.5.2",
+    "karma": "^1.3.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2",
+    "protractor": "^4.0.10",
+    "video.js": "^5.11.9",
+    "angular-route": "^1.6.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "karma start karma.conf.js",
+    "test-single": "karma start karma.conf.js --single-run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/citwild/laugh-finder-ui.git"
+  },
+  "keywords": [
+    "laugh",
+    "wfe",
+    "citw",
+    "uw"
+  ],
+  "author": "Miles Dowe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/citwild/laugh-finder-ui/issues"
+  },
+  "homepage": "https://github.com/citwild/laugh-finder-ui#readme"
+}

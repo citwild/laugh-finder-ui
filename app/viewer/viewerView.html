@@ -1,0 +1,30 @@
+<header>
+    <a href="#!/list">Go back</a>
+    <p>Video: {{videoId}}</p>
+</header>
+
+
+<div id="video-panel">
+    <div id="video-container">
+        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
+               data-setup='{"inactivityTimeout": 0}'>
+            <source id="source" type="video/mp4">
+            <p class="vjs-no-js">
+                To view this video please enable JavaScript, and consider upgrading to a web browser that
+                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+            </p>
+        </video>
+    </div>
+
+    <!-- controlling the video -->
+    <control-panel></control-panel>
+
+    <!-- target instances (i.e., laughter) -->
+    <instance-list laugh-types="laughTypes"></instance-list>
+
+    <!-- manage laugh type/descriptors -->
+    <type-manager laugh-types="laughTypes"></type-manager>
+</div>
+
+<script type="text/javascript">
+</script>

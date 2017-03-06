@@ -1,0 +1,31 @@
+{
+  "foundLaughters": {
+    "filename": "testurl",
+    "instances": [
+      {
+        "start": 15000,
+        "stop": 20000,
+        "participants": [
+          {
+            "name": "mark",
+            "tags": [
+              "alleviating"
+            ],
+            "intensity": 1
+          },
+          {
+            "name": "fida",
+            "tags": [
+              "friendly",
+              "alleviating"
+            ],
+            "intensity": 2
+          }
+        ],
+        "joke": true,
+        "speaker": "david",
+        "algCorrect": true
+      }
+    ]
+  }
+}

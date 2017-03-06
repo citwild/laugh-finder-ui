@@ -1,0 +1,50 @@
+<h2>Laughter Instances ({{instances.length}})</h2>
+<div id="target-instances-map">
+    <div class="instance" ng-repeat="instance in instances">
+        <div class="timestamp">
+            <span class="instance-start">Start: {{instance.start | hmsTime}}</span>
+            <br>
+            <span class="instance-stop">Stop: {{instance.stop | hmsTime}}</span>
+            <button class="goto-instance" ng-click="goToTime(instance.start/1000)">Go there</button>
+            <span><a class="delete-instance"
+                     href="#"
+                     onclick="return false;"
+                     ng-click="deleteInstance(instance)">Delete</a></span>
+        </div>
+        <hr>
+        <div>
+            <h4>Participants ({{instance.participants.length}})</h4>
+            <ul class="participants">
+                <li class="participant" ng-repeat="participant in instance.participants">
+                    <table>
+                        <tr>
+                            <td>Name</td>
+                            <td>{{participant.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Intensity</td>
+                            <td>{{participant.intensity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Laugh descriptors</td>
+                            <td>
+                                <ul class="tags">
+                                    <li ng-repeat="tag in participant.tags">{{tag}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                    <button ng-click="removeParticipant(participant.id)">Remove</button>
+                </li>
+            </ul>
+        </div>
+        <hr>
+        <button id="display-metadata-btn" ng-click="toggleMetadataForm()">Show / Hide Metadata Form</button>
+        <!-- Updating metadata for instance -->
+        <metadata-form instance="instance"
+                       laugh-types="laughTypes"
+                       ng-hide="showMetadataForm"></metadata-form>
+    </div>
+</div>
+<!-- Create new instance -->
+<add-instance-form></add-instance-form>

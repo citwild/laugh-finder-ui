@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" ng-app="laughResearchApp">
+<head>
+    <meta charset="utf-8">
+    <title>Laugh Research Tool</title>
+
+    <!-- Angular -->
+    <script src="./node_modules/angular/angular.js"></script>
+
+    <!-- For URL routing -->
+    <script src="./node_modules/angular-route/angular-route.js"></script>
+
+    <!-- ------------------ -->
+    <!-- Misc. dependencies -->
+    <!-- ------------------ -->
+    <script src="./node_modules/video.js/dist/video.js"></script>
+
+    <!-- ------------------ -->
+    <!--         CSS        -->
+    <!-- ------------------ -->
+    <link href="./node_modules/video.js/dist/video-js.css" rel="stylesheet">
+    <link href="app/video.css" rel="stylesheet">
+    <link href="app/viewer/instanceList/metadataForm/metadataForm.css" rel="stylesheet">
+    <link href="app/viewer/instanceList/instanceList.css" rel="stylesheet">
+    <link href="app/viewer/instanceList/addInstanceForm/add-instance-form.css" rel="stylesheet">
+    <link href="app/viewer/controlPanel/controlPanel.css" rel="stylesheet">
+    <link href="app/viewer/typeManager/typeManager.css" rel="stylesheet">
+
+    <!-- ---------- -->
+    <!--  MAIN APP  -->
+    <!-- ---------- -->
+    <script src="./app/home/homeController.js"></script>
+
+    <script src="./app/list/listController.js"></script>
+
+    <script src="./app/viewer/viewerController.js"></script>
+    <script src="./app/viewer/controlPanel/control-panel.component.js"></script>
+    <script src="./app/viewer/instanceList/instance-list.component.js"></script>
+    <script src="./app/viewer/instanceList/metadataForm/metadata-form.component.js"></script>
+    <script src="./app/viewer/instanceList/addInstanceForm/add-instance-form.component.js"></script>
+    <script src="./app/viewer/typeManager/type-manager.component.js"></script>
+    <script src="./app/app.js"></script>
+
+    <base href="/">
+</head>
+
+<body ng-controller="mainController">
+
+<ng-view></ng-view>
+
+</body>
+<html>
