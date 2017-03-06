@@ -4,6 +4,11 @@ div#control-panel {
     margin-top: 3.5em;
     padding: 1em 0 1em 0;
 }
+div#playback-control {
+    display: flex;
+    flex-direction: column;
+}
+
 div#playback-control, div#seek-control {
     margin-left: 1em;
     margin-right: 1em;

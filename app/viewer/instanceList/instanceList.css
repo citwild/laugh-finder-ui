@@ -1,11 +1,13 @@
 /** Instance list **/
-div#laughter-instances {
+instance-list {
+    display: flex;
     margin-top: 2em;
-    flex: 1;
+    flex-direction: column;
 }
 
 div#target-instances-map {
     display: flex;
+    flex: 1;
     flex-direction: row;
     align-items: flex-start;
 
@@ -14,13 +16,6 @@ div#target-instances-map {
     background-color: #b3b3b3;
 
     border: 3px dashed black;
-    margin-top: 1em;
-    padding-left: 1em;
-    padding-right: 1em;
-}
-
-instance-list {
-    display: flex;
 }
 
 div#instances {
@@ -31,14 +26,18 @@ div#instances {
 div.instance {
     background-color: white;
 
+    flex: 0.5 0;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 
     border: 1px dashed green;
-
-    margin-bottom: 0.5em;
     padding: 1em 1em 1em 1em;
+    flex-basis: 30em;
+
+    margin-left: 0.25em;
+    margin-right: 0.25em;
 }
 div.instance ul.tags {
     display: flex;
@@ -56,12 +55,10 @@ div.instance ul.tags li {
     border: 1px dashed orange;
     display: inline-table;
 }
-div.instance {
-    flex: 0.5 0;
-}
 div.instance button.goto-instance {
-    flex: 1 0;
+    flex: 2 0;
     height: 100%;
+    margin-right: 4em;
 }
 
 div.timestamp {
@@ -73,4 +70,28 @@ div.timestamp {
 }
 span.instance-start, span.instance-stop, button.goto-instance {
     flex: 1 0;
+}
+
+li.participant {
+    list-style: none;
+    border: 1px dashed blue;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+li.participant table {
+    flex: 3;
+}
+
+li.participant button {
+    flex: 1;
+
+    height: 3em;
+    flex-grow: 0.25;
+}
+
+instance-list hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

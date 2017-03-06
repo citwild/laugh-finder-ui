@@ -12,9 +12,15 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
 .service('instanceService', ['$http', function ($http) {
     return {
-        getInstances: function getInstances(bucket, key) {
-            // return $http.get('https://52.37.207.59:16000/analyze/video?bucket=' + bucket + '&key=' + key)
-            return $http.get('http://localhost:8080');
+        getTypes: function() {
+            return $http.get(
+                'http://localhost:16000/types/get/all'
+            );
+        },
+        getInstances: function(bucket, key) {
+            return $http.get(
+                'http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key
+            );
         }
     }
 }])
@@ -46,54 +52,37 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     videojs('my-video').ready(function() {
         $scope.player = this;
 
-        // remove following components
+        // remove following components, since they're not used
         $scope.player.removeChild('BigPlayButton');
         $scope.player.getChild('ControlBar').removeChild('PlayToggle');
         $scope.player.getChild('ControlBar').removeChild('ChaptersButton');
         $scope.player.getChild('ControlBar').removeChild('FullscreenToggle');
     });
 
+
     // 4. Get video's laugh data and metadata from web service
     $scope.$watch('video', function (){});
 
-    instanceService.getInstances("bucket", "key").then(
+    instanceService.getInstances(bucket, key).then(
         function success(response) {
-            // $scope.video = response.data;
-            $scope.video = {
-                foundLaughters: {
-                    filename: "testurl",
-                    length: 72000,
-                    instances: [
-                        {
-                            start: 15000,
-                            stop: 20000,
-                            participants: [
-                                {
-                                    name: "mark",
-                                    tags: [
-                                        "alleviating"
-                                    ],
-                                    intensity: 1
-                                },
-                                {
-                                    name: "fida",
-                                    tags: [
-                                        "friendly",
-                                        "alleviating"
-                                    ],
-                                    intensity: 2
-                                }
-                            ],
-                            joke: true,
-                            speaker: "david",
-                            algCorrect: true
-                        }
-                    ]
-                }
-            };
+            $scope.video = response.data;
+            console.log("[viewerController] Instance data: " + JSON.stringify($scope.video));
         },
         function error(response) {
-            alert("failed to load video laugh data and metadata. see console for details.");
+            console.log("[viewerController] failed to load video laugh data and metadata");
+        }
+    );
+
+
+    // 5. Get video's laugh type data from web service
+    console.log("[viewerController] Getting laugh types");
+    instanceService.getTypes().then(
+        function success(response) {
+            $scope.laughTypes = response.data;
+            console.log("[viewerController] Laugh types: " + JSON.stringify($scope.laughTypes));
+        },
+        function error(response) {
+            console.log("[viewerController] failed to load laugh type data");
         }
     );
 

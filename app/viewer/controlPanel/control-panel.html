@@ -1,9 +1,8 @@
 <div id="control-panel">
     <div id="playback-control">
         <button id="play-stop" ng-click="playStop()">Play / Stop</button>
-        <br>
+
         <label>Playback Rate</label>
-        <br>
         <input ng-model="rate" ng-change="changeRate(rate)" type="range" min="0" max="3" value="1" step="0.05" id="rate-slider" list="rate-ticks">
         <datalist id="rate-ticks">
             <option>0</option>
@@ -14,12 +13,10 @@
             <option>2.5</option>
             <option>3</option>
         </datalist>
-        <br>
         <div id="rate-num">{{currRate | number:2}}</div>
-        <br>
+
         <button ng-click="playNormally()" id="play-normal">Reset Playback Speed</button>
     </div>
-    <br>
     <div id="seek-control">
         <p>Seek by seconds</p>
         <div id="buttons">

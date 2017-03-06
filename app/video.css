@@ -5,19 +5,28 @@
 
 header {
     border: 1px dashed black;
-    margin-bottom: 1em;
 }
+
+div#video-container {
+    background-color: gray;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 
 div#video-panel {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    padding-top: 1em;
 }
 /** Video **/
 div#my-video {
 }
 
-control-panel, instance-list {
+control-panel, instance-list, type-manager {
     width: 40em;
 }
 
@@ -41,15 +50,19 @@ control-panel, instance-list {
      Try increasing it to 15px and see what happens. */
   font-size: 12px;
   /* The main font color changes the ICON COLORS as well as the text */
-  color: #ffee00;
+  color: black;
 }
 
 /* The default color of control backgrounds is mostly black but with a little
    bit of blue so it can still be seen on all-black video frames, which are common. */
 .video-js .vjs-control-bar,
 .video-js .vjs-menu-button .vjs-menu-content {
-  background-color: rgb(109, 52, 194);
+  background-color: white;
   visibility: visible;
+}
+
+.vjs-control-bar {
+    display: flex !important;
 }
 
 .video-js .vjs-control-bar {
@@ -59,8 +72,7 @@ control-panel, instance-list {
 
 /* Slider - used for Volume bar and Progress bar */
 .video-js .vjs-slider {
-  background-color: #cab4eb;
-  background-color: rgba(202, 180, 235, 0.5);
+    background-color: white;
 }
 
 /* The slider bar color is used for the progress bar and the volume bar
@@ -68,13 +80,15 @@ control-panel, instance-list {
 .video-js .vjs-volume-level,
 .video-js .vjs-play-progress,
 .video-js .vjs-slider-bar {
-  background: #ffee00;
+  background: orange;
 }
 
 /* The main progress bar also has a bar that shows how much has been loaded. */
-.video-js .vjs-load-progress {
+.video-js .vjs-load-progress,
+.video-js .vjs-slider,
+.video-js .vjs-slider-horizontal {
   /* Otherwise we'll rely on stacked opacities */
-  background: rgba(202, 180, 235, 0.5);
+  background: darkgray;
 }
 
 /* The load progress bar also has internal divs that represent
