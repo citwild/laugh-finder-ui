@@ -6,7 +6,9 @@
 }
 
 header {
-    border: 1px dashed black;
+    color: #354748;
+    background-color: #a3bbbd;
+    padding: 0.5em;
 }
 
 div#video-container {
@@ -61,7 +63,7 @@ control-panel, instance-list, type-manager {
    bit of blue so it can still be seen on all-black video frames, which are common. */
 .video-js .vjs-control-bar,
 .video-js .vjs-menu-button .vjs-menu-content {
-  background-color: white;
+  background-color: #E7F2F1;
   visibility: visible;
 }
 
@@ -76,7 +78,7 @@ control-panel, instance-list, type-manager {
 
 /* Slider - used for Volume bar and Progress bar */
 .video-js .vjs-slider {
-    background-color: white;
+    background-color: #E7F2F1;
 }
 
 /* The slider bar color is used for the progress bar and the volume bar
