@@ -23,6 +23,8 @@ div#video-panel {
     align-items: center;
 
     padding-top: 1em;
+
+    background-color: #E7F2F1;
 }
 /** Video **/
 div#my-video {

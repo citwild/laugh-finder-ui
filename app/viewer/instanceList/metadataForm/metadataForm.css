@@ -2,6 +2,12 @@
 metadata-form {
     margin-top: 10px;
     flex: 3 0;
+    background-color: #b7aea0;
+    color: #473e31;
+    padding: 1em;
+
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 metadata-form form {
     display: flex;
@@ -15,4 +21,16 @@ metadata-form form fieldset {
 metadata-form form input#save {
     margin-top: 20px;
     height: 30px;
+}
+
+metadata-form input#add-participant, metadata-form input#update-instance {
+    color: #FFF;
+    background-color: #726a5e;
+    border: none;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: .4em;
+}
+metadata-form input#add-participant:hover, metadata-form input#update-instance:hover {
+    background-color: #574e40;
 }
