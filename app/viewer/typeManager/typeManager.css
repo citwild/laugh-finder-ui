@@ -11,13 +11,15 @@ div#type-manager-controls {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-
-    border: 3px dashed black;
-    padding: 1em 1em 1em 1em;
+    padding: 1em;
+    color: #473e31;
+    background-color: #b7aea0;
 }
 
+form#laugh-type-table {
+    margin-bottom: 1em;
+}
 form#laugh-type-table, form#add-type {
-    border: 1px dashed red;
     width: 100%;
 }
 
@@ -44,11 +46,31 @@ form#laugh-type-table table tr .typeConsidered {
 
 form#laugh-type-table table tr td input {
     border: none;
-    background: white;
-    color: black;
     width: 100%;
+    color: #473e31;
+    background-color: #b7aea0;
 }
 
 form#add-type fieldset {
     border: none;
+}
+
+input.type-form-btn {
+    margin-top: 1em;
+}
+
+type-manager {
+    margin-bottom: 2em;
+}
+
+input.type-form-btn {
+    color: #FFF;
+    background-color: #726a5e;
+    border: none;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: .4em;
+}
+input.type-form-btn:hover {
+    background-color: #574e40;
 }

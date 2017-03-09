@@ -11,7 +11,7 @@ div#target-instances-map {
     flex-direction: row;
     align-items: flex-start;
     overflow-x: scroll;
-    background-color: #9eb0b1;
+    background-color: #6d8b8d;
     padding: .5em .25em .25em;
 }
 

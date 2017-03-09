@@ -1,6 +1,8 @@
 <div id="type-manager">
    <h2>Manage Laugh Types</h2>
+    <p>Define nominal laughter catergories here and adjust whether they are to be used in analysis.</p>
     <div id="type-manager-controls">
+        <h3>Enable/Disable Types</h3>
         <form id="laugh-type-table" ng-submit="updateTypes()">
             <table>
                 <tr>
@@ -23,8 +25,9 @@
                     </td>
                 </tr>
             </table>
-            <input type="submit" value="Update types">
+            <input class="type-form-btn" type="submit" value="Update types">
         </form>
+        <h3>Create New Type</h3>
         <form id="add-type" ng-submit="postNewType()">
             <fieldset id="type-name-field">
                 <legend for="type">Name</legend>
@@ -34,7 +37,7 @@
                 <legend for="description">Description</legend>
                 <input ng-model="typeDesc" id="description" type="text">
             </fieldset>
-            <input type="submit" value="Save new type">
+            <input class="type-form-btn" type="submit" value="Save new type">
         </form>
     </div>
 </div>

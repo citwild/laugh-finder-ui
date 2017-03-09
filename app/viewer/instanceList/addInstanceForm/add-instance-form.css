@@ -4,11 +4,24 @@ add-instance-form {
 }
 
 add-instance-form form {
-    border: 3px dashed black;
     padding: 1em;
+    color: #473e31;
+    background-color: #b7aea0;
 }
 
 add-instance-form form fieldset {
     border: none;
     margin-bottom: 10px;
+}
+
+input.add-instance-btn {
+    color: #FFF;
+    background-color: #726a5e;
+    border: none;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: .4em;
+}
+input.add-instance-btn:hover {
+    background-color: #574e40;
 }
