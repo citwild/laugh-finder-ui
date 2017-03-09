@@ -11,11 +11,23 @@ header {
     padding: 0.5em;
 }
 
+h2, p, label {
+    color: #354748;
+}
+
+p.feature-desc {
+    margin-bottom: 1em;
+}
+
 div#video-container {
     background-color: gray;
     width: 100%;
     display: flex;
     justify-content: center;
+}
+
+button, input[type=submit] {
+    cursor: pointer;
 }
 
 

@@ -1,6 +1,6 @@
 <div id="type-manager">
    <h2>Manage Laugh Types</h2>
-    <p>Define nominal laughter catergories here and adjust whether they are to be used in analysis.</p>
+    <p class="feature-desc">Define nominal laughter catergories here and adjust whether they are to be used in analysis.</p>
     <div id="type-manager-controls">
         <h3>Enable/Disable Types</h3>
         <form id="laugh-type-table" ng-submit="updateTypes()">
@@ -18,7 +18,7 @@
                         <input ng-model="type.type" type="text" disabled="disabled" ng-init="type.type">
                     </td>
                     <td class="typeDesc">
-                        <input ng-model="type.description" type="text" disabled="disabled" ng-init="type.description">
+                        <textarea ng-model="type.description" type="text" disabled="disabled" ng-init="type.description"></textarea>
                     </td>
                     <td class="typeConsidered">
                         <input ng-model="type.considered" type="checkbox" ng-init="type.considered">

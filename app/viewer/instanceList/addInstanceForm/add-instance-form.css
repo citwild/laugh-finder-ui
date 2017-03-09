@@ -7,6 +7,7 @@ add-instance-form form {
     padding: 1em;
     color: #473e31;
     background-color: #b7aea0;
+    border: solid 1px #6d8b8d;
 }
 
 add-instance-form form fieldset {

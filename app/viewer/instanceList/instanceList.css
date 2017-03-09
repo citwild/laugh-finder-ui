@@ -13,6 +13,7 @@ div#target-instances-map {
     overflow-x: scroll;
     background-color: #6d8b8d;
     padding: .5em .25em .25em;
+    margin-top: 0.7em;
 }
 
 div#instances {
@@ -61,6 +62,10 @@ div.instance ul.tags li {
 
     -moz-border-radius: 2px;
     border-radius: 2px;
+}
+div.instance ul.tags li:hover {
+    cursor: pointer;
+    background-color: orange;
 }
 
 button.display-metadata-btn, button.goto-instance {

@@ -14,10 +14,11 @@ div#type-manager-controls {
     padding: 1em;
     color: #473e31;
     background-color: #b7aea0;
+    border: solid 1px #6d8b8d;
 }
 
 form#laugh-type-table {
-    margin-bottom: 1em;
+    margin-bottom: 3em;
 }
 form#laugh-type-table, form#add-type {
     width: 100%;
@@ -25,6 +26,10 @@ form#laugh-type-table, form#add-type {
 
 form#laugh-type-table table {
     width: 100%;
+}
+
+form#laugh-type-table th {
+    margin-bottom: 0.5em;
 }
 
 form#laugh-type-table table tr {
@@ -44,11 +49,13 @@ form#laugh-type-table table tr .typeConsidered {
     flex: 0.5 0;
 }
 
-form#laugh-type-table table tr td input {
+form#laugh-type-table table tr td input, form#laugh-type-table table tr td textarea {
     border: none;
     width: 100%;
     color: #473e31;
     background-color: #b7aea0;
+    resize:none;
+    font-size: unset;
 }
 
 form#add-type fieldset {
@@ -73,4 +80,8 @@ input.type-form-btn {
 }
 input.type-form-btn:hover {
     background-color: #574e40;
+}
+
+type-manager h3 {
+    margin-bottom: 0.5em;
 }

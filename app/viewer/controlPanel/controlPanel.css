@@ -3,6 +3,7 @@ div#control-panel {
     margin-top: 3.5em;
     padding: 1em 0 1em 0;
     background-color: #CFE4E0;
+    border: solid 1px #6d8b8d;
 }
 div#playback-control {
     display: flex;
@@ -21,6 +22,7 @@ div#playback-control, div#seek-control {
 input#rate-slider {
     width: 100%;
     flex: 6;
+    margin-top: 0.8em;
 }
 div#rate-num {
     background-color: #6d8b8d;
@@ -67,4 +69,11 @@ div#seek-control div#buttons button {
 }
 div#seek-control div#buttons input {
     flex: 1 0;
+}
+
+.skip-btn.left {
+    margin-right: 1em;
+}
+.skip-btn.right {
+    margin-left: 1em;
 }
