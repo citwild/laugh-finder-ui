@@ -24,7 +24,7 @@ div#instances {
     flex: 4 0;
 }
 div.instance {
-    background-color: white;
+    background-color: #CFE4E0;
 
     flex: 0.5 0;
 
@@ -32,7 +32,6 @@ div.instance {
     flex-direction: column;
     justify-content: space-between;
 
-    border: 1px dashed green;
     padding: 1em 1em 1em 1em;
     flex-basis: 30em;
 
@@ -52,13 +51,26 @@ div.instance ul.tags {
     margin-bottom: 20px;
 }
 div.instance ul.tags li {
-    border: 1px dashed orange;
     display: inline-table;
+    margin: 0.2em;
+    padding: 0.2em;
+
+    background-color: #6d8b8d;
+    color: white;
+
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 }
 div.instance button.goto-instance {
     flex: 2 0;
     height: 100%;
     margin-right: 4em;
+    border: none;
+    background-color: #a3bbbd;
+    padding: 1em;
+    color: #354748;
+    moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 div.timestamp {
@@ -74,10 +86,15 @@ span.instance-start, span.instance-stop, button.goto-instance {
 
 li.participant {
     list-style: none;
-    border: 1px dashed blue;
 
     display: flex;
     justify-content: space-between;
+
+    margin: 0.25em;
+    background-color: #a3bbbd;
+    padding: 0.5em;
+
+    color: #354748;
 }
 
 li.participant table {
@@ -86,12 +103,25 @@ li.participant table {
 
 li.participant button {
     flex: 1;
-
-    height: 3em;
+    height: 2em;
     flex-grow: 0.25;
+    background-color: #ea6b6b;
+    border: none;
+    color: white;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 instance-list hr {
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+a.delete-instance {
+    color: #ea6b6b;
+    text-decoration: none;
+}
+
+a.delete-instance:hover {
+    text-decoration: underline;
 }
