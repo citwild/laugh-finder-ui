@@ -17,15 +17,15 @@
                 <li class="participant" ng-repeat="participant in instance.participants">
                     <table>
                         <tr>
-                            <td>Name</td>
+                            <td class="tbl-header">Name</td>
                             <td>{{participant.name}}</td>
                         </tr>
                         <tr>
-                            <td>Intensity</td>
+                            <td class="tbl-header">Intensity</td>
                             <td>{{participant.intensity}}</td>
                         </tr>
                         <tr>
-                            <td>Laugh descriptors</td>
+                            <td class="tbl-header">Laugh descriptors</td>
                             <td>
                                 <ul class="tags">
                                     <li ng-repeat="tag in participant.tags">{{tag}}</li>

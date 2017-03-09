@@ -34,3 +34,7 @@ metadata-form input#add-participant, metadata-form input#update-instance {
 metadata-form input#add-participant:hover, metadata-form input#update-instance:hover {
     background-color: #574e40;
 }
+
+.group-data-header {
+    margin-top: 2em;
+}

@@ -81,6 +81,7 @@ button.display-metadata-btn {
 }
 button.goto-instance {
     flex: 2 0;
+
     height: 100%;
     margin-right: 4em;
     padding: 1em;
@@ -93,7 +94,7 @@ div.timestamp {
     margin-bottom: 20px;
     height: 30px;
 }
-span.instance-start, span.instance-stop, button.goto-instance {
+span.instance-start, span.instance-stop {
     flex: 1 0;
 }
 
@@ -144,4 +145,8 @@ a.delete-instance {
 
 a.delete-instance:hover {
     text-decoration: underline;
+}
+
+.tbl-header {
+    width: 30%;
 }
