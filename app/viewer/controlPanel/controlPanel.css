@@ -23,6 +23,7 @@ input#rate-slider {
     width: 100%;
     flex: 6;
     margin-top: 0.8em;
+    margin-right: 1em;
 }
 div#rate-num {
     background-color: #6d8b8d;
