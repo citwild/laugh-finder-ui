@@ -22,8 +22,8 @@
     <div id="seek-control">
         <p>Seek by seconds</p>
         <div id="buttons">
-            <button class="skip-btn left" ng-click="skipBack()">&larr;</button>
-            <input id="skip-amt" type="number" value="10">
-            <button class="skip-btn right" ng-click="skipForward()">&rarr;</button>
+            <button id="seek-left" class="skip-btn left" ng-click="skipBack()">&larr;</button>
+            <input id="skip-amt" type="number" value="10" onfocus="this.select()">
+            <button id="seek-right" class="skip-btn right" ng-click="skipForward()">&rarr;</button>
         </div>
     </div>

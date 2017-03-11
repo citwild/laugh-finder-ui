@@ -6,10 +6,33 @@ angular.module('laughResearchApp.viewer')
 
         $scope.currRate = 1;
 
-        //////////////////////////////////////////////////////
-        // Copied from parent scope. So video player is reset
-        // per every page navigation.
-        //////////////////////////////////////////////////////
+
+        // 1. Define Hotkeys
+        document.addEventListener('keypress', (event) => {
+            // '#' focuses on skip amount
+            if (event.key === '#') {
+                document.getElementById('skip-amt').focus();
+            }
+            // right
+            if (event.key === '>') {
+                event.preventDefault();
+                document.getElementById('seek-right').click()
+            }
+            // left
+            if (event.key === '<') {
+                event.preventDefault();
+                document.getElementById('seek-left').click();
+            }
+            // space plays video
+            if (event.charCode === 32) {
+                event.preventDefault();
+                alert('space');
+            }
+        }, false);
+
+
+        // 2. Copied from parent scope. So video player is reset
+        //    per every page navigation.
         $scope.player;
         $scope.$on('$destroy', function() {
             // destroy the object if it exists
@@ -56,12 +79,12 @@ angular.module('laughResearchApp.viewer')
                 };
 
                 $scope.skipBack = function skipBack() {
-                    var skipAmt = parseInt(document.getElementById('skip-amt').value);
+                    let skipAmt = parseInt(document.getElementById('skip-amt').value);
                     this.goToTime($scope.player.currentTime() - skipAmt);
                 };
 
                 $scope.skipForward = function skipForward() {
-                    var skipAmt = parseInt(document.getElementById('skip-amt').value);
+                    let skipAmt = parseInt(document.getElementById('skip-amt').value);
                     this.goToTime($scope.player.currentTime() + skipAmt);
                 };
             }
