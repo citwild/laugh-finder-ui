@@ -7,31 +7,7 @@ angular.module('laughResearchApp.viewer')
         $scope.currRate = 1;
 
 
-        // 1. Define Hotkeys
-        document.addEventListener('keypress', (event) => {
-            // '#' focuses on skip amount
-            if (event.key === '#') {
-                document.getElementById('skip-amt').focus();
-            }
-            // right
-            if (event.key === '>') {
-                event.preventDefault();
-                document.getElementById('seek-right').click()
-            }
-            // left
-            if (event.key === '<') {
-                event.preventDefault();
-                document.getElementById('seek-left').click();
-            }
-            // space plays video
-            if (event.charCode === 32) {
-                event.preventDefault();
-                alert('space');
-            }
-        }, false);
-
-
-        // 2. Copied from parent scope. So video player is reset
+        // 1. Copied from parent scope. So video player is reset
         //    per every page navigation.
         $scope.player;
         $scope.$on('$destroy', function() {
@@ -40,15 +16,16 @@ angular.module('laughResearchApp.viewer')
                 $scope.player.dispose();
             }
         });
-        // Manually loading the videojs
+
+
+        // 2. Manually loading the videojs
         videojs('my-video').ready(function() {
             $scope.player = $scope.$parent.player; // Store the object on a variable
         });
 
-        //////////////////////////////////////////////////////
-        // Begin video controller methods
-        //   - Using $watch to avoid undefined console errors
-        //////////////////////////////////////////////////////
+
+        // 3. Begin video controller methods
+        //      - Using $watch to avoid undefined console errors
         $scope.$watch('player', function() {
             if ($scope.player) {
                 $scope.goToTime = function goToTime(value) {
@@ -89,5 +66,56 @@ angular.module('laughResearchApp.viewer')
                 };
             }
         });
+
+
+        // 4. Define hotkeys
+        document.addEventListener('keypress', (event) => {
+            // following keys require shift combination
+            if (event.ctrlKey) {
+
+                // space plays video
+                if (event.charCode === 32) {
+                    event.preventDefault();
+                    document.getElementById('play-stop').focus();
+                }
+                // 's' focuses on skip amount
+                if (event.key === 's') {
+                    event.preventDefault();
+                    document.getElementById('skip-amt').focus();
+                }
+                // 'r' focuses on skip amount
+                if (event.key === '0') {
+                    event.preventDefault();
+                    document.getElementById('play-normal').click();
+                }
+                // left (i.e., '<')
+                if (event.key === ',') {
+                    event.preventDefault();
+                    document.getElementById('seek-left').click()
+                }
+                // right (i.e., '>')
+                if (event.key === '.') {
+                    event.preventDefault();
+                    document.getElementById('seek-right').click();
+                }
+
+                // if (event.key === '[') {
+                //     event.preventDefault();
+                //     if ($scope.currRate > 0) {
+                //         console.log('Changing currRate: ' + $scope.currRate - 0.1);
+                //         $scope.currRate -= 0.1;
+                //         $scope.player.playbackRate($scope.currRate);
+                //     }
+                // }
+                // if (event.key === ']') {
+                //     event.preventDefault();
+                //     if ($scope.currRate < 3) {
+                //         console.log('Changing currRate: ' + $scope.currRate + 0.1);
+                //         $scope.currRate += 0.1;
+                //         $scope.player.playbackRate($scope.currRate);
+                //     }
+                // }
+            }
+        }, false);
     }
 });

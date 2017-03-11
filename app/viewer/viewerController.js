@@ -28,16 +28,17 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 .controller('viewerController', ['$scope', '$routeParams', 'instanceService', function ($scope, $routeParams, instanceService) {
 
     // 1. Establish video asset's source (domain, bucket, key)
-    var s3Domain = "https://52.37.207.59/s3/",
+    // let s3Domain = "https://52.37.207.59/s3/",
+    let s3Domain = "https://s3-us-west-2.amazonaws.com/",
         bucket = $routeParams.bucket,
         key = $routeParams.key;
 
     $scope.videoId = bucket + "/" + key;
-    var videoUrl = s3Domain + $scope.videoId;
+    let videoUrl = s3Domain + $scope.videoId;
 
 
     // 2. Create video source element (since ng-src does not work as expected)
-    var source = document.getElementById('source');
+    let source = document.getElementById('source');
     source.setAttribute('src', videoUrl);
 
 
