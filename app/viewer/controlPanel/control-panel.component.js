@@ -69,52 +69,53 @@ angular.module('laughResearchApp.viewer')
 
 
         // 4. Define hotkeys
-        document.addEventListener('keypress', (event) => {
+        document.addEventListener('keydown', function (e) {
             // following keys require shift combination
-            if (event.ctrlKey) {
+            if (e.ctrlKey) {
 
-                // space plays video
-                if (event.charCode === 32) {
-                    event.preventDefault();
-                    document.getElementById('play-stop').focus();
-                }
                 // 's' focuses on skip amount
-                if (event.key === 's') {
-                    event.preventDefault();
+                if (e.key === 's') {
+                    e.preventDefault();
                     document.getElementById('skip-amt').focus();
                 }
                 // 'r' focuses on skip amount
-                if (event.key === '0') {
-                    event.preventDefault();
+                if (e.key === '0') {
+                    e.preventDefault();
                     document.getElementById('play-normal').click();
                 }
                 // left (i.e., '<')
-                if (event.key === ',') {
-                    event.preventDefault();
+                if (e.key === ',') {
+                    e.preventDefault();
                     document.getElementById('seek-left').click()
                 }
                 // right (i.e., '>')
-                if (event.key === '.') {
-                    event.preventDefault();
+                if (e.key === '.') {
+                    e.preventDefault();
                     document.getElementById('seek-right').click();
                 }
+                // space plays video
+                if (e.key === ' ') {
+                    e.preventDefault();
+                    document.getElementById('play-stop').click();
+                }
 
-                // if (event.key === '[') {
-                //     event.preventDefault();
-                //     if ($scope.currRate > 0) {
-                //         console.log('Changing currRate: ' + $scope.currRate - 0.1);
-                //         $scope.currRate -= 0.1;
-                //         $scope.player.playbackRate($scope.currRate);
-                //     }
-                // }
-                // if (event.key === ']') {
-                //     event.preventDefault();
-                //     if ($scope.currRate < 3) {
-                //         console.log('Changing currRate: ' + $scope.currRate + 0.1);
-                //         $scope.currRate += 0.1;
-                //         $scope.player.playbackRate($scope.currRate);
-                //     }
-                // }
+                if (e.key === '[') {
+                    e.preventDefault();
+                    if ($scope.currRate > 0) {
+                        $scope.currRate = ($scope.currRate - 0.1);
+                        $scope.player.playbackRate($scope.currRate);
+                    }
+                    document.getElementById('rate-slider').value = $scope.currRate;
+                    document.getElementById('rate-num');
+                }
+                if (e.key === ']') {
+                    e.preventDefault();
+                    if ($scope.currRate < 3) {
+                        $scope.currRate = ($scope.currRate + 0.1);
+                        $scope.player.playbackRate($scope.currRate);
+                    }
+                    document.getElementById('rate-slider').value = $scope.currRate;
+                }
             }
         }, false);
     }

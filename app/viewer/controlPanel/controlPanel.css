@@ -5,6 +5,22 @@ div#control-panel {
     background-color: #CFE4E0;
     border: solid 1px #6d8b8d;
 }
+
+div#control-panel details {
+    padding: 1em 1em 0em 1em;
+}
+div#control-panel details summary {
+    font-weight: bolder;
+}
+div#control-panel details table {
+    background-color: #a3bbbd;
+    padding: 1em;
+    width: 100%;
+    margin-top: 0.6em;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
 div#playback-control {
     display: flex;
     flex-direction: column;
@@ -33,7 +49,7 @@ div#rate-num {
     height: 1.5em;
     color: white;
     text-align: center;
-    -moz-border-radius: 2px;
+    -moz-border-radius: 4px;
     border-radius: 4px;
     padding-top: 0.3em;
     padding-left: 0.3em;
