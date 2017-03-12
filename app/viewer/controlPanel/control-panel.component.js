@@ -99,19 +99,20 @@ angular.module('laughResearchApp.viewer')
                     document.getElementById('play-stop').click();
                 }
 
+                // alter the playback speed
                 if (e.key === '[') {
                     e.preventDefault();
-                    if ($scope.currRate > 0) {
-                        $scope.currRate = ($scope.currRate - 0.1);
+                    if ($scope.currRate > 0.05) {
+                        $scope.currRate = ($scope.currRate - 0.05);
                         $scope.player.playbackRate($scope.currRate);
                     }
                     document.getElementById('rate-slider').value = $scope.currRate;
-                    document.getElementById('rate-num');
+                    console.log($scope.currRate);
                 }
                 if (e.key === ']') {
                     e.preventDefault();
                     if ($scope.currRate < 3) {
-                        $scope.currRate = ($scope.currRate + 0.1);
+                        $scope.currRate = ($scope.currRate + 0.05);
                         $scope.player.playbackRate($scope.currRate);
                     }
                     document.getElementById('rate-slider').value = $scope.currRate;

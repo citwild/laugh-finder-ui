@@ -123,3 +123,7 @@ control-panel, instance-list, type-manager {
 .video-js .vjs-time-divider {
   display: flex;
 }
+
+.vjs-nofull .vjs-fullscreen-control {
+    display: none;
+}
