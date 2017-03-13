@@ -85,11 +85,10 @@ button.display-metadata-btn {
     margin-top: 1em;
 }
 button.goto-instance {
-    flex: 2 0;
+    flex: 3 0;
 
     height: 100%;
     margin-right: 4em;
-    padding: 1em;
 }
 
 div.timestamp {
