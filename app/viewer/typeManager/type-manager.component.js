@@ -4,13 +4,15 @@ angular.module('laughResearchApp.viewer')
     return {
         postNewType: function(json) {
             return $http.post(
-                'http://localhost:16000/types/add',
+                //'http://localhost:16000/types/add',
+                'https://52.37.207.59/rest/types/add',
                 json
             );
         },
         postConsideredUpdate: function(json) {
             return $http.post(
-                'http://localhost:16000/types/update',
+                //'http://localhost:16000/types/update',
+                'https://52.37.207.59/rest/types/update',
                 json
             );
         }

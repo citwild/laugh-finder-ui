@@ -12,6 +12,7 @@ div#target-instances-map {
     align-items: flex-start;
     overflow-x: scroll;
     background-color: #6d8b8d;
+    border: 1px solid #6d8b8d;
     padding: .5em .25em .25em;
     margin-top: 0.7em;
 }

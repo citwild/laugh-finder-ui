@@ -4,7 +4,8 @@ angular.module('laughResearchApp.viewer')
     return {
         postNewInstance: function (videoId, json) {
             return $http.post(
-                'http://localhost:16000/metadata/video/' + videoId + '/instances/add',
+                //'http://localhost:16000/metadata/video/' + videoId + '/instances/add',
+                'https://52.37.207.59/rest/metadata/video/' + videoId + '/instances/add',
                 json
             );
         }

@@ -16,12 +16,14 @@ angular.module('laughResearchApp.viewer')
     return {
         deleteParticipant: function (id) {
             return $http.delete(
-                'http://localhost:16000/metadata/participant/' + id + '/delete'
+                //'http://localhost:16000/metadata/participant/' + id + '/delete'
+                'https://52.37.207.59/rest/metadata/participant/' + id + '/delete'
             );
         },
         deleteInstance: function (id) {
             return $http.delete(
-                'http://localhost:16000/instance/' + id + '/delete'
+                //'http://localhost:16000/instance/' + id + '/delete'
+                'https://52.37.207.59/rest/instance/' + id + '/delete'
             );
         }
     }

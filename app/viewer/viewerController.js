@@ -14,12 +14,14 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     return {
         getTypes: function() {
             return $http.get(
-                'http://localhost:16000/types/get/all'
+                //'http://localhost:16000/types/get/all'
+                'https://52.37.207.59/rest/types/get/all'
             );
         },
         getInstances: function(bucket, key) {
             return $http.get(
-                'http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key
+                //'http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key
+                'https://52.37.207.59/rest/analyze/video?bucket=' + bucket + '&key=' + key
             );
         }
     }

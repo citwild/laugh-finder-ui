@@ -4,13 +4,15 @@ angular.module('laughResearchApp.viewer')
     return {
         updateParticipantData: function(instanceId, json) {
             return $http.post(
-                'http://localhost:16000/metadata/instance/' + instanceId + '/participants/add',
+                //'http://localhost:16000/metadata/instance/' + instanceId + '/participants/add',
+                'https://52.37.207.59/rest/metadata/instance/' + instanceId + '/participants/add',
                 json
             );
         },
         updateInstanceData: function(instanceId, json) {
             return $http.post(
-                'http://localhost:16000/instance/' + instanceId + '/update',
+                //'http://localhost:16000/instance/' + instanceId + '/update',
+                'https://52.37.207.59/rest/instance/' + instanceId + '/update',
                 json
             );
         }
