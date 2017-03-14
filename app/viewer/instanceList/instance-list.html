@@ -1,6 +1,6 @@
 <h2>Laughter Instances ({{instances.length}})</h2>
 <div id="target-instances-map">
-    <div class="instance" ng-repeat="instance in instances">
+    <div class="instance" ng-repeat="instance in instances | orderBy:'start'">
         <div class="timestamp">
             <span class="instance-start">Start: {{instance.start | hmsTime}}</span>
             <br>
