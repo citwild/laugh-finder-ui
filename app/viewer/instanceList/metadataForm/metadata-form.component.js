@@ -10,7 +10,7 @@ angular.module('laughResearchApp.viewer')
         },
         updateInstanceData: function(instanceId, json) {
             return $http.post(
-                'http://localhost:16000/metadata/put/instanceId/' + instanceId,
+                'http://localhost:16000/instance/' + instanceId + '/update',
                 json
             );
         }
@@ -25,7 +25,7 @@ angular.module('laughResearchApp.viewer')
         this.$onInit = function () {
 
             // 1. Get data from parent scope
-            var ctrl = this;
+            let ctrl = this;
             console.log(ctrl.instance);
             console.log(ctrl.laughTypes);
             $scope.instance = ctrl.instance;
@@ -42,20 +42,7 @@ angular.module('laughResearchApp.viewer')
 
             // 2.b. Form submission methods
             $scope.updateParticipantData = function () {
-                /*
-                 {
-                     "name":"test",
-                     "intensity":"1",
-                     "tags":{
-                         "1":true,
-                         "2":false,
-                         "3":false,
-                         "4":true,
-                         "5":true
-                     }
-                 }
-                 */
-                var requestBody = $scope.newParticipant;
+                let requestBody = $scope.newParticipant;
                 metadataService.updateParticipantData($scope.instance.id, requestBody).then(
                     function success(response) {
                         console.log(response);
@@ -66,8 +53,14 @@ angular.module('laughResearchApp.viewer')
                 );
             };
 
-            $scope.updateInstanceData = function (instanceId, bucket, key, requestBody) {
-                metadataService.updateInstanceData(instanceId, bucket, key, requestBody).then(
+            $scope.updateInstanceData = function () {
+                let result = {
+                    joke: $scope.instance.joke,
+                    speaker: $scope.instance.speaker,
+                    algCorrect: $scope.instance.algCorrect
+                };
+
+                metadataService.updateInstanceData($scope.instance.id, result).then(
                     function success(response) {
                         console.log(response);
                     },

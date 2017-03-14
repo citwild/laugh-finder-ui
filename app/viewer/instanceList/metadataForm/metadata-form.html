@@ -37,32 +37,38 @@ Per instance data [entire group]
                id="joke-true"
                type="radio"
                ng-click="disableSpeakerField(false)"
-               ng-checked="instance.joke">
+               ng-checked="instance.joke"
+               data-ng-value="true"
+               ng-model="instance.joke">
         <label for="joke-true">Yes</label>
         <input name="joke"
                id="joke-false"
                type="radio"
                ng-click="disableSpeakerField(true)"
-               ng-checked="!instance.joke">
+               ng-checked="!instance.joke"
+               data-ng-value="false"
+               ng-model="instance.joke">
         <label for="joke-false">No</label>
     </fieldset>
     <fieldset id="speaker-field" ng-hide="hideSpeakerField">
         <legend>Who told the joke?</legend>
-        <input id="speaker" type="text">
+        <input ng-model="instance.speaker" id="speaker" type="text">
     </fieldset>
     <fieldset id="correct-field">
         <legend>Was the algorithm correct?</legend>
         <input name="correct"
                id="accurate-true"
                type="radio"
-               value="true"
-               ng-checked="instance.algCorrect">
+               data-ng-value="true"
+               ng-checked="instance.algCorrect"
+               ng-model="instance.algCorrect">
         <label for="accurate-true">Correct</label>
         <input name="correct"
                id="accurate-false"
                type="radio"
-               value="false"
-               ng-checked="!instance.algCorrect">
+               data-ng-value="false"
+               ng-checked="!instance.algCorrect"
+               ng-model="instance.algCorrect">
         <label for="accurate-false">Incorrect</label>
     </fieldset>
     <input id="update-instance" type="submit" value="Update">

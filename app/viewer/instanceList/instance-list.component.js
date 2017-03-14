@@ -53,11 +53,12 @@ angular.module('laughResearchApp.viewer')
         };
 
         $scope.removeParticipant = function(id) {
-            var deleteParticipant = confirm(
+            let deleteParticipant = confirm(
                 "Delete participant ID #" + id + "?"
             );
             if (deleteParticipant) {
                 instanceListService.deleteParticipant(id);
+                window.location.reload(false);
             }
         };
 
@@ -67,12 +68,13 @@ angular.module('laughResearchApp.viewer')
         };
 
         $scope.deleteInstance = function(instance) {
-            var deleteInstance = confirm(
+            let deleteInstance = confirm(
                 "This instance has " + instance.participants.length + " participants in it.\n\n" +
                 "Delete Instance ID #" + instance.id + "?"
             );
             if (deleteInstance) {
                 instanceListService.deleteInstance(instance.id);
+                window.location.reload(false);
             }
         }
     }

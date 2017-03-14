@@ -31,7 +31,7 @@ angular.module('laughResearchApp.viewer')
 
         $scope.addInstance = function () {
             // get values
-            var result = {
+            let result = {
                     start: $scope.start,
                     stop: $scope.stop,
                     joke: ($scope.joke) ? $scope.joke : false,

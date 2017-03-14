@@ -107,7 +107,6 @@ angular.module('laughResearchApp.viewer')
                         $scope.player.playbackRate($scope.currRate);
                     }
                     document.getElementById('rate-slider').value = $scope.currRate;
-                    console.log($scope.currRate);
                 }
                 if (e.key === ']') {
                     e.preventDefault();
