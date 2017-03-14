@@ -154,3 +154,12 @@ a.delete-instance:hover {
 .tbl-header {
     width: 30%;
 }
+
+div.joke-data {
+    background-color: #6d8b8d;
+    color: white;
+    -moz-border-radius: 1px;
+    border-radius: 1px;
+    padding: 0.85em;
+    margin: 0.2em;
+}

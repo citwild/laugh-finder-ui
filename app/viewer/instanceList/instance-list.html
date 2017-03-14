@@ -37,6 +37,9 @@
                 </li>
             </ul>
         </div>
+        <div class="joke-data" ng-if="instance.joke">
+            Caused by a joke told by {{instance.speaker}}.
+        </div>
         <button class="display-metadata-btn" ng-click="toggleMetadataForm()">Show / Hide Metadata Form</button>
         <!-- Updating metadata for instance -->
         <metadata-form instance="instance"
