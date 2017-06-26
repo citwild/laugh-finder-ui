@@ -3,9 +3,12 @@ angular.module('laughResearchApp.home', ['ngRoute'])
 .config(['$routeProvider', function homeConfig($routeProvider) {
     // home page route
     $routeProvider
-        .when('/', {
+        .when('/home', {
             templateUrl: 'app/home/homeView.html',
-            controller: 'mainController'
+            controller: 'mainController',
+            access: {
+                loginRequired: true
+            }
         })
 }])
 
