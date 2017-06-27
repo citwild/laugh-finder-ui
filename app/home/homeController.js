@@ -6,12 +6,19 @@ angular.module('laughResearchApp.home', ['ngRoute'])
         .when('/home', {
             templateUrl: 'app/home/homeView.html',
             controller: 'mainController',
-            access: {
-                loginRequired: true
-            }
+            requireLogin: true
         })
 }])
 
-.controller('mainController', ['$scope', '$http', function MainController($scope, $http) {
+.controller('mainController', ['$scope', '$http', '$window', 'authService', function MainController($scope, $http, $window, authService) {
+    authService.checkIsAuthenticated().then(
+        function success() {
+            // do nothing
+        },
+        function error(response) {
+            $window.location.href = '#!/login';
+        }
+    );
+
     $scope.name = "Miles";
 }]);
