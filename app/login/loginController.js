@@ -8,6 +8,15 @@ angular.module('laughResearchApp.login', ['ngRoute'])
         })
 }])
 
-.controller('loginController', ['$scope', '$http', function LoginController($scope, $http) {
+.controller('loginController', ['$scope', 'authService', function($scope, authService) {
+    $scope.login = function () {
+        authService.authenticateUser($scope.creds).then(
+            function success(response) {
 
+            },
+            function error(response) {
+                console.log(response);
+            }
+        )
+    }
 }]);

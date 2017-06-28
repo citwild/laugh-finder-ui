@@ -1,10 +1,10 @@
 <h1>Login Page</h1>
-<form>
-    <label for="username" required="true">User name: </label>
-    <input id="username" type="email"/>
+<form method="post" ng-submit="login()">
+    <label for="email" required="true">User email: </label>
+    <input ng-model="creds.email" id="email" type="email"/>
     <br>
     <label for="password">Password: </label>
-    <input id="password" type="password"/>
+    <input ng-model="creds.pass" id="password" type="password"/>
     <br>
-    <input type="submit" value="Login"/>
+    <input id="user-login" type="submit" value="Login"/>
 </form>

@@ -12,12 +12,17 @@ angular.module('laughResearchApp', [
 
     // for dealing with hashbang nonsense
     $locationProvider.hashPrefix('!');
+
+    // $httpProvider.defaults.withCredentials = true;
 }])
 
 .service('authService', ['$http', function($http) {
     return {
         checkIsAuthenticated: function () {
             return $http.get('http://localhost:16000/auth/isAuthenticated');
+        },
+        authenticateUser: function (request) {
+            return $http.post('http://localhost:16000/auth/login', request);
         }
     }
 }]);
