@@ -6,14 +6,14 @@ angular.module('laughResearchApp', [
         'laughResearchApp.viewer'
 ])
 
-.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+.config(['$routeProvider', '$locationProvider', '$httpProvider', function ($routeProvider, $locationProvider, $httpProvider) {
+    $httpProvider.defaults.withCredentials = true;
+
     // unknown URLs go back to login
     $routeProvider.otherwise({redirectTo: '/login'});
 
     // for dealing with hashbang nonsense
     $locationProvider.hashPrefix('!');
-
-    // $httpProvider.defaults.withCredentials = true;
 }])
 
 .service('authService', ['$http', function($http) {
