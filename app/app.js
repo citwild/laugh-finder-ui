@@ -16,13 +16,13 @@ angular.module('laughResearchApp', [
     $locationProvider.hashPrefix('!');
 }])
 
-.service('authService', ['$http', function($http) {
-    return {
-        checkIsAuthenticated: function () {
-            return $http.get('http://localhost:16000/auth/isAuthenticated');
-        },
-        authenticateUser: function (request) {
-            return $http.post('http://localhost:16000/auth/login', request);
-        }
-    }
+.controller('mainController', ['$scope', function ($scope) {
+    // Misc AWS configuration stuff
+    AWS.config.region = 'us-west-2';
+
+    $scope.poolData = {
+        UserPoolId : 'us-west-2_bDWDs5ptX',
+        ClientId : '4bnopnf8j9l661h9ahafm86vst'
+    };
+    $scope.userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool($scope.poolData);
 }]);

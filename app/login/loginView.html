@@ -1,10 +1,16 @@
 <h1>Login Page</h1>
-<form method="post" ng-submit="login()">
-    <label for="email" required="true">User email: </label>
-    <input ng-model="creds.email" id="email" type="email"/>
+<form method="post" ng-submit="authenticateUser(creds.user,creds.pass,creds.newpass)">
+    <label for="user" required="true">User name: </label>
+    <input ng-model="creds.user" id="user" type="text"/>
     <br>
     <label for="password">Password: </label>
     <input ng-model="creds.pass" id="password" type="password"/>
+    <br>
+    <div style="border: black solid 1px;margin: 1em; padding: 1em;">
+        <p>First time logging in? Create a new password to replace your temporary one:</p>
+        <label for="newpassword">New Password: </label>
+        <input ng-model="creds.newpass" id="newpassword" type="password"/>
+    </div>
     <br>
     <input id="user-login" type="submit" value="Login"/>
 </form>
