@@ -8,8 +8,9 @@ angular.module('laughResearchApp.login', ['ngRoute'])
         })
 }])
 
-.controller('loginController', ['$scope', function($scope) {
+.controller('loginController', ['$scope', '$location', function($scope, $location) {
     $scope.authenticateUser = function(user, pass, newPass) {
+        $scope.user = user;
 
         let authData = {
             Username: user,
@@ -32,7 +33,8 @@ angular.module('laughResearchApp.login', ['ngRoute'])
                     Logins: {
                         'cognito-idp.us-west-2.amazonaws.com/us-west-2_bDWDs5ptX': result.getIdToken().getJwtToken()
                     }
-                })
+                });
+                $location.path('/home');
             },
             onFailure: function (err) {
                 alert(err);

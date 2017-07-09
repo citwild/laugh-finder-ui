@@ -1,6 +1,6 @@
 angular.module('laughResearchApp.home', ['ngRoute'])
 
-.config(['$routeProvider', function homeConfig($routeProvider) {
+.config(['$routeProvider', function($routeProvider) {
     // home page route
     $routeProvider
         .when('/home', {
@@ -19,7 +19,7 @@ angular.module('laughResearchApp.home', ['ngRoute'])
         })
 }])
 
-.controller('mainController', ['$scope', '$location', function MainController($scope, $location) {
+.controller('homeController', ['$scope', '$location', function($scope, $location) {
     // 0. Verify logged in before loading
     $scope.$on('$routeChangeError', function(evt, curr, prev, reject) {
         if (reject === "unauthenticated") {
