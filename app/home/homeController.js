@@ -1,14 +1,15 @@
 angular.module('laughResearchApp.home', ['ngRoute'])
 
-.config(['$routeProvider', function homeConfig($routeProvider) {
+.config(['$routeProvider', 'adalAuthenticationServiceProvider', function($routeProvider, adalProvider) {
     // home page route
     $routeProvider
-        .when('/', {
+        .when('/home', {
             templateUrl: 'app/home/homeView.html',
-            controller: 'mainController'
+            controller: 'homeController',
+	    requireADLogin: true
         })
 }])
 
-.controller('mainController', ['$scope', '$http', function MainController($scope, $http) {
-    $scope.name = "Miles";
+.controller('homeController', ['$scope', '$location', 'adalAuthenticationService', function($scope, $location, adalService) {
+    $scope.name = adalService.userInfo.userName;
 }]);

@@ -1,11 +1,12 @@
 angular.module('laughResearchApp.videoList', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider', 'adalAuthenticationServiceProvider', function($routeProvider, adalProvider) {
     // list of videos page
     $routeProvider
         .when('/list', {
             templateUrl: 'app/list/listView.html',
-            controller: 'listController'
+            controller: 'listController',
+	    requireADLogin: true
         })
 
 }])
@@ -18,7 +19,7 @@ angular.module('laughResearchApp.videoList', ['ngRoute'])
     }
 }])
 
-.controller('listController', ['$scope', 'listService', function($scope, listService) {
+.controller('listController', ['$scope', '$location', 'listService', function($scope, $location, listService) {
 
     // 1. Get asset listing from AWS
     listService.getAssets().then(

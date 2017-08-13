@@ -1,13 +1,13 @@
 angular.module('laughResearchApp.viewer', ['ngRoute'])
 
-.config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, adalProvider) {
     // viewer page
     $routeProvider
         .when('/viewer', {
             templateUrl: 'app/viewer/viewerView.html',
-            controller: 'viewerController'
+            controller: 'viewerController',
+	    requireADLogin: true
         });
-
 }])
 
 .service('instanceService', ['$http', function ($http) {
@@ -27,7 +27,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
     }
 }])
 
-.controller('viewerController', ['$scope', '$routeParams', 'instanceService', function ($scope, $routeParams, instanceService) {
+.controller('viewerController', ['$scope', '$routeParams', '$location', 'instanceService', function ($scope, $routeParams, $location, instanceService) {
 
     // 1. Establish video asset's source (domain, bucket, key)
     // let s3Domain = "https://52.37.207.59/s3/",

@@ -3,18 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>Laugh Research Tool</title>
-
-    <!-- Angular -->
-    <script src="./node_modules/angular/angular.js"></script>
-
-    <!-- For URL routing -->
-    <script src="./node_modules/angular-route/angular-route.js"></script>
-
-    <!-- ------------------ -->
-    <!-- Misc. dependencies -->
-    <!-- ------------------ -->
-    <script src="./node_modules/video.js/dist/video.js"></script>
-
     <!-- ------------------ -->
     <!--         CSS        -->
     <!-- ------------------ -->
@@ -27,13 +15,34 @@
     <link href="app/viewer/controlPanel/controlPanel.css" rel="stylesheet">
     <link href="app/viewer/typeManager/typeManager.css" rel="stylesheet">
 
+    <base href="/">
+</head>
+
+<body ng-controller="mainController">
+
+<ng-view></ng-view>
+
+    <!-- Angular -->
+    <script src="./node_modules/angular/angular.js"></script>
+
+    <!-- For URL routing -->
+    <script src="./node_modules/angular-route/angular-route.js"></script>
+
+    <!-- Azure AD scripts -->
+    <script src="app/adal.js"></script>
+    <script src="app/adal-angular.js"></script>
+
+    <!-- ------------------ -->
+    <!-- Misc. dependencies -->
+    <!-- ------------------ -->
+    <script src="./node_modules/video.js/dist/video.js"></script>
+
     <!-- ---------- -->
     <!--  MAIN APP  -->
     <!-- ---------- -->
+    <script src="./app/entry/entryController.js"></script>
     <script src="./app/home/homeController.js"></script>
-
     <script src="./app/list/listController.js"></script>
-
     <script src="./app/viewer/viewerController.js"></script>
     <script src="./app/viewer/controlPanel/control-panel.component.js"></script>
     <script src="./app/viewer/instanceList/instance-list.component.js"></script>
@@ -41,13 +50,6 @@
     <script src="./app/viewer/instanceList/addInstanceForm/add-instance-form.component.js"></script>
     <script src="./app/viewer/typeManager/type-manager.component.js"></script>
     <script src="./app/app.js"></script>
-
-    <base href="/">
-</head>
-
-<body ng-controller="mainController">
-
-<ng-view></ng-view>
 
 </body>
 <html>
