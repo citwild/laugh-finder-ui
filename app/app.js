@@ -1,6 +1,5 @@
 angular.module('laughResearchApp', [
     'ngRoute',
-    'laughResearchApp.login',
     'laughResearchApp.home',
     'laughResearchApp.videoList',
     'laughResearchApp.viewer',
@@ -11,7 +10,7 @@ angular.module('laughResearchApp', [
     $httpProvider.defaults.withCredentials = true;
 
     // unknown URLs go back to login
-    $routeProvider.otherwise({redirectTo: '/login'});
+    $routeProvider.otherwise({redirectTo: '/home'});
 
     // for dealing with hashbang nonsense
     $locationProvider.hashPrefix('!');
