@@ -1,21 +1,12 @@
 angular.module('laughResearchApp.videoList', ['ngRoute'])
 
-.config(['$routeProvider', function($routeProvider) {
+.config(['$routeProvider', 'adalAuthenticationServiceProvider', function($routeProvider, adalProvider) {
     // list of videos page
     $routeProvider
         .when('/list', {
             templateUrl: 'app/list/listView.html',
             controller: 'listController',
-            resolve: {
-                load: function($q, $location, authService) {
-                    let deferred = $q.defer();
-                    authService.checkIsAuthenticated().then(
-                        function success(d) { deferred.resolve() },
-                        function error(d) { deferred.reject("unauthenticated") }
-                    );
-                    return deferred.promise;
-                }
-            }
+	    requireADLogin: true
         })
 
 }])
@@ -29,12 +20,6 @@ angular.module('laughResearchApp.videoList', ['ngRoute'])
 }])
 
 .controller('listController', ['$scope', '$location', 'listService', function($scope, $location, listService) {
-    // 0. Verify logged in before loading
-    $scope.$on('$routeChangeError', function(evt, curr, prev, reject) {
-        if (reject === "unauthenticated") {
-            $location.path('/login');
-        }
-    });
 
     // 1. Get asset listing from AWS
     listService.getAssets().then(

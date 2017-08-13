@@ -1,21 +1,12 @@
 angular.module('laughResearchApp.viewer', ['ngRoute'])
 
-.config(['$routeProvider', function ($routeProvider) {
+.config(['$routeProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, adalProvider) {
     // viewer page
     $routeProvider
         .when('/viewer', {
             templateUrl: 'app/viewer/viewerView.html',
             controller: 'viewerController',
-            resolve: {
-                load: function($q, $location, authService) {
-                    let deferred = $q.defer();
-                    authService.checkIsAuthenticated().then(
-                        function success(d) { deferred.resolve() },
-                        function error(d) { deferred.reject("unauthenticated") }
-                    );
-                    return deferred.promise;
-                }
-            }
+	    requireADLogin: true
         });
 }])
 
@@ -37,12 +28,6 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 }])
 
 .controller('viewerController', ['$scope', '$routeParams', '$location', 'instanceService', function ($scope, $routeParams, $location, instanceService) {
-    // 0. Verify logged in before loading
-    $scope.$on('$routeChangeError', function(evt, curr, prev, reject) {
-        if (reject === "unauthenticated") {
-            $location.path('/login');
-        }
-    });
 
     // 1. Establish video asset's source (domain, bucket, key)
     // let s3Domain = "https://52.37.207.59/s3/",
