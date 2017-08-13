@@ -17,12 +17,5 @@ angular.module('laughResearchApp', [
 }])
 
 .controller('mainController', ['$scope', function ($scope) {
-    // Misc AWS configuration stuff
-    AWS.config.region = 'us-west-2';
 
-    $scope.poolData = {
-        UserPoolId : 'us-west-2_bDWDs5ptX',
-        ClientId : '4bnopnf8j9l661h9ahafm86vst'
-    };
-    $scope.userPool = new AWSCognito.CognitoIdentityServiceProvider.CognitoUserPool($scope.poolData);
 }]);
