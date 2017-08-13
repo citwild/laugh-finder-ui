@@ -5,7 +5,7 @@ angular.module('laughResearchApp.home', ['ngRoute'])
     $routeProvider
         .when('/home', {
             templateUrl: 'app/home/homeView.html',
-            controller: 'mainController',
+            controller: 'homeController',
 	    requireADLogin: true
         })
 }])

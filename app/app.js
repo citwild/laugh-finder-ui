@@ -1,19 +1,20 @@
 angular.module('laughResearchApp', [
     'ngRoute',
+    'AdalAngular',
+    'laughResearchApp.entry',
     'laughResearchApp.home',
     'laughResearchApp.videoList',
-    'laughResearchApp.viewer',
-    'AdalAngular'
+    'laughResearchApp.viewer'
 ])
 
 .config(['$routeProvider', '$locationProvider', '$httpProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $locationProvider, $httpProvider, adalProvider) {
     $httpProvider.defaults.withCredentials = true;
 
     // unknown URLs go back to login
-    $routeProvider.otherwise({redirectTo: '/home'});
+    $routeProvider.otherwise({redirectTo: '/'});
 
     // for dealing with hashbang nonsense
-    $locationProvider.hashPrefix('!');
+    $locationProvider.html5Mode(true).hashPrefix('!');
 
     adalProvider.init(
 	{
