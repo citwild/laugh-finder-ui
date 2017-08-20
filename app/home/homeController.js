@@ -11,5 +11,5 @@ angular.module('laughResearchApp.home', ['ngRoute'])
 }])
 
 .controller('homeController', ['$scope', '$location', 'adalAuthenticationService', function($scope, $location, adalService) {
-    $scope.name = adalService.userInfo.userName;
+    $scope.name = adalService.userInfo.profile.given_name;
 }]);
