@@ -5,3 +5,4 @@ aws.js
 # local files to be built per environment
 node_modules/
 .idea/
+nohup.out
