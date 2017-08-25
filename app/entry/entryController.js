@@ -9,5 +9,8 @@ angular.module('laughResearchApp.entry', ['ngRoute'])
         })
 }])
 
-.controller('entryController', ['$scope', '$location', function($scope, $location) {
+.controller('entryController', ['$scope', '$location', 'adalAuthenticationService', function($scope, $location, adalService) {
+    $scope.logout = function() {
+        adalService.logOut();
+    }
 }]);

@@ -10,9 +10,11 @@ This does the hacky thing of:
 
 <h2>{{bucket}}</h2>
 <ul>
-    <li ng-repeat="key in s3Keys" ng-if="$even">
-        <a href="/viewer?bucket={{bucket}}&key={{key}}">{{key}}</a>
+    <li ng-repeat="key in s3Keys">
+        <a href="/viewer?bucket=lfassets&key=video/{{key}}">{{key}}</a>
     </li>
 </ul>
 <br>
 <a href="/home">Back to home</a>
+<br>
+<button data-ng-click="logout()">Logout</button>
