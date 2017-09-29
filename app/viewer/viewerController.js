@@ -10,38 +10,64 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         });
 }])
 
-.service('instanceService', ['$http', function ($http) {
+.service('instanceService', ['$http', '$window', function ($http, $window) {
     return {
+        // Get user-defined laughter types
         getTypes: function() {
             return $http.get(
-                //'http://localhost:16000/types/get/all'
-                'https://52.37.207.59/rest/types/get/all'
+                'https://137.135.51.94/rest/types/get/all'
             );
         },
+        // Get laughter instances
         getInstances: function(bucket, key) {
             return $http.get(
-                //'http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key
-                'https://52.37.207.59/rest/analyze/video?bucket=' + bucket + '&key=' + key
+                'https://137.135.51.94/rest/analyze/video?bucket=' + bucket + '&key=' + key
+            );
+        },
+        // Get the video data
+        getVideo: function (bucket, key) {
+            var t = $window.sessionStorage.getItem('adal.idtoken');
+            return $http.post(
+                'https://137.135.51.94/blob/get/' + bucket  + '/' + key,
+                {
+                    data: t
+                }
             );
         }
+        
     }
 }])
 
-.controller('viewerController', ['$scope', '$routeParams', '$location', 'instanceService', function ($scope, $routeParams, $location, instanceService) {
+.controller('viewerController', ['$scope', '$routeParams', '$location', '$window', 'instanceService', function ($scope, $routeParams, $location, $window, instanceService) {
 
     // 1. Establish video asset's source (domain, bucket, key)
-    // let s3Domain = "https://52.37.207.59/s3/",
-    let s3Domain = "https://s3-us-west-2.amazonaws.com/",
+    let assetUri = "https://137.135.51.94/blob/get/",
         bucket = $routeParams.bucket,
         key = $routeParams.key;
 
     $scope.videoId = bucket + "/" + key;
-    let videoUrl = s3Domain + $scope.videoId;
+    let videoUrl = assetUri + $scope.videoId;
 
 
     // 2. Create video source element (since ng-src does not work as expected)
     let source = document.getElementById('source');
-    source.setAttribute('src', videoUrl);
+    instanceService.getVideo(bucket, key).then(
+        function success(response) {
+            // 2.a. Base64 encode video bytes returned
+            /*let videoBytes = btoa(
+                encodeURIComponent(response.data).replace(/%([0-9A-F]{2})/g,
+                    function toSolidBytes(match, p1) {
+                        return String.fromCharCode('0x' + p1);
+                    }
+            ));*/
+            // 2.b. Set source to data
+            source.setAttribute('src', '???');
+            //source.setAttribute('src', 'data:video/mp4;base64,' + videoBytes);
+        },
+        function error(response) {
+            console.alert("Failed to load video");
+        }
+    );
 
 
     // 3. Kill and reinitialize VideoJS, if necessary
