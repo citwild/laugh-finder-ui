@@ -24,17 +24,6 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                 'https://137.135.51.94/rest/analyze/video?bucket=' + bucket + '&key=' + key
             );
         },
-        // Get the video data
-        getVideo: function (bucket, key) {
-            var t = $window.sessionStorage.getItem('adal.idtoken');
-            return $http.post(
-                'https://137.135.51.94/blob/get/' + bucket  + '/' + key,
-                {
-                    data: t
-                }
-            );
-        }
-        
     }
 }])
 
@@ -51,24 +40,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
     // 2. Create video source element (since ng-src does not work as expected)
     let source = document.getElementById('source');
-    instanceService.getVideo(bucket, key).then(
-        function success(response) {
-            // 2.a. Base64 encode video bytes returned
-            /*let videoBytes = btoa(
-                encodeURIComponent(response.data).replace(/%([0-9A-F]{2})/g,
-                    function toSolidBytes(match, p1) {
-                        return String.fromCharCode('0x' + p1);
-                    }
-            ));*/
-            // 2.b. Set source to data
-            source.setAttribute('src', '???');
-            //source.setAttribute('src', 'data:video/mp4;base64,' + videoBytes);
-        },
-        function error(response) {
-            console.alert("Failed to load video");
-        }
-    );
-
+    source.setAttribute('src', assetUri + $scope.videoId);
 
     // 3. Kill and reinitialize VideoJS, if necessary
     $scope.player;

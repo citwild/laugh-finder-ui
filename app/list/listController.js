@@ -42,7 +42,7 @@ angular.module('laughResearchApp.videoList', ['ngRoute'])
     );
 
     // 2. Set bucket and values for HTML iteration
-    var videoRX = /<Name>([a-zA-Z0-9\/\-]*\.MP4)<\/Name>/g;
+    var videoRX = /<Name>([a-zA-Z0-9\/\-]*\.[Mm][Pp]4)<\/Name>/g;
 
     $scope.$watch('assets', function () {
         if ($scope.assets) {
