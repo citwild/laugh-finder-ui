@@ -8,22 +8,28 @@ angular.module('laughResearchApp.viewer')
         s = (s - secs) / 60;
         var mins = s % 60;
         var hrs = (s - mins) / 60;
+
+        if (secs < 10) secs = '0' + secs;
+        if (mins < 10) mins = '0' + mins;
+        if (hrs  < 10) hrs  = '0' + hrs;
+
         return hrs + ':' + mins + ':' + secs;
     };
 })
 
+// TODO: Lock these down by validating user JWT token
 .service('instanceListService', ['$http', function($http) {
     return {
         deleteParticipant: function (id) {
             return $http.delete(
                 //'http://localhost:16000/metadata/participant/' + id + '/delete'
-                'https://52.37.207.59/rest/metadata/participant/' + id + '/delete'
+                'https://137.135.51.94/rest/metadata/participant/' + id + '/delete'
             );
         },
         deleteInstance: function (id) {
             return $http.delete(
                 //'http://localhost:16000/instance/' + id + '/delete'
-                'https://52.37.207.59/rest/instance/' + id + '/delete'
+                'https://137.135.51.94/rest/instance/' + id + '/delete'
             );
         }
     }
@@ -37,17 +43,18 @@ angular.module('laughResearchApp.viewer')
         $scope.$parent.$watch('video', function () {
             if ($scope.$parent.video) {
                 $scope.videoId = $scope.$parent.video.foundLaughters.videoId;
-                console.log("[instanceList] Retrieved video ID: " + JSON.stringify($scope.videoId));
                 $scope.instances = $scope.$parent.video.foundLaughters.instances;
-                console.log("[instanceList] Retrieved laugh instances: " + JSON.stringify($scope.instances));
             }
         });
         $scope.$parent.$watch('laughTypes', function () {
             if ($scope.$parent.laughTypes) {
                 $scope.laughTypes= $scope.$parent.laughTypes;
-                console.log("[instanceList] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
             }
         });
+
+        //console.log("[instanceList] Retrieved video ID: " + JSON.stringify($scope.videoId));
+        //console.log("[instanceList] Retrieved laugh instances: " + JSON.stringify($scope.instances));
+        //console.log("[instanceList] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
 
         // 2. Begin helper methods
         $scope.goToTime = function (value) {
