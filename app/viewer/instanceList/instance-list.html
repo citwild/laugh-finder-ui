@@ -1,4 +1,9 @@
-<h2>Laughter Instances ({{instances.length}})</h2>
+<div id="instance-header">
+    <h2 id="instance-header-title">Laughter Instances ({{instances.length}})</h2>
+    <form method="get" action="file.doc">
+           <button id="data-download-btn" type="submit">Download</button>
+    </form>
+</div>
 <div id="target-instances-map">
     <div class="instance" ng-repeat="instance in instances | orderBy:'start'">
         <div class="timestamp">
