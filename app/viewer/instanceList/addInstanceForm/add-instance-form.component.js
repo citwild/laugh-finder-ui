@@ -5,7 +5,7 @@ angular.module('laughResearchApp.viewer')
         postNewInstance: function (videoId, json) {
             return $http.post(
                 //'http://localhost:16000/metadata/video/' + videoId + '/instances/add',
-                'https://52.37.207.59/rest/metadata/video/' + videoId + '/instances/add',
+                'https://137.135.51.94/rest/metadata/video/' + videoId + '/instances/add',
                 json
             );
         }
@@ -33,11 +33,11 @@ angular.module('laughResearchApp.viewer')
         $scope.addInstance = function () {
             // get values
             let result = {
-                    start: $scope.start,
-                    stop: $scope.stop,
-                    joke: ($scope.joke) ? $scope.joke : false,
-                    speaker: ($scope.speaker) ? $scope.speaker : null
-                };
+                start:   $scope.start,
+                stop:    $scope.stop,
+                joke:    ($scope.joke) ? $scope.joke : false,
+                speaker: ($scope.speaker) ? $scope.speaker : null
+            };
 
             // reset form
             document.getElementById("add-instance").reset();

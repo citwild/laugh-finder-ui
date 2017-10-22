@@ -52,10 +52,6 @@ angular.module('laughResearchApp.viewer')
             }
         });
 
-        //console.log("[instanceList] Retrieved video ID: " + JSON.stringify($scope.videoId));
-        //console.log("[instanceList] Retrieved laugh instances: " + JSON.stringify($scope.instances));
-        //console.log("[instanceList] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
-
         // 2. Begin helper methods
         $scope.goToTime = function (value) {
             $scope.$parent.player.currentTime(value);

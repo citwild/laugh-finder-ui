@@ -106,7 +106,7 @@ control-panel, instance-list, type-manager {
 .video-js .vjs-slider,
 .video-js .vjs-slider-horizontal {
   /* Otherwise we'll rely on stacked opacities */
-  background: darkgray;
+  background: #6d8b8d;
 }
 
 /* The load progress bar also has internal divs that represent

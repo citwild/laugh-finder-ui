@@ -5,14 +5,14 @@ angular.module('laughResearchApp.viewer')
         postNewType: function(json) {
             return $http.post(
                 //'http://localhost:16000/types/add',
-                'https://52.37.207.59/rest/types/add',
+                'https://137.135.51.94/rest/types/add',
                 json
             );
         },
         postConsideredUpdate: function(json) {
             return $http.post(
                 //'http://localhost:16000/types/update',
-                'https://52.37.207.59/rest/types/update',
+                'https://137.135.51.94/rest/types/update',
                 json
             );
         }

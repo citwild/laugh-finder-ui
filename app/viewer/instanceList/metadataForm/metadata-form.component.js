@@ -5,14 +5,14 @@ angular.module('laughResearchApp.viewer')
         updateParticipantData: function(instanceId, json) {
             return $http.post(
                 //'http://localhost:16000/metadata/instance/' + instanceId + '/participants/add',
-                'https://52.37.207.59/rest/metadata/instance/' + instanceId + '/participants/add',
+                'https://137.135.51.94/rest/metadata/instance/' + instanceId + '/participants/add',
                 json
             );
         },
         updateInstanceData: function(instanceId, json) {
             return $http.post(
                 //'http://localhost:16000/instance/' + instanceId + '/update',
-                'https://52.37.207.59/rest/instance/' + instanceId + '/update',
+                'https://137.135.51.94/rest/instance/' + instanceId + '/update',
                 json
             );
         }
@@ -75,6 +75,6 @@ angular.module('laughResearchApp.viewer')
     },
     bindings: {
         instance: '<',
-        laughTypes: '<'
+        laughTypes: '<',
     }
 });
