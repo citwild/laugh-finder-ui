@@ -53,8 +53,23 @@ angular.module('laughResearchApp.viewer')
         });
 
         // 2. Begin helper methods
-        $scope.goToTime = function (value) {
-            $scope.$parent.player.currentTime(value);
+
+        // For "Go There" buttons for instances
+        $scope.goToTime = function (start, end) {
+            $scope.$parent.player.currentTime(start);
+
+            // This conditional will automatically play the segment IF the
+            //   the video is paused
+            if ($scope.$parent.player.paused()) {
+                $scope.$parent.player.play();
+
+                $scope.$parent.player.on('timeupdate', function () {
+                    if ($scope.$parent.player.currentTime() > end) {
+                        $scope.$parent.player.pause();
+                        $scope.$parent.player.off('timeupdate');
+                    }
+                });
+            }
         };
 
         $scope.removeParticipant = function(id) {
