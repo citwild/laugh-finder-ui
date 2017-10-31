@@ -6,3 +6,5 @@ aws.js
 node_modules/
 .idea/
 nohup.out
+
+*.swp
