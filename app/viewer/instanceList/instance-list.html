@@ -11,10 +11,12 @@
             <br>
             <span class="instance-stop">Stop: {{instance.stop | hmsTime}}</span>
             <button class="goto-instance" ng-click="goToTime(instance.start/1000, instance.stop/1000)">Go there</button>
+            <!--
             <span><a class="delete-instance"
                      href="#"
                      onclick="return false;"
                      ng-click="deleteInstance(instance)">Delete</a></span>
+            -->
         </div>
         <div>
             <h4>Participants ({{instance.participants.length}})</h4>
