@@ -35,7 +35,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         key = $routeParams.key;
 
     $scope.videoId = bucket + "/" + key;
-    let videoUrl = assetUri + $scope.videoId;
+    let videoUrl   = assetUri + $scope.videoId;
 
 
     // 2. Create video source element (since ng-src does not work as expected)
@@ -50,14 +50,34 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             $scope.player.dispose();
         }
     });
+
+    // 4. When the video is done loading, do the following:
     videojs('my-video').ready(function() {
         $scope.player = this;
 
-        // remove following components, since they're not used
+        // 4.a. Remove unused components
         $scope.player.removeChild('BigPlayButton');
         $scope.player.getChild('ControlBar').removeChild('PlayToggle');
         $scope.player.getChild('ControlBar').removeChild('ChaptersButton');
         $scope.player.getChild('ControlBar').removeChild('FullscreenToggle');
+
+
+        // 4.b. Play time segment if start/stop times present as query params
+        let beginTime = getParameterByName("b");
+        let endTime   = getParameterByName("e");
+        if (beginTime) {
+            $scope.player.currentTime(beginTime);
+            $scope.player.play();
+
+            if (endTime) {
+                $scope.player.on('timeupdate', function () {
+                    if ($scope.player.currentTime() > endTime) {
+                        $scope.player.pause();
+                        $scope.player.off('timeupdate');
+                    }
+                });
+            }
+        }
     });
 
 
@@ -99,6 +119,19 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             console.log("[viewerController] failed to load laugh type data");
         }
     );
+
+
+
+    // Helper method to read query params (taken from StackOverflow)
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
 
     // P.S.:
