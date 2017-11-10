@@ -3,7 +3,6 @@ type-manager {
 }
 
 div#type-manager {
-    margin-top: 2em;
     flex: 1;
 }
 
@@ -26,15 +25,13 @@ form#laugh-type-table, form#add-type {
 
 form#laugh-type-table table {
     width: 100%;
+    display: block;
+    height: 200px;
+    overflow-y: scroll;
 }
 
 form#laugh-type-table th {
     margin-bottom: 0.5em;
-}
-
-form#laugh-type-table table tr {
-    display: flex;
-    flex-direction: row;
 }
 
 form#laugh-type-table table tr .typeName {
@@ -84,4 +81,12 @@ input.type-form-btn:hover {
 
 type-manager h3 {
     margin-bottom: 0.5em;
+}
+
+div#add-type-form form#add-type {
+    display: flex;
+}
+
+form#add-type input#add-type-submit {
+    margin-left: 5.5em;
 }

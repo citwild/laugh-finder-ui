@@ -4,6 +4,8 @@ div#control-panel {
     padding: 1em 0 1em 0;
     background-color: #CFE4E0;
     border: solid 1px #6d8b8d;
+
+    display: flex;
 }
 
 div#control-panel details {
@@ -23,12 +25,17 @@ div#control-panel details table {
 
 div#playback-control {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 div#playback-control, div#seek-control {
     margin-left: 1em;
     margin-right: 1em;
+}
+
+div#control-panel-left {
+    display: flex;
+    flex-direction: row;
 }
 
 #playback-label {
@@ -78,9 +85,6 @@ button#play-normal {
     display: flex;
 }
 
-div#seek-control {
-    margin-top: 1em;
-}
 div#seek-control div#buttons {
     display: flex;
     flex-direction: row;
@@ -97,8 +101,8 @@ label#playback-label, div#seek-control, input#skip-amt {
 }
 
 .skip-btn.left {
-    margin-right: 1em;
+    margin-right: 0.5em;
 }
 .skip-btn.right {
-    margin-left: 1em;
+    margin-left: 0.5em;
 }

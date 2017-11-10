@@ -1,16 +1,15 @@
 /** Instance list **/
 instance-list {
     display: flex;
-    margin-top: 2em;
     flex-direction: column;
 }
 
 div#target-instances-map {
     display: flex;
     flex: 1;
-    flex-direction: row;
-    align-items: flex-start;
-    overflow-x: scroll;
+    flex-direction: column;
+    overflow-y: scroll;
+    height: 20em;
     background-color: #6d8b8d;
     border: 1px solid #6d8b8d;
     padding: .5em .25em .25em;
@@ -33,10 +32,11 @@ div.instance {
     justify-content: space-between;
 
     padding: 1em 1em 1em 1em;
-    flex-basis: 30em;
+    flex-basis: 8em;
 
     margin-left: 0.25em;
     margin-right: 0.25em;
+    margin-bottom: 0.75em;
 
     -moz-border-radius: 2px;
     border-radius: 2px;
@@ -86,10 +86,7 @@ button.display-metadata-btn {
     margin-top: 1em;
 }
 button.goto-instance {
-    flex: 3 0;
-
-    height: 100%;
-    margin-right: 4em;
+    flex: 2 0;
 }
 
 div.timestamp {
@@ -179,6 +176,7 @@ button#data-download-btn:hover {
 }
 div#instance-header {
     display: flex;
+    margin-top: 2em;
 }
 h2#instance-header-title {
     flex: 1;
