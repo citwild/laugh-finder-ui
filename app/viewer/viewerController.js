@@ -63,11 +63,11 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
 
         // 4.b. Play time segment if start/stop times present as query params
-        let beginTime = getParameterByName("b");
-        let endTime   = getParameterByName("e");
+        let beginTime     = getParameterByName("b");
+        let endTime       = getParameterByName("e");
+        let playFromStart = getParameterByName("play");
         if (beginTime) {
             $scope.player.currentTime(beginTime);
-            $scope.player.play();
 
             if (endTime) {
                 $scope.player.on('timeupdate', function () {
@@ -77,6 +77,12 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                     }
                 });
             }
+        }
+        // 4.c. Don't automatically play, if flag is present
+        if (playFromStart && playFromStart === "false") {
+            // don't play
+        } else {
+            $scope.player.play();
         }
     });
 
