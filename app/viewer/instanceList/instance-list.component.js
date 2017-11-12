@@ -17,18 +17,15 @@ angular.module('laughResearchApp.viewer')
     };
 })
 
-// TODO: Lock these down by validating user JWT token
 .service('instanceListService', ['$http', function($http) {
     return {
         deleteParticipant: function (id) {
             return $http.delete(
-                //'http://localhost:16000/metadata/participant/' + id + '/delete'
                 'https://137.135.51.94/rest/metadata/participant/' + id + '/delete'
             );
         },
         deleteInstance: function (id) {
             return $http.delete(
-                //'http://localhost:16000/instance/' + id + '/delete'
                 'https://137.135.51.94/rest/instance/' + id + '/delete'
             );
         }
@@ -72,6 +69,7 @@ angular.module('laughResearchApp.viewer')
             }
         };
 
+        // Delete a user. Prompt before doing so.
         $scope.removeParticipant = function(id) {
             let deleteParticipant = confirm(
                 "Delete participant ID #" + id + "?"

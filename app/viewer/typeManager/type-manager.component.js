@@ -2,16 +2,19 @@ angular.module('laughResearchApp.viewer')
 
 .service('typeService', ['$http', function($http) {
     return {
+        getTypes: function () {
+            return $http.get(
+                'https://137.135.51.94/rest/types/get/all',
+            );
+        },
         postNewType: function(json) {
             return $http.post(
-                //'http://localhost:16000/types/add',
                 'https://137.135.51.94/rest/types/add',
                 json
             );
         },
         postConsideredUpdate: function(json) {
             return $http.post(
-                //'http://localhost:16000/types/update',
                 'https://137.135.51.94/rest/types/update',
                 json
             );
@@ -49,11 +52,11 @@ angular.module('laughResearchApp.viewer')
             // post to service
             typeService.postNewType(result);
 
-            // refresh types (set to timeout so not run before database has as chance to update)
+            // refresh types in parent (set timeout so not run before database updates)
             setTimeout(function () {
                 typeService.getTypes().then(
                     function success(response) {
-                        $scope.laughTypes = response.data;
+                        $scope.$parent.laughTypes = response.data;
                     },
                     function error(response) {
                         console.log("[typeManager] failed to load laugh types");

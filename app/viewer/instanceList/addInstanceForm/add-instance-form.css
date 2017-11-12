@@ -8,11 +8,16 @@ add-instance-form form {
     color: #473e31;
     background-color: #b7aea0;
     border: solid 1px #6d8b8d;
+    display: flex;
+
+    margin-bottom: 3em;
 }
 
 add-instance-form form fieldset {
     border: none;
     margin-bottom: 10px;
+
+    flex: 1 0;
 }
 
 input.add-instance-btn {

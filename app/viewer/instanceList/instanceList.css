@@ -29,10 +29,9 @@ div.instance {
 
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 
     padding: 1em 1em 1em 1em;
-    flex-basis: 8em;
+    flex-basis: auto;
 
     margin-left: 0.25em;
     margin-right: 0.25em;

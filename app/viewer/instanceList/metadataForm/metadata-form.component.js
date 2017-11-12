@@ -4,14 +4,12 @@ angular.module('laughResearchApp.viewer')
     return {
         updateParticipantData: function(instanceId, json) {
             return $http.post(
-                //'http://localhost:16000/metadata/instance/' + instanceId + '/participants/add',
                 'https://137.135.51.94/rest/metadata/instance/' + instanceId + '/participants/add',
                 json
             );
         },
         updateInstanceData: function(instanceId, json) {
             return $http.post(
-                //'http://localhost:16000/instance/' + instanceId + '/update',
                 'https://137.135.51.94/rest/instance/' + instanceId + '/update',
                 json
             );
@@ -25,6 +23,13 @@ angular.module('laughResearchApp.viewer')
 
         // 0. Sync component before grabbing data
         this.$onInit = function () {
+
+            // Get laugh types from parent if updated
+            $scope.$parent.$watch('laughTypes', function () {
+                if ($scope.$parent.laughTypes) {
+                    $scope.laughTypes= $scope.$parent.laughTypes;
+                }
+            });
 
             // 1. Get data from parent scope
             let ctrl = this;
