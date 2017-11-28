@@ -20,7 +20,7 @@ Per participant data [individuals]
 
     </fieldset>
     <fieldset id="tag-field">
-        <legend>How would you describe the laughter?</legend>
+        <legend>How would you describe the participant's laughter?</legend>
         <br>
         <div ng-repeat="type in laughTypes | filter: {considered: true}">
             <input ng-model="newParticipant.tags[type.id]" type="checkbox" name="type{{$index}}">

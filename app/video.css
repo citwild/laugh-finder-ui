@@ -5,6 +5,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+video, button, input, textarea, select, a {
+    outline:none;
+}
+
 header {
     color: #354748;
     background-color: #a3bbbd;
@@ -46,6 +50,7 @@ div#my-video {
 
 div#panel-right {
     width: 39em;
+    margin-left: 3em;
 }
 div#panel-left {
     margin-left: 1em;

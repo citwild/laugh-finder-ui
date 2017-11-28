@@ -9,11 +9,13 @@ angular.module('laughResearchApp.viewer')
         var mins = s % 60;
         var hrs = (s - mins) / 60;
 
-        if (secs < 10) secs = '0' + secs;
-        if (mins < 10) mins = '0' + mins;
-        if (hrs  < 10) hrs  = '0' + hrs;
+        if (ms   < 100) ms   = '0' + ms;
+        if (ms   < 10)  ms   = '0' + ms;
+        if (secs < 10)  secs = '0' + secs;
+        if (mins < 10)  mins = '0' + mins;
+        if (hrs  < 10)  hrs  = '0' + hrs;
 
-        return hrs + ':' + mins + ':' + secs;
+        return hrs + ':' + mins + ':' + secs + "." + ms;
     };
 })
 
@@ -43,6 +45,8 @@ angular.module('laughResearchApp.viewer')
             if ($scope.$parent.video) {
                 $scope.videoId = $scope.$parent.video.foundLaughters.videoId;
                 $scope.instances = $scope.$parent.video.foundLaughters.instances;
+
+                $scope.instances.sort(compare);
             }
         });
         $scope.$parent.$watch('laughTypes', function () {
@@ -51,8 +55,8 @@ angular.module('laughResearchApp.viewer')
             }
         });
 
-        // 2. Begin helper methods
 
+        // 2. Begin helper methods
         // For "Go There" buttons for instances
         $scope.goToTime = function (start, end) {
             videoPlayer.currentTime(start);
@@ -82,12 +86,12 @@ angular.module('laughResearchApp.viewer')
             }
         };
 
-        $scope.showMetadataForm = true;
+        /*$scope.showMetadataForm = true;
         $scope.toggleMetadataForm = function() {
             $scope.showMetadataForm = !$scope.showMetadataForm;
-        };
+        };*/
 
-        $scope.deleteInstance = function(instance) {
+        /*$scope.deleteInstance = function(instance) {
             let deleteInstance = confirm(
                 "This instance has " + instance.participants.length + " participants in it.\n\n" +
                 "Delete Instance ID #" + instance.id + "?"
@@ -96,7 +100,7 @@ angular.module('laughResearchApp.viewer')
                 instanceListService.deleteInstance(instance.id);
                 window.location.reload(false);
             }
-        };
+        };*/
 
         // Hide instance unless it's the one currently selected
         $scope.selectedIndex = 1;
@@ -104,14 +108,34 @@ angular.module('laughResearchApp.viewer')
             return $scope.selectedIndex - 1 === instanceIndex;
         };
         $scope.decrementIndex = function() {
-            if ($scope.selectedIndex > 0) {
-                $scope.selectedIndex--;
+            if ($scope.selectedIndex > 1) {
+                $scope.selectedIndex = $scope.selectedIndex - 1;
+
+                $scope.changeTimePerInstanceIndex($scope.selectedIndex);
             }
         };
         $scope.incrementIndex = function() {
             if ($scope.selectedIndex < $scope.instances.length) {
-                $scope.selectedIndex++;
+                $scope.selectedIndex = $scope.selectedIndex + 1;
+
+                $scope.changeTimePerInstanceIndex($scope.selectedIndex);
+
             }
         };
+
+        $scope.changeTimePerInstanceIndex = function(index) {
+            videoPlayer.currentTime($scope.instances[index - 1].start/1000);
+            console.log("current index: " + (index - 1));
+        };
+
+
+        // For sorting instances by start time
+        function compare(a,b) {
+            if (a.start < b.start)
+                return -1;
+            if (a.start > b.start)
+                return 1;
+            return 0;
+        }
     }
 });

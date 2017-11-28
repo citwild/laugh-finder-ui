@@ -1,9 +1,22 @@
 <div id="instance-header">
-    <h2 id="instance-header-title">Laughter Instances ({{selectedIndex}} of {{instances.length}})</h2>
+    <h2 id="instance-header-title">
+        Laughter Instances (
+        <input type="number" min="1" max="{{instances.length}}"
+               ng-model="selectedIndex"
+               ng-change="changeTimePerInstanceIndex(selectedIndex)"
+               id="currentInstanceInput"></input> 
+        of {{instances.length}})
+    </h2>
     <form method="get" action="file.doc">
            <button id="data-download-btn" type="submit">Download</button>
     </form>
 </div>
+
+<div id="instance-nav-btns">
+    <button id="iterInstancePrev" ng-click="decrementIndex()"><</button>
+    <button id="iterInstanceNext" ng-click="incrementIndex()">></button>
+</div>
+
 <div id="target-instances-map">
     <div class="instance"
         ng-repeat="instance in instances | orderBy:'start'"
@@ -11,9 +24,9 @@
 
         <div class="timestamp">
             <p style="display: none;">{{index}}</p>
-            <span class="instance-start">Start: {{instance.start | hmsTime}}</span>
+            <span class="instance-start"><strong>Start</strong>: {{instance.start | hmsTime}}</span>
             <br>
-            <span class="instance-stop">Stop: {{instance.stop | hmsTime}}</span>
+            <span class="instance-stop"><strong>Stop</strong>: {{instance.stop | hmsTime}}</span>
             <button class="goto-instance" ng-click="goToTime(instance.start/1000, instance.stop/1000)">Go there</button>
             <!--
             <span><a class="delete-instance"
@@ -22,21 +35,21 @@
                      ng-click="deleteInstance(instance)">Delete</a></span>
             -->
         </div>
-        <div>
+        <div id="participant-list">
             <h4>Participants ({{instance.participants.length}})</h4>
             <ul class="participants">
                 <li class="participant" ng-repeat="participant in instance.participants">
                     <table>
                         <tr>
-                            <td class="tbl-header">Name</td>
+                            <td class="tbl-header"><strong>Name</strong></td>
                             <td>{{participant.name}}</td>
                         </tr>
-                        <tr>
+                        <!--<tr>
                             <td class="tbl-header">Intensity</td>
                             <td>{{participant.intensity}}</td>
-                        </tr>
+                        </tr>-->
                         <tr>
-                            <td class="tbl-header">Laugh descriptors</td>
+                            <td class="tbl-header"><strong>Tags</strong></td>
                             <td>
                                 <ul class="tags">
                                     <li ng-repeat="tag in participant.tags">{{tag}}</li>
@@ -56,14 +69,6 @@
         <!--ng-hide="showMetadataForm"-->
         <metadata-form instance="instance" laugh-types="laughTypes"></metadata-form>
     </div>
-</div>
-
-<!-- Cycle through instances -->
-<div>
-    <button ng-click="decrementIndex()">Previous</button>
-    <button ng-click="incrementIndex()">Next</button>
-    <label>Select instance</label>
-    <input type="number" min="0" max="{{instances.length}}" ng-model="selectedIndex"></input>
 </div>
 
 <!-- Create new instance -->
