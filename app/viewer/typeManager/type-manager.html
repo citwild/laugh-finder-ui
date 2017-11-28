@@ -2,7 +2,6 @@
    <h2>Manage Laugh Types</h2>
     <p class="feature-desc">Define nominal laughter catergories here and adjust whether they are used for annotation.</p>
     <div id="type-manager-controls">
-        <h3>Enable/Disable Types</h3>
         <form id="laugh-type-table" ng-submit="updateTypes()">
             <table>
                 <tr>
@@ -25,7 +24,9 @@
                     </td>
                 </tr>
             </table>
-            <input class="type-form-btn" type="submit" value="Update types">
+
+            <p id="update-type-info">To disable any of the above annotations, uncheck "In Use" and click "Update types in use".</p>
+            <input class="type-form-btn" type="submit" value="Update types in use">
         </form>
         <div id="add-type-form">
             <h3>Create New Type</h3>

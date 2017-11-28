@@ -52,7 +52,9 @@ angular.module('laughResearchApp.viewer')
                 let requestBody = $scope.newParticipant;
                 metadataService.updateParticipantData($scope.instance.id, requestBody).then(
                     function success(response) {
-                        console.log(response);
+                        console.log($scope.instance);
+                        console.log(response.data.participants);
+                        $scope.instance.participants = response.data.participants;
                     },
                     function error(response) {
                         console.log(response);

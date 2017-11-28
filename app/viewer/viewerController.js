@@ -30,9 +30,11 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 .controller('viewerController', ['$scope', '$routeParams', '$location', '$window', 'instanceService', function ($scope, $routeParams, $location, $window, instanceService) {
 
     // 1. Establish video asset's source (domain, bucket, key)
-    let assetUri = "https://137.135.51.94/blob/get/",
-        bucket = $routeParams.bucket,
-        key = $routeParams.key;
+    let assetUri  = "https://137.135.51.94/blob/get/";
+    $scope.bucket = $routeParams.bucket;
+    let bucket    = $scope.bucket;
+    $scope.key    = $routeParams.key;
+    let key       = $scope.key;
 
     $scope.videoId = bucket + "/" + key;
     let videoUrl   = assetUri + $scope.videoId;
@@ -112,6 +114,9 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             console.log("[viewerController] failed to load video laugh data and metadata");
         }
     );
+    // Assign to scope for children scopes
+    $scope.getInstances = instanceService.getInstances;
+    console.log("SCOPE ASSIGNED FUNCTION: " + $scope.getInstances);
 
 
     // 5. Get video's laugh type data from web service

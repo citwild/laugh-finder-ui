@@ -6,12 +6,15 @@ div#type-manager {
     flex: 1;
 }
 
+div#type-manager-controls, p#update-type-info, form#laugh-type-table table tr td input, form#laugh-type-table table tr td textarea {
+    color: #473e31;
+}
+
 div#type-manager-controls {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 1em;
-    color: #473e31;
     background-color: #b7aea0;
     border: solid 1px #6d8b8d;
 }
@@ -49,7 +52,6 @@ form#laugh-type-table table tr .typeConsidered {
 form#laugh-type-table table tr td input, form#laugh-type-table table tr td textarea {
     border: none;
     width: 100%;
-    color: #473e31;
     background-color: #b7aea0;
     resize:none;
     font-size: unset;
@@ -89,4 +91,9 @@ div#add-type-form form#add-type {
 
 form#add-type input#add-type-submit {
     margin-left: 5.5em;
+}
+
+p#update-type-info {
+    font-size: small;
+    margin-top: 1em;
 }

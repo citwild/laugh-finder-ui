@@ -36,6 +36,8 @@ angular.module('laughResearchApp.viewer')
     templateUrl: 'app/viewer/instanceList/instance-list.html',
     controller: function InstanceListController($scope, instanceListService) {
 
+        let videoPlayer = $scope.$parent.player;
+
         // 1. Watch for changes in parent scope
         $scope.$parent.$watch('video', function () {
             if ($scope.$parent.video) {
@@ -53,17 +55,17 @@ angular.module('laughResearchApp.viewer')
 
         // For "Go There" buttons for instances
         $scope.goToTime = function (start, end) {
-            $scope.$parent.player.currentTime(start);
+            videoPlayer.currentTime(start);
 
             // This conditional will automatically play the segment IF the
             //   the video is paused
-            if ($scope.$parent.player.paused()) {
-                $scope.$parent.player.play();
+            if (videoPlayer.paused()) {
+                videoPlayer.play();
 
-                $scope.$parent.player.on('timeupdate', function () {
-                    if ($scope.$parent.player.currentTime() > end) {
-                        $scope.$parent.player.pause();
-                        $scope.$parent.player.off('timeupdate');
+                videoPlayer.on('timeupdate', function () {
+                    if (videoPlayer.currentTime() > end) {
+                        videoPlayer.pause();
+                        videoPlayer.off('timeupdate');
                     }
                 });
             }
