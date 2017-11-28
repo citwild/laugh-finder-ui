@@ -9,7 +9,7 @@ div#target-instances-map {
     flex: 1;
     flex-direction: column;
     overflow-y: scroll;
-    height: 20em;
+    height: 40.5em;
     background-color: #6d8b8d;
     border: 1px solid #6d8b8d;
     padding: .5em .25em .25em;
@@ -175,7 +175,6 @@ button#data-download-btn:hover {
 }
 div#instance-header {
     display: flex;
-    margin-top: 2em;
 }
 h2#instance-header-title {
     flex: 1;

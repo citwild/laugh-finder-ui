@@ -38,3 +38,8 @@ metadata-form input#add-participant:hover, metadata-form input#update-instance:h
 .group-data-header {
     margin-top: 2em;
 }
+
+metadata-form form fieldset legend {
+    float: left;
+    margin-right: 1em;
+}

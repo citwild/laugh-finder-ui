@@ -81,10 +81,10 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             }
         }
         // 4.c. Don't automatically play, if flag is present
-        if (playFromStart && playFromStart === "false") {
-            // don't play
-        } else {
+        if (playFromStart && playFromStart === "true") {
             $scope.player.play();
+        } else {
+            // don't play
         }
     });
 

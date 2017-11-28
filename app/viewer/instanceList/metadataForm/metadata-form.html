@@ -6,18 +6,22 @@ Per participant data [individuals]
 <h4>Add Participant</h4>
 <form method="post" ng-submit="updateParticipantData()">
     <fieldset id="participant-field">
-        <legend>Participant</legend>
+        <legend>Name of participant</legend>
         <input class="participant-input" ng-model="newParticipant.name" name="participant" type="text">
-        <legend>Intensity</legend>
-        <select ng-model="newParticipant.intensity" name="laugh-intensity">
-            <option value="1">1</option>
+
+        <!-- Hide intensity since it is deprecated. Still submits 1, though. Have to refactor service otherwise. -->
+        <legend style="display:none;">Intensity</legend>
+        <select style="display:none;" ng-model="newParticipant.intensity" name="laugh-intensity">
+            <option value="1" selected="selected">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
             <option value="4">4</option>
         </select>
+
     </fieldset>
     <fieldset id="tag-field">
         <legend>How would you describe the laughter?</legend>
+        <br>
         <div ng-repeat="type in laughTypes | filter: {considered: true}">
             <input ng-model="newParticipant.tags[type.id]" type="checkbox" name="type{{$index}}">
             <label>{{type.type}}</label>
@@ -27,11 +31,11 @@ Per participant data [individuals]
 </form>
 
 <!--
-Per instance data [entire group]
+    Per instance data [entire group]
 -->
 <h4 class="group-data-header">Group Data</h4>
 <form method="post" ng-submit="updateInstanceData()">
-    <fieldset id="joke-field">
+    <fieldset style="display: none;" id="joke-field">
         <legend>Was laughter caused by a joke?</legend>
         <input name="joke"
                id="joke-true"

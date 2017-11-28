@@ -47,11 +47,10 @@
         <div class="joke-data" ng-if="instance.joke">
             Caused by a joke told by {{instance.speaker}}.
         </div>
-        <button class="display-metadata-btn" ng-click="toggleMetadataForm()">Show / Hide Metadata Form</button>
+        <!--<button class="display-metadata-btn" ng-click="toggleMetadataForm()">Show / Hide Metadata Form</button>-->
         <!-- Updating metadata for instance -->
-        <metadata-form instance="instance"
-                       laugh-types="laughTypes"
-                       ng-hide="showMetadataForm"></metadata-form>
+        <!--ng-hide="showMetadataForm"-->
+        <metadata-form instance="instance" laugh-types="laughTypes"></metadata-form>
     </div>
 </div>
 <!-- Create new instance -->

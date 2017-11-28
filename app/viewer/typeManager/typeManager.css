@@ -4,6 +4,7 @@ type-manager {
 
 div#type-manager {
     flex: 1;
+    margin-top: 2em;
 }
 
 div#type-manager-controls, p#update-type-info, form#laugh-type-table table tr td input, form#laugh-type-table table tr td textarea {

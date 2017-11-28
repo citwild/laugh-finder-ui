@@ -11,15 +11,6 @@
         <!-- TODO: have max be determined by length of video? -->
         <input ng-model="stop" name="stop-time" type="number">
     </fieldset>
-    <fieldset>
-        <legend>Caused by joke?</legend>
-        <input ng-model="joke"
-               name="joke"
-               id="joke"
-               type="checkbox"
-               ng-click="disableSpeakerField()"
-               ng-checked="instance.joke">
-    </fieldset>
     <fieldset id="speaker-field" ng-hide="hideSpeakerField">
         <legend>Who told the joke?</legend>
         <input ng-model="speaker" id="speaker" type="text">
