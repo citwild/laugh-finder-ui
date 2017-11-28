@@ -1,12 +1,16 @@
 <div id="instance-header">
-    <h2 id="instance-header-title">Laughter Instances ({{instances.length}})</h2>
+    <h2 id="instance-header-title">Laughter Instances ({{selectedIndex}} of {{instances.length}})</h2>
     <form method="get" action="file.doc">
            <button id="data-download-btn" type="submit">Download</button>
     </form>
 </div>
 <div id="target-instances-map">
-    <div class="instance" ng-repeat="instance in instances | orderBy:'start'">
+    <div class="instance"
+        ng-repeat="instance in instances | orderBy:'start'"
+        ng-if="showInstance($index)">
+
         <div class="timestamp">
+            <p style="display: none;">{{index}}</p>
             <span class="instance-start">Start: {{instance.start | hmsTime}}</span>
             <br>
             <span class="instance-stop">Stop: {{instance.stop | hmsTime}}</span>
@@ -53,5 +57,14 @@
         <metadata-form instance="instance" laugh-types="laughTypes"></metadata-form>
     </div>
 </div>
+
+<!-- Cycle through instances -->
+<div>
+    <button ng-click="decrementIndex()">Previous</button>
+    <button ng-click="incrementIndex()">Next</button>
+    <label>Select instance</label>
+    <input type="number" min="0" max="{{instances.length}}" ng-model="selectedIndex"></input>
+</div>
+
 <!-- Create new instance -->
 <add-instance-form></add-instance-form>

@@ -5,14 +5,7 @@ instance-list {
 }
 
 div#target-instances-map {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    overflow-y: scroll;
     height: 40.5em;
-    background-color: #6d8b8d;
-    border: 1px solid #6d8b8d;
-    padding: .5em .25em .25em;
     margin-top: 0.7em;
 }
 
@@ -25,20 +18,10 @@ div.instance {
     background-color: #CFE4E0;
     color: #354748;
 
-    flex: 0.5 0;
-
     display: flex;
     flex-direction: column;
 
     padding: 1em 1em 1em 1em;
-    flex-basis: auto;
-
-    margin-left: 0.25em;
-    margin-right: 0.25em;
-    margin-bottom: 0.75em;
-
-    -moz-border-radius: 2px;
-    border-radius: 2px;
 }
 div.instance ul.tags {
     display: flex;

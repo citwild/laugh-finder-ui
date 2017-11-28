@@ -96,6 +96,22 @@ angular.module('laughResearchApp.viewer')
                 instanceListService.deleteInstance(instance.id);
                 window.location.reload(false);
             }
-        }
+        };
+
+        // Hide instance unless it's the one currently selected
+        $scope.selectedIndex = 1;
+        $scope.showInstance = function(instanceIndex) {
+            return $scope.selectedIndex - 1 === instanceIndex;
+        };
+        $scope.decrementIndex = function() {
+            if ($scope.selectedIndex > 0) {
+                $scope.selectedIndex--;
+            }
+        };
+        $scope.incrementIndex = function() {
+            if ($scope.selectedIndex < $scope.instances.length) {
+                $scope.selectedIndex++;
+            }
+        };
     }
 });
