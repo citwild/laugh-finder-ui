@@ -74,6 +74,7 @@ div.timestamp {
     display: flex;
     flex-direction: row;
     flex: 0.15 0;
+    height: 2em;
 }
 span.instance-start, span.instance-stop {
     flex: 1 0;
@@ -200,4 +201,9 @@ input#currentInstanceInput {
 
 div#participant-list {
     flex: 1 0;
+}
+
+p#instance-count {
+    font-size: larger;
+    font-weight: bold;
 }

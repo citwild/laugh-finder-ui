@@ -1,11 +1,6 @@
 <div id="instance-header">
     <h2 id="instance-header-title">
-        Laughter Instances (
-        <input type="number" min="1" max="{{instances.length}}"
-               ng-model="selectedIndex"
-               ng-change="changeTimePerInstanceIndex(selectedIndex)"
-               id="currentInstanceInput"></input> 
-        of {{instances.length}})
+        Laughter Instances
     </h2>
     <form method="get" action="file.doc">
            <button id="data-download-btn" type="submit">Download</button>
@@ -14,6 +9,13 @@
 
 <div id="instance-nav-btns">
     <button id="iterInstancePrev" ng-click="decrementIndex()"><</button>
+        <p id="instance-count">
+            <input type="number" min="1" max="{{instances.length}}"
+                   ng-model="selectedIndex"
+                   ng-change="changeTimePerInstanceIndex(selectedIndex)"
+                   id="currentInstanceInput"></input> 
+            of {{instances.length}}
+        </p>
     <button id="iterInstanceNext" ng-click="incrementIndex()">></button>
 </div>
 

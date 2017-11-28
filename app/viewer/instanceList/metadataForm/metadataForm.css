@@ -7,9 +7,6 @@ metadata-form {
 
     -moz-border-radius: 4px;
     border-radius: 4px;
-
-    width: 26em;
-    align-self: center;
 }
 metadata-form form {
     display: flex;

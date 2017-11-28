@@ -23,8 +23,11 @@ Per participant data [individuals]
         <legend>How would you describe the participant's laughter?</legend>
         <br>
         <div ng-repeat="type in laughTypes | filter: {considered: true}">
-            <input ng-model="newParticipant.tags[type.id]" type="checkbox" name="type{{$index}}">
-            <label>{{type.type}}</label>
+            <input ng-model="newParticipant.tags[type.id]"
+                   type="checkbox"
+                   name="type{{$index}}"
+                   id="type{{$index}}">
+            <label for="type{{$index}}">{{type.type}}</label>
         </div>
     </fieldset>
     <input id="add-participant" type="submit" value="Add Participant">

@@ -90,7 +90,7 @@ button#play-normal {
 
 #rate-adjuster {
     display: flex;
-    height: 56%;
+    height: 51.5%;
 }
 
 div#seek-control div#buttons {
@@ -110,6 +110,7 @@ label#playback-label, div#seek-control, input#skip-amt {
 
 input#skip-amt {
     width: 79px;
+    height: 2.4em;
 }
 
 .skip-btn.left {
@@ -121,4 +122,5 @@ input#skip-amt {
 
 p#seek-seconds-title {
     font-size: x-small;
+    margin-top: -4px;
 }

@@ -24,7 +24,6 @@ p.feature-desc {
 }
 
 div#video-container {
-    background-color: gray;
     width: 100%;
     display: flex;
     justify-content: center;
