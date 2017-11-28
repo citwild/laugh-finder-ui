@@ -80,7 +80,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                 });
             }
         }
-        // 4.c. Don't automatically play, if flag is present
+        // 4.c. Automatically play, if flag is present
         if (playFromStart && playFromStart === "true") {
             $scope.player.play();
         } else {
@@ -111,12 +111,12 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             });
         },
         function error(response) {
-            console.log("[viewerController] failed to load video laugh data and metadata");
+            alert("Provided blob or key does not exist.");
+            $location.path("/list");
         }
     );
     // Assign to scope for children scopes
     $scope.getInstances = instanceService.getInstances;
-    console.log("SCOPE ASSIGNED FUNCTION: " + $scope.getInstances);
 
 
     // 5. Get video's laugh type data from web service
