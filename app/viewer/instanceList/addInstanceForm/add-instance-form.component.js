@@ -59,15 +59,28 @@ angular.module('laughResearchApp.viewer')
          * Set "start" to current timestamp
          */
         document.getElementById("setToCurrent-start").addEventListener("click", function(event) {
-            console.log($scope.$parent);
-            document.getElementById("addInstance-start").value = $scope.player.currentTime();
+            let currStart = $scope.player.currentTime();
+            let currStop  = document.getElementById("addInstance-stop").value
+
+            if (currStart > currStop) {
+                alert("Instance stop time cannot be less than instance start time.");
+            } else {
+                document.getElementById("addInstance-start").value = currStart;
+            }
         }, false);
 
         /*
          * Set "stop" to current timestamp
          */
         document.getElementById("setToCurrent-stop").addEventListener("click", function(event) {
-            document.getElementById("addInstance-stop").value = $scope.player.currentTime();
+            let currStart = document.getElementById("addInstance-start").value
+            let currStop  = $scope.player.currentTime();
+
+            if (currStart > currStop) {
+                alert("Instance stop time cannot be less than instance start time.");
+            } else {
+                document.getElementById("addInstance-stop").value = currStop;
+            }
         }, false);
     }
 });
