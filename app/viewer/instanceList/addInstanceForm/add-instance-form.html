@@ -4,12 +4,14 @@
     <fieldset>
         <legend>Start time (in seconds)</legend>
         <!-- TODO: have max be determined by length of video? -->
-        <input ng-model="start" name="start-time" type="number">
+        <input id="addInstance-start" ng-model="start" name="start-time" type="number">
+        <input id="setToCurrent-start" type="button" value="Now"></input>
     </fieldset>
     <fieldset>
         <legend>Stop time (in seconds)</legend>
         <!-- TODO: have max be determined by length of video? -->
-        <input ng-model="stop" name="stop-time" type="number">
+        <input id="addInstance-stop" ng-model="stop" name="stop-time" type="number">
+        <input id="setToCurrent-stop" type="button" value="Now"></input>
     </fieldset>
     <fieldset id="speaker-field" ng-hide="hideSpeakerField">
         <legend>Who told the joke?</legend>

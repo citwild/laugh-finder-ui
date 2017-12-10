@@ -20,6 +20,7 @@ angular.module('laughResearchApp.viewer')
         $scope.$parent.$watch('laughTypes', function () {
             if ($scope.$parent.laughTypes) {
                 $scope.laughTypes = $scope.$parent.laughTypes;
+                $scope.player = $scope.$parent.player;
                 console.log("[addInstanceFormController] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
             }
         });
@@ -53,5 +54,20 @@ angular.module('laughResearchApp.viewer')
             );
             console.log(result)
         }
+
+        /*
+         * Set "start" to current timestamp
+         */
+        document.getElementById("setToCurrent-start").addEventListener("click", function(event) {
+            console.log($scope.$parent);
+            document.getElementById("addInstance-start").value = $scope.player.currentTime();
+        }, false);
+
+        /*
+         * Set "stop" to current timestamp
+         */
+        document.getElementById("setToCurrent-stop").addEventListener("click", function(event) {
+            document.getElementById("addInstance-stop").value = $scope.player.currentTime();
+        }, false);
     }
 });

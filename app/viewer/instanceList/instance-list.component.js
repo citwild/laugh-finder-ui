@@ -38,7 +38,7 @@ angular.module('laughResearchApp.viewer')
     templateUrl: 'app/viewer/instanceList/instance-list.html',
     controller: function InstanceListController($scope, instanceListService) {
 
-        let videoPlayer = $scope.$parent.player;
+        $scope.player = $scope.$parent.player;
 
         // 1. Watch for changes in parent scope
         $scope.$parent.$watch('video', function () {
@@ -59,17 +59,17 @@ angular.module('laughResearchApp.viewer')
         // 2. Begin helper methods
         // For "Go There" buttons for instances
         $scope.goToTime = function (start, end) {
-            videoPlayer.currentTime(start);
+            $scope.player.currentTime(start);
 
             // This conditional will automatically play the segment IF the
             //   the video is paused
-            if (videoPlayer.paused()) {
-                videoPlayer.play();
+            if ($scope.player.paused()) {
+                $scope.player.play();
 
-                videoPlayer.on('timeupdate', function () {
-                    if (videoPlayer.currentTime() > end) {
-                        videoPlayer.pause();
-                        videoPlayer.off('timeupdate');
+                $scope.player.on('timeupdate', function () {
+                    if ($scope.player.currentTime() > end) {
+                        $scope.player.pause();
+                        $scope.player.off('timeupdate');
                     }
                 });
             }
@@ -124,7 +124,7 @@ angular.module('laughResearchApp.viewer')
         };
 
         $scope.changeTimePerInstanceIndex = function(index) {
-            videoPlayer.currentTime($scope.instances[index - 1].start/1000);
+            $scope.player.currentTime($scope.instances[index - 1].start/1000);
             console.log("current index: " + (index - 1));
         };
 
