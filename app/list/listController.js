@@ -41,17 +41,28 @@ angular.module('laughResearchApp.videoList', ['ngRoute'])
         }
     );
 
-    // 2. Set bucket and values for HTML iteration
-    var videoRX = /<Name>([a-zA-Z0-9\/\-_]*\.[Mm][Pp]4)<\/Name>/g;
+    // 2. Pull bucket names from list of available
+    var videoRX = /<Name>([a-zA-Z0-9\/\-_ ]*\.[Mm][Pp]4)<\/Name>/g;
+    var date = /<Name>.*_(\d{4}-\d{2}-\d{2})_.*<\/Name>/g;
+
 
     $scope.$watch('assets', function () {
         if ($scope.assets) {
-	    $scope.s3Keys = [];
-	    let match = videoRX.exec($scope.assets);
-	    while (match) {
-	        $scope.s3Keys.push(match[1]);
-		match = videoRX.exec($scope.assets);
+            $scope.s3Keys     = [];
+            $scope.videoDates = [];
+
+            let fileMatch = videoRX.exec($scope.assets);
+            //let dateMatch = date.exec($scope.assets);
+
+            while (fileMatch) {
+                $scope.s3Keys.push(fileMatch[1]);
+                fileMatch = videoRX.exec($scope.assets);
             }
+            /*while (dateMatch) {
+                $scope.videoDates.push(dateMatch[1]);
+                dateMatch = date.exec($scope.assets);
+            }
+            $scope.videoDates = Array.from(new Set($scope.videoDates));*/
         }
     });
 }]);

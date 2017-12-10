@@ -69,54 +69,57 @@ angular.module('laughResearchApp.viewer')
 
 
         // 4. Define hotkeys
-        document.addEventListener('keydown', function (e) {
-            // following keys require shift combination
-            if (e.ctrlKey) {
+        document.addEventListener('DOMContentLoaded', registerHotkeys, false);
+        function registerHotkeys() {
+            document.addEventListener('keydown', function (e) {
+                // following keys require shift combination
+                if (e.ctrlKey) {
 
-                // 's' focuses on skip amount
-                if (e.key === 's') {
-                    e.preventDefault();
-                    document.getElementById('skip-amt').focus();
-                }
-                // 'r' focuses on skip amount
-                if (e.key === '0') {
-                    e.preventDefault();
-                    document.getElementById('play-normal').click();
-                }
-                // left (i.e., '<')
-                if (e.key === ',') {
-                    e.preventDefault();
-                    document.getElementById('seek-left').click()
-                }
-                // right (i.e., '>')
-                if (e.key === '.') {
-                    e.preventDefault();
-                    document.getElementById('seek-right').click();
-                }
-                // space plays video
-                if (e.key === ' ') {
-                    e.preventDefault();
-                    document.getElementById('play-stop').click();
-                }
+                    // 's' focuses on skip amount
+                    if (e.key === 's') {
+                        e.preventDefault();
+                        document.getElementById('skip-amt').focus();
+                    }
+                    // 'r' focuses on skip amount
+                    if (e.key === '0') {
+                        e.preventDefault();
+                        document.getElementById('play-normal').click();
+                    }
+                    // left (i.e., '<')
+                    if (e.key === ',') {
+                        e.preventDefault();
+                        document.getElementById('seek-left').click()
+                    }
+                    // right (i.e., '>')
+                    if (e.key === '.') {
+                        e.preventDefault();
+                        document.getElementById('seek-right').click();
+                    }
+                    // space plays video
+                    if (e.key === ' ') {
+                        e.preventDefault();
+                        document.getElementById('play-stop').click();
+                    }
 
-                // alter the playback speed
-                if (e.key === '[') {
-                    e.preventDefault();
-                    if ($scope.currRate > 0.05) {
-                        $scope.currRate = ($scope.currRate - 0.05);
-                        $scope.player.playbackRate($scope.currRate);
+                    // alter the playback speed
+                    if (e.key === '[') {
+                        e.preventDefault();
+                        if ($scope.currRate > 0.05) {
+                            $scope.currRate = ($scope.currRate - 0.05);
+                            $scope.player.playbackRate($scope.currRate);
+                        }
+                        document.getElementById('rate-slider').value = $scope.currRate;
                     }
-                    document.getElementById('rate-slider').value = $scope.currRate;
-                }
-                if (e.key === ']') {
-                    e.preventDefault();
-                    if ($scope.currRate < 3) {
-                        $scope.currRate = ($scope.currRate + 0.05);
-                        $scope.player.playbackRate($scope.currRate);
+                    if (e.key === ']') {
+                        e.preventDefault();
+                        if ($scope.currRate < 3) {
+                            $scope.currRate = ($scope.currRate + 0.05);
+                            $scope.player.playbackRate($scope.currRate);
+                        }
+                        document.getElementById('rate-slider').value = $scope.currRate;
                     }
-                    document.getElementById('rate-slider').value = $scope.currRate;
                 }
-            }
-        }, false);
+            }, false);
+        };
     }
 });

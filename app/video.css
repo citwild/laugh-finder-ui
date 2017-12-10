@@ -5,6 +5,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+video, button, input, textarea, select, a {
+    outline:none;
+}
+
 header {
     color: #354748;
     background-color: #a3bbbd;
@@ -20,7 +24,6 @@ p.feature-desc {
 }
 
 div#video-container {
-    background-color: gray;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -33,10 +36,9 @@ button, input[type=submit] {
 
 div#video-panel {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
 
-    padding-top: 1em;
+    padding-top: 2em;
 
     background-color: #E7F2F1;
 }
@@ -44,9 +46,18 @@ div#video-panel {
 div#my-video {
 }
 
-control-panel, instance-list, type-manager {
-    width: 40em;
+
+div#panel-right {
+    width: 39em;
+    margin-left: 3em;
 }
+div#panel-left {
+    margin-left: 1em;
+    margin-right: 3em;
+    width: 43em;
+}
+
+
 
 
 /*

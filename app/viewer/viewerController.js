@@ -30,9 +30,11 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 .controller('viewerController', ['$scope', '$routeParams', '$location', '$window', 'instanceService', function ($scope, $routeParams, $location, $window, instanceService) {
 
     // 1. Establish video asset's source (domain, bucket, key)
-    let assetUri = "https://137.135.51.94/blob/get/",
-        bucket = $routeParams.bucket,
-        key = $routeParams.key;
+    let assetUri  = "https://137.135.51.94/blob/get/";
+    $scope.bucket = $routeParams.bucket;
+    let bucket    = $scope.bucket;
+    $scope.key    = $routeParams.key;
+    let key       = $scope.key;
 
     $scope.videoId = bucket + "/" + key;
     let videoUrl   = assetUri + $scope.videoId;
@@ -78,11 +80,11 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
                 });
             }
         }
-        // 4.c. Don't automatically play, if flag is present
-        if (playFromStart && playFromStart === "false") {
-            // don't play
-        } else {
+        // 4.c. Automatically play, if flag is present
+        if (playFromStart && playFromStart === "true") {
             $scope.player.play();
+        } else {
+            // don't play
         }
     });
 
@@ -109,9 +111,12 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             });
         },
         function error(response) {
-            console.log("[viewerController] failed to load video laugh data and metadata");
+            alert("Provided blob or key does not exist.");
+            $location.path("/list");
         }
     );
+    // Assign to scope for children scopes
+    $scope.getInstances = instanceService.getInstances;
 
 
     // 5. Get video's laugh type data from web service

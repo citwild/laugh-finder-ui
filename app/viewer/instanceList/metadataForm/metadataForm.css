@@ -1,7 +1,6 @@
 /** Metadata Form **/
 metadata-form {
     margin-top: 10px;
-    flex: 3 0;
     background-color: #b7aea0;
     color: #473e31;
     padding: 1em;
@@ -37,4 +36,9 @@ metadata-form input#add-participant:hover, metadata-form input#update-instance:h
 
 .group-data-header {
     margin-top: 2em;
+}
+
+metadata-form form fieldset legend {
+    float: left;
+    margin-right: 1em;
 }

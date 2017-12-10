@@ -1,8 +1,7 @@
 <div id="type-manager">
    <h2>Manage Laugh Types</h2>
-    <p class="feature-desc">Define nominal laughter catergories here and adjust whether they are to be used in analysis.</p>
+    <p class="feature-desc">Define nominal laughter catergories here and adjust whether they are used for annotation.</p>
     <div id="type-manager-controls">
-        <h3>Enable/Disable Types</h3>
         <form id="laugh-type-table" ng-submit="updateTypes()">
             <table>
                 <tr>
@@ -25,19 +24,23 @@
                     </td>
                 </tr>
             </table>
-            <input class="type-form-btn" type="submit" value="Update types">
+
+            <p id="update-type-info">To disable any of the above annotations, uncheck "In Use" and click "Update types in use".</p>
+            <input class="type-form-btn" type="submit" value="Update types in use">
         </form>
-        <h3>Create New Type</h3>
-        <form id="add-type" ng-submit="postNewType()">
-            <fieldset id="type-name-field">
-                <legend for="type">Name</legend>
-                <input ng-model="typeName" id="type" type="text">
-            </fieldset>
-            <fieldset id="type-description-field">
-                <legend for="description">Description</legend>
-                <input ng-model="typeDesc" id="description" type="text">
-            </fieldset>
-            <input class="type-form-btn" type="submit" value="Save new type">
-        </form>
+        <div id="add-type-form">
+            <h3>Create New Type</h3>
+            <form id="add-type" ng-submit="postNewType()">
+                <fieldset id="type-name-field">
+                    <legend for="type">Name</legend>
+                    <input ng-model="typeName" id="type" type="text">
+                </fieldset>
+                <fieldset id="type-description-field">
+                    <legend for="description">Description</legend>
+                    <input ng-model="typeDesc" id="description" type="text">
+                </fieldset>
+                <input id="add-type-submit" class="type-form-btn" type="submit" value="Save new type">
+            </form>
+        </div>
     </div>
 </div>

@@ -2,27 +2,21 @@
 <p class="feature-desc">Sometimes the algorithm is wrong. Please add any missed moments of laughter here.</p>
 <form id="add-instance" method="post" ng-submit="addInstance()">
     <fieldset>
-        <legend>Start time (in seconds)</legend>
+        <legend>Start time (seconds)</legend>
         <!-- TODO: have max be determined by length of video? -->
-        <input ng-model="start" name="start-time" type="number">
+        <input id="addInstance-start" ng-model="start" name="start-time" type="number" step="0.0001">
+        <input id="setToCurrent-start" class="add-instance-btn" type="button" value="Now"></input>
     </fieldset>
     <fieldset>
-        <legend>Stop time (in seconds)</legend>
+        <legend>Stop time (seconds)</legend>
         <!-- TODO: have max be determined by length of video? -->
-        <input ng-model="stop" name="stop-time" type="number">
-    </fieldset>
-    <fieldset>
-        <legend>Was laughter caused by a joke?</legend>
-        <input ng-model="joke"
-               name="joke"
-               id="joke"
-               type="checkbox"
-               ng-click="disableSpeakerField()"
-               ng-checked="instance.joke">
+        <input id="addInstance-stop" ng-model="stop" name="stop-time" type="number" step="0.0001">
+        <input id="setToCurrent-stop" class="add-instance-btn" type="button" value="Now"></input>
     </fieldset>
     <fieldset id="speaker-field" ng-hide="hideSpeakerField">
         <legend>Who told the joke?</legend>
         <input ng-model="speaker" id="speaker" type="text">
     </fieldset>
-    <input class="add-instance-btn" type="submit" value="Add instance">
+    <input id="playAddInstanceSegment" class="add-instance-btn" type="button" value="Play"></input>
+    <input class="add-instance-btn" type="submit" value="Add">
 </form>
