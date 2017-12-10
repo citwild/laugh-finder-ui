@@ -62,7 +62,7 @@ angular.module('laughResearchApp.viewer')
             let currStart = $scope.player.currentTime();
             let currStop  = document.getElementById("addInstance-stop").value
 
-            if (currStart > currStop) {
+            if (currStop && currStart > currStop) {
                 alert("Instance stop time cannot be less than instance start time.");
             } else {
                 document.getElementById("addInstance-start").value = currStart;
@@ -76,11 +76,31 @@ angular.module('laughResearchApp.viewer')
             let currStart = document.getElementById("addInstance-start").value
             let currStop  = $scope.player.currentTime();
 
-            if (currStart > currStop) {
+            if (currStart && currStart > currStop) {
                 alert("Instance stop time cannot be less than instance start time.");
             } else {
                 document.getElementById("addInstance-stop").value = currStop;
             }
         }, false);
+
+        document.getElementById('playAddInstanceSegment').addEventListener("click", function(event) {
+            let currStart = document.getElementById("addInstance-start").value;
+            let currStop  = document.getElementById("addInstance-stop").value;
+
+            if (currStart && currStop) {
+                $scope.player.currentTime(currStart);
+                $scope.player.play();
+
+                $scope.player.on('timeupdate', function () {
+                    if ($scope.player.currentTime() > currStop) {
+                        $scope.player.pause();
+                        $scope.player.off('timeupdate');
+                    }
+                });
+            } else {
+                alert("Start or stop time is not defined.");
+            }
+        });
+
     }
 });
