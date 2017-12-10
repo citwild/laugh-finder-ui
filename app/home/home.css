@@ -1,0 +1,18 @@
+h2 {
+    color: black;
+}
+
+div#datasets {
+    margin: 1.5em;
+    display: inline-block;
+}
+
+a.dataset-link {
+    text-decoration: none;
+    color: black;
+    background-color: lightgrey;
+    padding: 0.7em;
+}
+a.dataset-link:hover {
+    background-color: darkgrey;
+}

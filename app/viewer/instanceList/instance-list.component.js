@@ -8,7 +8,14 @@ angular.module('laughResearchApp.viewer')
         s = (s - secs) / 60;
         var mins = s % 60;
         var hrs = (s - mins) / 60;
-        return hrs + ':' + mins + ':' + secs;
+
+        if (ms   < 100) ms   = '0' + ms;
+        if (ms   < 10)  ms   = '0' + ms;
+        if (secs < 10)  secs = '0' + secs;
+        if (mins < 10)  mins = '0' + mins;
+        if (hrs  < 10)  hrs  = '0' + hrs;
+
+        return hrs + ':' + mins + ':' + secs + "." + ms;
     };
 })
 
@@ -16,14 +23,12 @@ angular.module('laughResearchApp.viewer')
     return {
         deleteParticipant: function (id) {
             return $http.delete(
-                //'http://localhost:16000/metadata/participant/' + id + '/delete'
-                'https://52.37.207.59/rest/metadata/participant/' + id + '/delete'
+                'https://137.135.51.94/rest/metadata/participant/' + id + '/delete'
             );
         },
         deleteInstance: function (id) {
             return $http.delete(
-                //'http://localhost:16000/instance/' + id + '/delete'
-                'https://52.37.207.59/rest/instance/' + id + '/delete'
+                'https://137.135.51.94/rest/instance/' + id + '/delete'
             );
         }
     }
@@ -33,27 +38,44 @@ angular.module('laughResearchApp.viewer')
     templateUrl: 'app/viewer/instanceList/instance-list.html',
     controller: function InstanceListController($scope, instanceListService) {
 
+        $scope.player = $scope.$parent.player;
+
         // 1. Watch for changes in parent scope
         $scope.$parent.$watch('video', function () {
             if ($scope.$parent.video) {
                 $scope.videoId = $scope.$parent.video.foundLaughters.videoId;
-                console.log("[instanceList] Retrieved video ID: " + JSON.stringify($scope.videoId));
                 $scope.instances = $scope.$parent.video.foundLaughters.instances;
-                console.log("[instanceList] Retrieved laugh instances: " + JSON.stringify($scope.instances));
+
+                $scope.instances.sort(compare);
             }
         });
         $scope.$parent.$watch('laughTypes', function () {
             if ($scope.$parent.laughTypes) {
                 $scope.laughTypes= $scope.$parent.laughTypes;
-                console.log("[instanceList] Retrieved laugh types: " + JSON.stringify($scope.laughTypes));
             }
         });
 
+
         // 2. Begin helper methods
-        $scope.goToTime = function (value) {
-            $scope.$parent.player.currentTime(value);
+        // For "Go There" buttons for instances
+        $scope.goToTime = function (start, end) {
+            $scope.player.currentTime(start);
+
+            // This conditional will automatically play the segment IF the
+            //   the video is paused
+            if ($scope.player.paused()) {
+                $scope.player.play();
+
+                $scope.player.on('timeupdate', function () {
+                    if ($scope.player.currentTime() > end) {
+                        $scope.player.pause();
+                        $scope.player.off('timeupdate');
+                    }
+                });
+            }
         };
 
+        // Delete a user. Prompt before doing so.
         $scope.removeParticipant = function(id) {
             let deleteParticipant = confirm(
                 "Delete participant ID #" + id + "?"
@@ -64,12 +86,12 @@ angular.module('laughResearchApp.viewer')
             }
         };
 
-        $scope.showMetadataForm = true;
+        /*$scope.showMetadataForm = true;
         $scope.toggleMetadataForm = function() {
             $scope.showMetadataForm = !$scope.showMetadataForm;
-        };
+        };*/
 
-        $scope.deleteInstance = function(instance) {
+        /*$scope.deleteInstance = function(instance) {
             let deleteInstance = confirm(
                 "This instance has " + instance.participants.length + " participants in it.\n\n" +
                 "Delete Instance ID #" + instance.id + "?"
@@ -78,6 +100,42 @@ angular.module('laughResearchApp.viewer')
                 instanceListService.deleteInstance(instance.id);
                 window.location.reload(false);
             }
+        };*/
+
+        // Hide instance unless it's the one currently selected
+        $scope.selectedIndex = 1;
+        $scope.showInstance = function(instanceIndex) {
+            return $scope.selectedIndex - 1 === instanceIndex;
+        };
+        $scope.decrementIndex = function() {
+            if ($scope.selectedIndex > 1) {
+                $scope.selectedIndex = $scope.selectedIndex - 1;
+
+                $scope.changeTimePerInstanceIndex($scope.selectedIndex);
+            }
+        };
+        $scope.incrementIndex = function() {
+            if ($scope.selectedIndex < $scope.instances.length) {
+                $scope.selectedIndex = $scope.selectedIndex + 1;
+
+                $scope.changeTimePerInstanceIndex($scope.selectedIndex);
+
+            }
+        };
+
+        $scope.changeTimePerInstanceIndex = function(index) {
+            $scope.player.currentTime($scope.instances[index - 1].start/1000);
+            console.log("current index: " + (index - 1));
+        };
+
+
+        // For sorting instances by start time
+        function compare(a,b) {
+            if (a.start < b.start)
+                return -1;
+            if (a.start > b.start)
+                return 1;
+            return 0;
         }
     }
 });

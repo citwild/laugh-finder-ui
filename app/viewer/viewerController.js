@@ -10,39 +10,39 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         });
 }])
 
-.service('instanceService', ['$http', function ($http) {
+.service('instanceService', ['$http', '$window', function ($http, $window) {
     return {
+        // Get user-defined laughter types
         getTypes: function() {
             return $http.get(
-                //'http://localhost:16000/types/get/all'
-                'https://52.37.207.59/rest/types/get/all'
+                'https://137.135.51.94/rest/types/get/all'
             );
         },
+        // Get laughter instances
         getInstances: function(bucket, key) {
             return $http.get(
-                //'http://localhost:16000/analyze/video?bucket=' + bucket + '&key=' + key
-                'https://52.37.207.59/rest/analyze/video?bucket=' + bucket + '&key=' + key
+                'https://137.135.51.94/rest/analyze/video?bucket=' + bucket + '&key=' + key
             );
-        }
+        },
     }
 }])
 
-.controller('viewerController', ['$scope', '$routeParams', '$location', 'instanceService', function ($scope, $routeParams, $location, instanceService) {
+.controller('viewerController', ['$scope', '$routeParams', '$location', '$window', 'instanceService', function ($scope, $routeParams, $location, $window, instanceService) {
 
     // 1. Establish video asset's source (domain, bucket, key)
-    // let s3Domain = "https://52.37.207.59/s3/",
-    let s3Domain = "https://s3-us-west-2.amazonaws.com/",
-        bucket = $routeParams.bucket,
-        key = $routeParams.key;
+    let assetUri  = "https://137.135.51.94/blob/get/";
+    $scope.bucket = $routeParams.bucket;
+    let bucket    = $scope.bucket;
+    $scope.key    = $routeParams.key;
+    let key       = $scope.key;
 
     $scope.videoId = bucket + "/" + key;
-    let videoUrl = s3Domain + $scope.videoId;
+    let videoUrl   = assetUri + $scope.videoId;
 
 
     // 2. Create video source element (since ng-src does not work as expected)
     let source = document.getElementById('source');
-    source.setAttribute('src', videoUrl);
-
+    source.setAttribute('src', assetUri + $scope.videoId);
 
     // 3. Kill and reinitialize VideoJS, if necessary
     $scope.player;
@@ -52,14 +52,40 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             $scope.player.dispose();
         }
     });
+
+    // 4. When the video is done loading, do the following:
     videojs('my-video').ready(function() {
         $scope.player = this;
 
-        // remove following components, since they're not used
+        // 4.a. Remove unused components
         $scope.player.removeChild('BigPlayButton');
         $scope.player.getChild('ControlBar').removeChild('PlayToggle');
         $scope.player.getChild('ControlBar').removeChild('ChaptersButton');
         $scope.player.getChild('ControlBar').removeChild('FullscreenToggle');
+
+
+        // 4.b. Play time segment if start/stop times present as query params
+        let beginTime     = getParameterByName("b");
+        let endTime       = getParameterByName("e");
+        let playFromStart = getParameterByName("play");
+        if (beginTime) {
+            $scope.player.currentTime(beginTime);
+
+            if (endTime) {
+                $scope.player.on('timeupdate', function () {
+                    if ($scope.player.currentTime() > endTime) {
+                        $scope.player.pause();
+                        $scope.player.off('timeupdate');
+                    }
+                });
+            }
+        }
+        // 4.c. Automatically play, if flag is present
+        if (playFromStart && playFromStart === "true") {
+            $scope.player.play();
+        } else {
+            // don't play
+        }
     });
 
 
@@ -70,11 +96,27 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
         function success(response) {
             $scope.video = response.data;
             console.log("[viewerController] Instance data: " + JSON.stringify($scope.video));
+
+            // Add markers to video bar
+            var instances = $scope.video.foundLaughters.instances;
+            var markers   = [];
+            for (var i = 0; i < instances.length; i++) {
+                var seconds = (instances[i].start/1000).toFixed(1);
+                markers.push({
+                    time: seconds, text: seconds + " seconds"
+                });
+            }
+            videojs('my-video').markers({
+                markers: markers
+            });
         },
         function error(response) {
-            console.log("[viewerController] failed to load video laugh data and metadata");
+            alert("Provided blob or key does not exist.");
+            $location.path("/list");
         }
     );
+    // Assign to scope for children scopes
+    $scope.getInstances = instanceService.getInstances;
 
 
     // 5. Get video's laugh type data from web service
@@ -88,6 +130,19 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             console.log("[viewerController] failed to load laugh type data");
         }
     );
+
+
+
+    // Helper method to read query params (taken from StackOverflow)
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }
 
 
     // P.S.:

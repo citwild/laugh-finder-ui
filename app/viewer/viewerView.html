@@ -5,25 +5,32 @@
 
 
 <div id="video-panel">
-    <div id="video-container">
-        <video id="my-video" class="video-js vjs-nofull" controls preload="auto" width="640" height="264"
-               data-setup='{"inactivityTimeout": 0}'>
-            <source id="source" type="video/mp4">
-            <p class="vjs-no-js">
-                To view this video please enable JavaScript, and consider upgrading to a web browser that
-                <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-            </p>
-        </video>
+
+    <!-- Left side of screen -->
+    <div id="panel-left">
+        <div id="video-container">
+            <video id="my-video" class="video-js vjs-nofull" controls preload="auto" width="640" height="264"
+                   data-setup='{"inactivityTimeout": 0}'>
+                <source id="source" type="video/mp4">
+                <p class="vjs-no-js">
+                    To view this video please enable JavaScript, and consider upgrading to a web browser that
+                    <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                </p>
+            </video>
+        </div>
+
+        <!-- controlling the video -->
+        <control-panel></control-panel>
+
+        <!-- manage laugh type/descriptors -->
+        <type-manager laugh-types="laughTypes"></type-manager>
     </div>
 
-    <!-- controlling the video -->
-    <control-panel></control-panel>
-
-    <!-- target instances (i.e., laughter) -->
-    <instance-list laugh-types="laughTypes"></instance-list>
-
-    <!-- manage laugh type/descriptors -->
-    <type-manager laugh-types="laughTypes"></type-manager>
+    <!-- Right side of screen -->
+    <div id="panel-right">
+        <!-- target instances (i.e., laughter) -->
+        <instance-list laugh-types="laughTypes"></instance-list>
+    </div>
 </div>
 
 <script type="text/javascript">

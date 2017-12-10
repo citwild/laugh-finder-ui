@@ -1,32 +1,39 @@
 <div id="control-panel">
     <div id="playback-control">
-        <button id="play-stop" ng-click="playStop()">Play / Stop</button>
 
-        <label id="playback-label">Playback Rate</label>
-        <div id="rate-adjuster">
-            <input ng-model="rate" ng-change="changeRate(rate)" type="range" min="0" max="3" value="1" step="0.05"
-                   id="rate-slider" list="rate-ticks">
-            <datalist id="rate-ticks">
-                <option>0</option>
-                <option>0.5</option>
-                <option>1</option>
-                <option>1.5</option>
-                <option>2</option>
-                <option>2.5</option>
-                <option>3</option>
-            </datalist>
-            <div id="rate-num">{{currRate | number:2}}</div>
-            <button ng-click="playNormally()" id="play-normal">Reset Speed</button>
+        <div id="control-panel-left">
+            <button id="play-stop" ng-click="playStop()">Play / Stop</button>
+
+            <div id="seek-control">
+                <div id="buttons">
+                    <button id="seek-left" class="skip-btn left" ng-click="skipBack()">&larr;</button>
+                    <input id="skip-amt" type="number" value="1" onfocus="this.select()">
+                    <button id="seek-right" class="skip-btn right" ng-click="skipForward()">&rarr;</button>
+                </div>
+                <p id="seek-seconds-title">Seek by seconds</p>
+            </div>
+        </div>
+
+        <div id="control-panel-right">
+            <div id="rate-adjuster">
+                <input ng-model="rate" ng-change="changeRate(rate)" type="range" min="0" max="3" value="1" step="0.05"
+                       id="rate-slider" list="rate-ticks">
+                <datalist id="rate-ticks">
+                    <option>0</option>
+                    <option>0.5</option>
+                    <option>1</option>
+                    <option>1.5</option>
+                    <option>2</option>
+                    <option>2.5</option>
+                    <option>3</option>
+                </datalist>
+                <div id="rate-num">{{currRate | number:2}}</div>
+                <button ng-click="playNormally()" id="play-normal">Reset Speed</button>
+            </div>
+            <label id="playback-label">Playback Rate</label>
         </div>
     </div>
-    <div id="seek-control">
-        <p>Seek by seconds</p>
-        <div id="buttons">
-            <button id="seek-left" class="skip-btn left" ng-click="skipBack()">&larr;</button>
-            <input id="skip-amt" type="number" value="5" onfocus="this.select()">
-            <button id="seek-right" class="skip-btn right" ng-click="skipForward()">&rarr;</button>
-        </div>
-    </div>
+    <!--
     <details>
         <summary>Video Controller Hotkeys</summary>
         <table>
@@ -72,4 +79,5 @@
             </tr>
         </table>
     </details>
+    -->
 </div>

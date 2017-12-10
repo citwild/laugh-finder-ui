@@ -1,15 +1,15 @@
 <h1>List of videos:</h1>
 <!--
 This does the hacky thing of:
-    - Making bucket publicly accessible (specific to a certain address for "production" assets)
     - Doing an HTTP GET on the specific bucket to get XML of all assets
-      - e.g., https://miles-test-assets.s3-us-west-2.amazonaws.com/
     - Regex bucket and keys out of XML
     - Iterate through array of results
  -->
 
-<h2>{{bucket}}</h2>
 <ul>
+    <li ng-repeat="date in videoDates">
+        {{date}}
+    </li>
     <li ng-repeat="key in s3Keys">
         <a href="/viewer?bucket=lfassets&key=video/{{key}}">{{key}}</a>
     </li>
