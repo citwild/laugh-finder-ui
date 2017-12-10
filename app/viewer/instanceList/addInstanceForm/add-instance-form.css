@@ -20,7 +20,12 @@ add-instance-form form fieldset {
     flex: 1 0;
 }
 
+input#playAddInstanceSegment {
+    margin-right: 1em;
+}
+
 input.add-instance-btn {
+    flex: 0.3 0;
     color: #FFF;
     background-color: #726a5e;
     border: none;
