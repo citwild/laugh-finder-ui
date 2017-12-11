@@ -95,15 +95,17 @@ angular.module('laughResearchApp.viewer')
             let currStart = document.getElementById("addInstance-start").value;
             let currStop  = document.getElementById("addInstance-stop").value;
 
+            function stopWhenDone() {
+                if ($scope.player.currentTime() > currStop) {
+                    $scope.player.pause();
+                    $scope.player.off('timeupdate', stopWhenDone);
+                }
+            }
+
             if (currStart && currStop) {
                 $scope.player.currentTime(currStart);
                 $scope.player.play();
-
-                $scope.player.on('timeupdate', function () {
-                    if ($scope.player.currentTime() > currStop) {
-                        $scope.player.pause();
-                    }
-                });
+                $scope.player.on('timeupdate', stopWhenDone);
             } else {
                 alert("Start or stop time is not defined.");
             }
