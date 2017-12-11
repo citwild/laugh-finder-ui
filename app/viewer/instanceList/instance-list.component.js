@@ -119,13 +119,19 @@ angular.module('laughResearchApp.viewer')
                 $scope.selectedIndex = $scope.selectedIndex + 1;
 
                 $scope.changeTimePerInstanceIndex($scope.selectedIndex);
-
             }
         };
 
         $scope.changeTimePerInstanceIndex = function(index) {
-            $scope.player.currentTime($scope.instances[index - 1].start/1000);
+            index = index - 1;
+
+            $scope.player.currentTime($scope.instances[index].start / 1000);
             console.log("current index: " + (index - 1));
+
+            // Play segment whenever we change
+            $scope.placeToEnd = $scope.instances[index].stop / 1000;
+            $scope.player.play();
+            $scope.player.on('timeupdate', stopWhenDone);
         };
 
 
