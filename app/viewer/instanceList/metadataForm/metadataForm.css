@@ -42,3 +42,36 @@ metadata-form form fieldset legend {
     float: left;
     margin-right: 1em;
 }
+
+/*Taggle metadata tag form*/
+ul.taggle_list {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap-reverse;
+}
+
+input.taggle_input  {
+    width: 38em !important;
+}
+
+div.taggle_sizer {
+    background-color: rosybrown;
+    padding: 0.5em;
+    font-size: medium !important;
+}
+
+li.taggle {
+    width: fit-content;
+    background-color: #726a5e;
+    color: white;
+    padding: 0.35em;
+    margin: 0.25em;
+}
+
+li.taggle button.close {
+    background: none;
+    border: none;
+    color: lightgray;
+    margin-left: 0.5em;
+}

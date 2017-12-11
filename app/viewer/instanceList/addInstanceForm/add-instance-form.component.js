@@ -63,7 +63,11 @@ angular.module('laughResearchApp.viewer')
             let currStop  = document.getElementById("addInstance-stop").value
 
             if (currStop && currStart > currStop) {
-                alert("Instance stop time cannot be less than instance start time.");
+                let clearStop = confirm("Instance stop time cannot be less than instance start time.\n\nUse this start time anyway?");
+                if (clearStop) {
+                    document.getElementById("addInstance-stop").value = null;
+                    document.getElementById("addInstance-start").value = currStart;
+                }
             } else {
                 document.getElementById("addInstance-start").value = currStart;
             }
@@ -77,7 +81,11 @@ angular.module('laughResearchApp.viewer')
             let currStop  = $scope.player.currentTime();
 
             if (currStart && currStart > currStop) {
-                alert("Instance stop time cannot be less than instance start time.");
+                let clearStart = confirm("Instance stop time cannot be less than instance start time.\n\nUse this stop time anyway?");
+                if (clearStart) {
+                    document.getElementById("addInstance-start").value = null;
+                    document.getElementById("addInstance-stop").value = currStop;
+                }
             } else {
                 document.getElementById("addInstance-stop").value = currStop;
             }
@@ -94,7 +102,6 @@ angular.module('laughResearchApp.viewer')
                 $scope.player.on('timeupdate', function () {
                     if ($scope.player.currentTime() > currStop) {
                         $scope.player.pause();
-                        $scope.player.off('timeupdate');
                     }
                 });
             } else {

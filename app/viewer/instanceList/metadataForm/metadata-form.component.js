@@ -24,12 +24,19 @@ angular.module('laughResearchApp.viewer')
         // 0. Sync component before grabbing data
         this.$onInit = function () {
 
+            let laughTypeLabels = [];
+
             // Get laugh types from parent if updated
             $scope.$parent.$watch('laughTypes', function () {
                 if ($scope.$parent.laughTypes) {
-                    $scope.laughTypes= $scope.$parent.laughTypes;
+                    $scope.laughTypes = $scope.$parent.laughTypes;
+
+                    $scope.laughTypes.forEach(function(elem) {
+                        laughTypeLabels.push(elem.type);
+                    });
                 }
             });
+
 
             // 1. Get data from parent scope
             let ctrl = this;
@@ -37,6 +44,31 @@ angular.module('laughResearchApp.viewer')
             console.log(ctrl.laughTypes);
             $scope.instance = ctrl.instance;
             $scope.laughTypes = ctrl.laughTypes;
+
+
+            // 2. Set form input for tags
+            let instanceTags = new Taggle('instance-tags', {
+                placeholder: '',
+                allowDuplicates: false,
+                duplicateTagClass: 'bounce'
+            });
+
+            // 2.a. Set auto complete of tags
+			let container = instanceTags.getContainer();
+			var input = instanceTags.getInput();
+			$(input).autocomplete({
+				source: laughTypeLabels, // See jQuery UI documentaton for options
+				appendTo: container,
+				position: { at: "left bottom", of: container },
+				select: function(event, data) {
+					event.preventDefault();
+					// Add the tag if user clicks
+					if (event.which === 1) {
+						instanceTags.add(data.item.value);
+					}
+				}
+			});
+
 
             // 2. Define helper functions
 
