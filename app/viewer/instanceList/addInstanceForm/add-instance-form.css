@@ -36,3 +36,10 @@ input.add-instance-btn {
 input.add-instance-btn:hover {
     background-color: #574e40;
 }
+
+div#start-entry, div#stop-entry {
+    display: flex;
+}
+div#start-entry input, div#stop-entry input {
+    width: 3em;
+}

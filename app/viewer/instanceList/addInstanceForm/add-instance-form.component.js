@@ -60,16 +60,19 @@ angular.module('laughResearchApp.viewer')
          */
         document.getElementById("setToCurrent-start").addEventListener("click", function(event) {
             let currStart = $scope.player.currentTime();
-            let currStop  = document.getElementById("addInstance-stop").value
-
+            let currStop  = parseFloat(document.getElementById("addInstance-stop-hr").value) * 60 * 60
+                            + parseFloat(document.getElementById("addInstance-stop-min").value) * 60
+                            + parseFloat(document.getElementById("addInstance-stop-sec").value)
+                            + parseFloat(document.getElementById("addInstance-stop-ms").value) / 1000;
+            console.log(currStop);
             if (currStop && currStart > currStop) {
                 let clearStop = confirm("Instance stop time cannot be less than instance start time.\n\nUse this start time anyway?");
                 if (clearStop) {
-                    document.getElementById("addInstance-stop").value = null;
-                    document.getElementById("addInstance-start").value = currStart;
+                    resetInputBoxes("stop");
+                    setTimeOfInputBoxes(currStart, "start");
                 }
             } else {
-                document.getElementById("addInstance-start").value = currStart;
+                setTimeOfInputBoxes(currStart, "start");
             }
         }, false);
 
@@ -77,19 +80,42 @@ angular.module('laughResearchApp.viewer')
          * Set "stop" to current timestamp
          */
         document.getElementById("setToCurrent-stop").addEventListener("click", function(event) {
-            let currStart = document.getElementById("addInstance-start").value
             let currStop  = $scope.player.currentTime();
-
+            let currStart = parseFloat(document.getElementById("addInstance-start-hr").value) * 60 * 60
+                            + parseFloat(document.getElementById("addInstance-start-min").value) * 60
+                            + parseFloat(document.getElementById("addInstance-start-sec").value)
+                            + parseFloat(document.getElementById("addInstance-start-ms").value) / 1000;
+            console.log(currStart);
             if (currStart && currStart > currStop) {
                 let clearStart = confirm("Instance stop time cannot be less than instance start time.\n\nUse this stop time anyway?");
                 if (clearStart) {
-                    document.getElementById("addInstance-start").value = null;
-                    document.getElementById("addInstance-stop").value = currStop;
+                    resetInputBoxes("start");
+                    setTimeOfInputBoxes(currStop, "stop");
                 }
             } else {
-                document.getElementById("addInstance-stop").value = currStop;
+                setTimeOfInputBoxes(currStop, "stop");
             }
         }, false);
+
+        function setTimeOfInputBoxes(input, startStop) {
+                seconds = input * 1000;
+                var ms = seconds % 1000;
+                seconds = (seconds - ms) / 1000;
+                var secs = seconds % 60;
+                seconds = (seconds - secs) / 60;
+                var mins = seconds % 60;
+                var hrs = (seconds - mins) / 60;
+                document.getElementById("addInstance-" + startStop + "-hr").value = hrs;
+                document.getElementById("addInstance-" + startStop + "-min").value = mins;
+                document.getElementById("addInstance-" + startStop + "-sec").value = secs;
+                document.getElementById("addInstance-" + startStop + "-ms").value = ms;
+        }
+        function resetInputBoxes(startStop) {
+                document.getElementById("addInstance-" + startStop + "-hr").value = null;
+                document.getElementById("addInstance-" + startStop + "-min").value = null;
+                document.getElementById("addInstance-" + startStop + "-sec").value = null;
+                document.getElementById("addInstance-" + startStop + "-ms").value = null;
+        }
 
         document.getElementById('playAddInstanceSegment').addEventListener("click", function(event) {
             let currStart = document.getElementById("addInstance-start").value;
