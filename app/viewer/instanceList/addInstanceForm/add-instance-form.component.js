@@ -34,8 +34,8 @@ angular.module('laughResearchApp.viewer')
         $scope.addInstance = function () {
             // get values
             let result = {
-                start:   $scope.start,
-                stop:    $scope.stop,
+                start:   getSecondsFromInputBoxes("start"),
+                stop:    getSecondsFromInputBoxes("stop"),
                 joke:    ($scope.joke) ? $scope.joke : false,
                 speaker: ($scope.speaker) ? $scope.speaker : null
             };
@@ -55,18 +55,18 @@ angular.module('laughResearchApp.viewer')
             console.log(result)
         }
 
+
+        let warning = "Instance stop time cannot be less than instance start time.\n\nUse this start time anyway?";
+
         /*
          * Set "start" to current timestamp
          */
         document.getElementById("setToCurrent-start").addEventListener("click", function(event) {
             let currStart = $scope.player.currentTime();
-            let currStop  = parseFloat(document.getElementById("addInstance-stop-hr").value) * 60 * 60
-                            + parseFloat(document.getElementById("addInstance-stop-min").value) * 60
-                            + parseFloat(document.getElementById("addInstance-stop-sec").value)
-                            + parseFloat(document.getElementById("addInstance-stop-ms").value) / 1000;
-            console.log(currStop);
+            let currStop  = getSecondsFromInputBoxes("stop");
+
             if (currStop && currStart > currStop) {
-                let clearStop = confirm("Instance stop time cannot be less than instance start time.\n\nUse this start time anyway?");
+                let clearStop = confirm(warning);
                 if (clearStop) {
                     resetInputBoxes("stop");
                     setTimeOfInputBoxes(currStart, "start");
@@ -74,6 +74,8 @@ angular.module('laughResearchApp.viewer')
             } else {
                 setTimeOfInputBoxes(currStart, "start");
             }
+                console.log(getSecondsFromInputBoxes("start"));
+                console.log(getSecondsFromInputBoxes("stop"));
         }, false);
 
         /*
@@ -81,13 +83,10 @@ angular.module('laughResearchApp.viewer')
          */
         document.getElementById("setToCurrent-stop").addEventListener("click", function(event) {
             let currStop  = $scope.player.currentTime();
-            let currStart = parseFloat(document.getElementById("addInstance-start-hr").value) * 60 * 60
-                            + parseFloat(document.getElementById("addInstance-start-min").value) * 60
-                            + parseFloat(document.getElementById("addInstance-start-sec").value)
-                            + parseFloat(document.getElementById("addInstance-start-ms").value) / 1000;
-            console.log(currStart);
+            let currStart = getSecondsFromInputBoxes("start");
+
             if (currStart && currStart > currStop) {
-                let clearStart = confirm("Instance stop time cannot be less than instance start time.\n\nUse this stop time anyway?");
+                let clearStart = confirm(warning);
                 if (clearStart) {
                     resetInputBoxes("start");
                     setTimeOfInputBoxes(currStop, "stop");
@@ -98,28 +97,38 @@ angular.module('laughResearchApp.viewer')
         }, false);
 
         function setTimeOfInputBoxes(input, startStop) {
-                seconds = input * 1000;
-                var ms = seconds % 1000;
-                seconds = (seconds - ms) / 1000;
-                var secs = seconds % 60;
-                seconds = (seconds - secs) / 60;
-                var mins = seconds % 60;
-                var hrs = (seconds - mins) / 60;
-                document.getElementById("addInstance-" + startStop + "-hr").value = hrs;
-                document.getElementById("addInstance-" + startStop + "-min").value = mins;
-                document.getElementById("addInstance-" + startStop + "-sec").value = secs;
-                document.getElementById("addInstance-" + startStop + "-ms").value = ms;
-        }
-        function resetInputBoxes(startStop) {
-                document.getElementById("addInstance-" + startStop + "-hr").value = null;
-                document.getElementById("addInstance-" + startStop + "-min").value = null;
-                document.getElementById("addInstance-" + startStop + "-sec").value = null;
-                document.getElementById("addInstance-" + startStop + "-ms").value = null;
+            seconds = input * 1000;
+            let ms = Math.floor(seconds % 1000);
+            seconds = (seconds - ms) / 1000;
+            let secs = Math.floor(seconds % 60);
+            seconds = (seconds - secs) / 60;
+            let mins = Math.floor(seconds % 60);
+            let hrs = Math.floor((seconds - mins) / 60);
+            setInputBoxes(startStop, hrs, mins, secs, ms);
         }
 
+        function resetInputBoxes(startStop) {
+            setInputBoxes(startStop, null, null, null, null);
+        }
+
+        function setInputBoxes(startStop, hr, min, sec, ms) {
+            document.getElementById("addInstance-" + startStop + "-hr").value = hr;
+            document.getElementById("addInstance-" + startStop + "-min").value = min;
+            document.getElementById("addInstance-" + startStop + "-sec").value = sec;
+            document.getElementById("addInstance-" + startStop + "-ms").value = ms;
+        }
+
+        function getSecondsFromInputBoxes(startStop) {
+            return parseFloat(document.getElementById("addInstance-" + startStop + "-hr").value) * 60 * 60
+                   + parseFloat(document.getElementById("addInstance-" + startStop + "-min").value) * 60
+                   + parseFloat(document.getElementById("addInstance-" + startStop + "-sec").value)
+                   + parseFloat(document.getElementById("addInstance-" + startStop + "-ms").value) / 1000;
+        }
+
+
         document.getElementById('playAddInstanceSegment').addEventListener("click", function(event) {
-            let currStart = document.getElementById("addInstance-start").value;
-            let currStop  = document.getElementById("addInstance-stop").value;
+            let currStart = getSecondsFromInputBoxes("start");
+            let currStop  = getSecondsFromInputBoxes("stop");
 
             function stopWhenDone() {
                 if ($scope.player.currentTime() > currStop) {

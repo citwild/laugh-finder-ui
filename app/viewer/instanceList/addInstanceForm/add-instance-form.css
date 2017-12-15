@@ -42,4 +42,5 @@ div#start-entry, div#stop-entry {
 }
 div#start-entry input, div#stop-entry input {
     width: 3em;
+    margin-bottom: 0.3em;
 }
