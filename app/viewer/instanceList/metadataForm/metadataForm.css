@@ -34,16 +34,13 @@ metadata-form input#add-participant:hover, metadata-form input#update-instance:h
     background-color: #574e40;
 }
 
-.group-data-header {
-    margin-top: 2em;
-}
-
 metadata-form form fieldset legend {
     float: left;
     margin-right: 1em;
 }
 
-/*Taggle metadata tag form*/
+/* Taggle metadata tag form */
+/* Warning: Lots of importants */
 ul.taggle_list {
     list-style: none;
     display: flex;
@@ -77,3 +74,22 @@ li.taggle button.close {
     color: lightgray;
     margin-left: 0.5em;
 }
+
+ul#ui-id-1 {
+    position: inherit !important;
+    list-style: none;
+}
+
+li.ui-menu-item {
+    background-color: #988d7c;
+    color: #473e31;
+    padding: 0.5em;
+    margin-top: 0.7em;
+    margin-bottom: 0.5em;
+}
+
+li.ui-menu-item:hover {
+    background-color: #726a5e;
+    color: white;
+}
+

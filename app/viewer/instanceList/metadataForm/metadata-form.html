@@ -1,34 +1,8 @@
 <!-- Metadata form -->
-
-<!--
-Per participant data [individuals]
--->
-<h4>Add Participant</h4>
-<form method="post" ng-submit="updateParticipantData()">
-    <fieldset id="participant-field">
-        <legend>Name of participant</legend>
-        <input class="participant-input" ng-model="newParticipant.name" name="participant" type="text">
-
-        <!-- Hide intensity since it is deprecated. Still submits 1, though. Have to refactor service otherwise. -->
-        <legend style="display:none;">Intensity</legend>
-        <select style="display:none;" ng-model="newParticipant.intensity" name="laugh-intensity">
-            <option value="1" selected="selected">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select>
-
-    </fieldset>
-    <input id="add-participant" type="submit" value="Add Participant">
-</form>
-
-<!--
-    Per instance data [entire group]
--->
 <h4 class="group-data-header">Group Data</h4>
 <form method="post" ng-submit="updateInstanceData()">
     <fieldset id="tag-field">
-        <legend>How would you describe the laughter?</legend>
+        <legend>How would you describe the instance?</legend>
         <br>
         <!--<div ng-repeat="type in laughTypes | filter: {considered: true}">
             <input ng-model="newParticipant.tags[type.id]"
