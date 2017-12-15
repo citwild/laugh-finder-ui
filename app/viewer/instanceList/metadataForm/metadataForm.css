@@ -75,7 +75,7 @@ li.taggle button.close {
     margin-left: 0.5em;
 }
 
-ul#ui-id-1 {
+ul[id^="ui-id-"] {
     position: inherit !important;
     list-style: none;
 }
