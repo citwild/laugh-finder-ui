@@ -38,8 +38,6 @@ angular.module('laughResearchApp.viewer')
     templateUrl: 'app/viewer/instanceList/instance-list.html',
     controller: function InstanceListController($scope, instanceListService) {
 
-        $scope.player = $scope.$parent.player;
-
         // 1. Watch for changes in parent scope
         $scope.$parent.$watch('video', function () {
             if ($scope.$parent.video) {
@@ -51,9 +49,15 @@ angular.module('laughResearchApp.viewer')
         });
         $scope.$parent.$watch('laughTypes', function () {
             if ($scope.$parent.laughTypes) {
-                $scope.laughTypes= $scope.$parent.laughTypes;
+                $scope.laughTypes = $scope.$parent.laughTypes;
             }
         });
+        $scope.$parent.$watch('player', function() {
+            if ($scope.$parent.player) {
+                $scope.player = $scope.$parent.player;
+            }
+        });
+
 
         // 2. Begin helper methods
         // For "Go There" buttons for instances
@@ -85,22 +89,6 @@ angular.module('laughResearchApp.viewer')
                 window.location.reload(false);
             }
         };
-
-        /*$scope.showMetadataForm = true;
-        $scope.toggleMetadataForm = function() {
-            $scope.showMetadataForm = !$scope.showMetadataForm;
-        };*/
-
-        /*$scope.deleteInstance = function(instance) {
-            let deleteInstance = confirm(
-                "This instance has " + instance.participants.length + " participants in it.\n\n" +
-                "Delete Instance ID #" + instance.id + "?"
-            );
-            if (deleteInstance) {
-                instanceListService.deleteInstance(instance.id);
-                window.location.reload(false);
-            }
-        };*/
 
         // Hide instance unless it's the one currently selected
         $scope.selectedIndex = 1;

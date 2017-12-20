@@ -103,7 +103,7 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
             for (var i = 0; i < instances.length; i++) {
                 var seconds = (instances[i].start/1000).toFixed(1);
                 markers.push({
-                    time: seconds, text: seconds + " seconds"
+                    time: seconds, text: "Laugh"
                 });
             }
             videojs('my-video').markers({
