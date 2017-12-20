@@ -2,12 +2,6 @@ angular.module('laughResearchApp.viewer')
 
 .service('metadataService', ['$http', function($http) {
     return {
-        updateParticipantData: function(instanceId, json) {
-            return $http.post(
-                'https://137.135.51.94/rest/metadata/instance/' + instanceId + '/participants/add',
-                json
-            );
-        },
         updateInstanceData: function(instanceId, json) {
             return $http.post(
                 'https://137.135.51.94/rest/instance/' + instanceId + '/update',
@@ -71,29 +65,6 @@ angular.module('laughResearchApp.viewer')
 
 
             // 2. Define helper functions
-
-            // 2.a. Show speaker field method
-            $scope.hideSpeakerField = true;
-            $scope.disableSpeakerField = function (bool) {
-                document.getElementById('speaker').disabled = bool;
-                $scope.hideSpeakerField = bool;
-            };
-
-            // 2.b. Form submission methods
-            $scope.updateParticipantData = function () {
-                let requestBody = $scope.newParticipant;
-                metadataService.updateParticipantData($scope.instance.id, requestBody).then(
-                    function success(response) {
-                        console.log($scope.instance);
-                        console.log(response.data.participants);
-                        $scope.instance.participants = response.data.participants;
-                    },
-                    function error(response) {
-                        console.log(response);
-                    }
-                );
-            };
-
             $scope.updateInstanceData = function () {
                 let result = {
                     joke: $scope.instance.joke,
