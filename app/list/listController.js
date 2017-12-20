@@ -31,15 +31,20 @@ angular.module('laughResearchApp.videoList', ['ngRoute'])
         adalService.logOut();
     }
 
-    // 1. Get asset listing from AWS
-    listService.getAssets().then(
-        function success(response) {
-            return $scope.assets = response.data;
-        },
-        function error(response) {
-            alert('Failed to get video asset information')
-        }
-    );
+    // 1. Get asset listing from Azure, if not already cached
+    var assets = localStorage['las-asset-list-bc2014'];
+    if (assets) {
+        $scope.assets = assets;
+    } else {
+        listService.getAssets().then(
+            function success(response) {
+                return $scope.assets = localStorage['las-asset-list-bc2014'] = response.data;
+            },
+            function error(response) {
+                alert('Failed to get video asset information')
+            }
+        );
+    }
 
     // 2. Pull bucket names from list of available
     var videoRX = /<Name>([a-zA-Z0-9\/\-_ ]*\.[Mm][Pp]4)<\/Name>/g;
