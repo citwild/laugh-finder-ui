@@ -26,18 +26,11 @@ angular.module('laughResearchApp.viewer')
         });
 
         // 2. Define helper methods
-        $scope.hideSpeakerField = true;
-        $scope.disableSpeakerField = function () {
-            $scope.hideSpeakerField = document.getElementById('speaker').checked;
-        };
-
         $scope.addInstance = function () {
             // get values
             let result = {
                 start:   getSecondsFromInputBoxes("start"),
                 stop:    getSecondsFromInputBoxes("stop"),
-                joke:    ($scope.joke) ? $scope.joke : false,
-                speaker: ($scope.speaker) ? $scope.speaker : null
             };
 
             // reset form
