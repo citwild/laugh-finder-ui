@@ -21,11 +21,6 @@ angular.module('laughResearchApp.viewer')
 
 .service('instanceListService', ['$http', function($http) {
     return {
-        deleteParticipant: function (id) {
-            return $http.delete(
-                'https://137.135.51.94/rest/metadata/participant/' + id + '/delete'
-            );
-        },
         deleteInstance: function (id) {
             return $http.delete(
                 'https://137.135.51.94/rest/instance/' + id + '/delete'
@@ -76,17 +71,6 @@ angular.module('laughResearchApp.viewer')
             if ($scope.player.paused()) {
                 $scope.player.play();
                 $scope.player.on('timeupdate', stopWhenDone);
-            }
-        };
-
-        // Delete a user. Prompt before doing so.
-        $scope.removeParticipant = function(id) {
-            let deleteParticipant = confirm(
-                "Delete participant ID #" + id + "?"
-            );
-            if (deleteParticipant) {
-                instanceListService.deleteParticipant(id);
-                window.location.reload(false);
             }
         };
 
