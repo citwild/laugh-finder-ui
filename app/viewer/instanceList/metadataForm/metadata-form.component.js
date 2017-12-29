@@ -18,59 +18,74 @@ angular.module('laughResearchApp.viewer')
         // 0. Sync component before grabbing data
         this.$onInit = function () {
 
-            let laughTypeLabels = [];
+            let tagLabels = [];
+            let tagIdMap = {};
 
-            // Get laugh types from parent if updated
+            // 1. Set form input for tags
+            let instanceTags = new Taggle('instance-tags', {
+                placeholder: '',
+                allowDuplicates: false,
+                duplicateTagClass: 'bounce',
+                tags: tagLabels
+            });
+
+            // Set auto complete of tags
+            let container = instanceTags.getContainer();
+            var input = instanceTags.getInput();
+            $(input).autocomplete({
+                source: tagLabels,
+                appendTo: container,
+                position: { at: "left bottom", of: container },
+                select: function(event, data) {
+                    event.preventDefault();
+                    // Add the tag if user clicks
+                    if (event.which === 1) {
+                        instanceTags.add(data.item.value);
+                    }
+                }
+            });
+
+            // 2. Get laugh types from parent if updated
             $scope.$parent.$watch('laughTypes', function () {
                 if ($scope.$parent.laughTypes) {
                     $scope.laughTypes = $scope.$parent.laughTypes;
 
                     $scope.laughTypes.forEach(function(elem) {
-                        laughTypeLabels.push(elem.type);
+                        tagLabels.push(elem.type);
+                        tagIdMap[elem.type] = elem.id;
                     });
                 }
             });
 
+            // Get video instance data
+            $scope.$parent.$watch('video', function () {
+                if ($scope.$parent.video) {
+                    $scope.instanceTags = $scope.$parent.video
+                }
+            });
 
-            // 1. Get data from parent scope
+            // 3. Get data from parent scope
             let ctrl = this;
-            console.log(ctrl.instance);
-            console.log(ctrl.laughTypes);
-            $scope.instance = ctrl.instance;
+            $scope.instance   = ctrl.instance;
             $scope.laughTypes = ctrl.laughTypes;
 
 
-            // 2. Set form input for tags
-            let instanceTags = new Taggle('instance-tags', {
-                placeholder: '',
-                allowDuplicates: false,
-                duplicateTagClass: 'bounce'
-            });
-
-            // 2.a. Set auto complete of tags
-			let container = instanceTags.getContainer();
-			var input = instanceTags.getInput();
-			$(input).autocomplete({
-				source: laughTypeLabels, // See jQuery UI documentaton for options
-				appendTo: container,
-				position: { at: "left bottom", of: container },
-				select: function(event, data) {
-					event.preventDefault();
-					// Add the tag if user clicks
-					if (event.which === 1) {
-						instanceTags.add(data.item.value);
-					}
-				}
-			});
-
-
-            // 2. Define helper functions
+            // 4. Define helper functions
             $scope.updateInstanceData = function () {
+                // setup list of tags to submit
+                let submitTags = [];
+                let currTags = instanceTags.getTags().values;
+                currTags.forEach(function(elem) {
+                    submitTags.push(tagIdMap[elem]);
+                });
+                
+                // establish payload
                 let result = {
-                    joke: $scope.instance.joke,
-                    speaker: $scope.instance.speaker,
-                    algCorrect: $scope.instance.algCorrect
+                    algCorrect: $scope.instance.algCorrect,
+                    tags: submitTags
                 };
+
+                console.log(result);
 
                 metadataService.updateInstanceData($scope.instance.id, result).then(
                     function success(response) {
