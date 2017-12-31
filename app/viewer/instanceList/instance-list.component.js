@@ -1,5 +1,8 @@
 angular.module('laughResearchApp.viewer')
 
+/**
+ * A filter to affect display of instance timestamps
+ */
 .filter('hmsTime', function(){
     return function (s) {
         var ms = s % 1000;
@@ -39,6 +42,7 @@ angular.module('laughResearchApp.viewer')
                 $scope.videoId = $scope.$parent.video.foundLaughters.videoId;
                 $scope.instances = $scope.$parent.video.foundLaughters.instances;
 
+                // sort instances by time of occurrence
                 $scope.instances.sort(compare);
             }
         });
