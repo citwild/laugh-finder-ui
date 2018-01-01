@@ -82,6 +82,7 @@ angular.module('laughResearchApp.viewer')
                 // establish payload
                 let result = {
                     algCorrect: $scope.instance.algCorrect,
+                    retrain: $scope.instance.retrain,
                     tags: submitTags
                 };
 

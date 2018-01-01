@@ -25,20 +25,20 @@
     </fieldset>
     <fieldset id="correct-field">
         <legend>Use this for model retraining?</legend>
-        <input name="use"
-               id="use-true"
+        <input name="retrain"
+               id="retrain-true"
                type="radio"
                data-ng-value="true"
                ng-checked="instance.retrain"
                ng-model="instance.retrain">
-        <label for="use-true">Yes</label>
-        <input name="use"
-               id="use-false"
+        <label for="retrain-true">Yes</label>
+        <input name="retrain"
+               id="retrain-false"
                type="radio"
                data-ng-value="false"
                ng-checked="!instance.retrain"
                ng-model="instance.retrain">
-        <label for="use-false">No</label>
+        <label for="retrain-false">No</label>
     </fieldset>
     <input id="update-instance" type="submit" value="Update">
 </form>
