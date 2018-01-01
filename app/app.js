@@ -4,7 +4,8 @@ angular.module('laughResearchApp', [
     'laughResearchApp.entry',
     'laughResearchApp.home',
     'laughResearchApp.videoList',
-    'laughResearchApp.viewer'
+    'laughResearchApp.viewer',
+    'laughResearchApp.manageModel'
 ])
 
 .config(['$routeProvider', '$locationProvider', '$httpProvider', 'adalAuthenticationServiceProvider', function ($routeProvider, $locationProvider, $httpProvider, adalProvider) {

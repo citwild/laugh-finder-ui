@@ -1,0 +1,23 @@
+<h1>Manage Laughter Model</h1>
+
+<h2>Use a different model:</h2>
+<select>
+	<!-- TODO: Have this populated by the service based on contents from model database -->
+    <option>SHA: fhjkfh432hfd1k &mdash; Miles &mdash; 3:00pm, 12/31/2017</option>
+</select>
+
+<h2>Train a new model:</h2>
+
+<p>The below items will be used for retraining. If they are not correct, then you may enter the video by clicking its link and updating the instance.</p>
+<br>
+<p>Please note that we will record your account email as having created the resulting model: <strong>{{user_email}}</strong></p>
+
+<!-- TODO: have this populate based on what the service provides (instances marked for use) -->
+<ul id="training-instances">
+    <li><span class="pos">+</span><a class="train-instance-link" href="https://137.135.51.94/viewer?bucket=lfassets&key=video%2FCompressed_2014-01-31_Huddle_00079-320.MP4&b=65.6&e=66.4&play=true">video/Compressed_2014-01-31_Huddle_00079-320.MP4 &mdash; 00:01:05.600 - 00:01:06.400</a></li>
+    <li><span class="neg">-</span><a class="train-instance-link" href="https://137.135.51.94/viewer?bucket=lfassets&key=video%2FCompressed_2014-01-31_Huddle_00079-320.MP4&b=104&e=104.8&play=true">video/Compressed_2014-01-31_Huddle_00079-320.MP4 &mdash; 00:01:44.000 - 00:01:44.800</a></li>
+</ul>
+
+<!-- TODO: have this button retrain by calling the service -->
+<!-- TODO: have this button prompt user to confrim choice -->
+<input type="button" value="Begin Training"></input>

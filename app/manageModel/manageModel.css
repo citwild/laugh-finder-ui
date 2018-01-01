@@ -1,0 +1,39 @@
+h2 {
+	margin-top: 0.7em;
+}
+p {
+	color: black;
+}
+
+span.pos, span.neg, a.train-instance-link {
+	font-family: monospace;
+}
+
+a {
+	font-size: 12pt;
+}
+
+ul#training-instances {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+}
+
+ul#training-instances li {
+    margin-top: 6px;
+}
+
+span.pos, span.neg {
+    padding: 0px 8px 0px 8px;
+    font-size: 22pt;
+	margin-right: 0.3em;
+    border-radius: 16px;
+}
+span.pos {
+    background-color: limegreen;
+    color: green;
+}
+span.neg {
+    background-color: red;
+    color: darkred;
+}
