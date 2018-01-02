@@ -1,6 +1,7 @@
-h2 {
+h2, h3, h4 {
 	margin-top: 0.7em;
 }
+
 p {
 	color: black;
 }
@@ -36,7 +37,7 @@ ul#training-instances li {
 
 span.pos, span.neg {
     padding: 0px 8px 0px 8px;
-    font-size: 22pt;
+    font-size: 13pt;
 	margin-right: 0.3em;
     border-radius: 16px;
 }

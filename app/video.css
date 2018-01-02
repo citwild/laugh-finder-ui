@@ -5,6 +5,10 @@
     font-family: 'Open Sans', sans-serif;
 }
 
+body {
+    background-color: #E7F2F1;
+}
+
 video, button, input, textarea, select, a {
     outline:none;
 }

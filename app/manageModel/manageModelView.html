@@ -19,13 +19,14 @@
 <p>Please note that we will record your account email as having created the resulting model: <strong>{{user_email}}</strong></p>
 <br>
 <input type="button" value="Begin Training" ng-click="trainModel()"></input>
-<h3>Number of Samples selected:</h3>
+<h3>Review Sample Details</h3>
+<h4>Number of Samples selected:</h4>
 <table id="sample-totals">
     <tr><th>Correct</th><td>{{correctSamples}}</td></tr>
     <tr><th>Incorrect</th><td>{{incorrectSamples}}</td></tr>
     <tr><th>Total</th><td>{{correctSamples + incorrectSamples}}</td></tr>
 </table>
-<h3>Selected Learning Samples:</h3>
+<h4>Selected Learning Samples:</h4>
 <ul id="training-instances">
     <li ng-repeat="(video, data) in samplesPerVideo">
         {{video}}
