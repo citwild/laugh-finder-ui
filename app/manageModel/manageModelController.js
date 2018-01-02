@@ -10,6 +10,29 @@ angular.module('laughResearchApp.manageModel', ['ngRoute'])
         })
 }])
 
+/**
+ * A filter to affect display of instance timestamps
+ */
+.filter('hmsTime', function(){
+    return function (s) {
+        s = s * 1000
+        var ms = s % 1000;
+        s = (s - ms) / 1000;
+        var secs = s % 60;
+        s = (s - secs) / 60;
+        var mins = s % 60;
+        var hrs = (s - mins) / 60;
+
+        if (ms   < 100) ms   = '0' + ms;
+        if (ms   < 10)  ms   = '0' + ms;
+        if (secs < 10)  secs = '0' + secs;
+        if (mins < 10)  mins = '0' + mins;
+        if (hrs  < 10)  hrs  = '0' + hrs;
+
+        return hrs + ':' + mins + ':' + secs + "." + ms;
+    };
+})
+
 .service('manageModelService', ['$http', '$window', function($http, $window) {
     return {
         retrainModel: function () {

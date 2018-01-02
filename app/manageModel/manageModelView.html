@@ -35,7 +35,7 @@
                 <span class="pos" ng-if="instance.correct">+</span>
                 <span class="neg" ng-if="!instance.correct">-</span>
                 <a class="train-instance-link" href="https://137.135.51.94/viewer?{{instance.url}}&b={{instance.start}}&e={{instance.stop}}&play=true">
-                    {{instance.start}} - {{instance.stop}}
+                    {{instance.start | hmsTime}} - {{instance.stop | hmsTime}}
                 </a>
             </li>
         </ul>
