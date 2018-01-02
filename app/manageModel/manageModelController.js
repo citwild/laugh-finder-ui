@@ -36,12 +36,28 @@ angular.module('laughResearchApp.manageModel', ['ngRoute'])
 }])
 
 .controller('manageModelController', ['$scope', '$location', 'manageModelService', 'adalAuthenticationService', function($scope, $location, manageModelService, adalService) {
+    // 1. Define variables and get data from services
     $scope.user_email = adalService.userInfo.profile.email;
+
+    // Show counts (user should try to keep this even)
+    $scope.correctSamples = 0;
+    $scope.incorrectSamples = 0;
 
     manageModelService.getEligibleSamples().then(
         function success(response) {
             $scope.retrainSamples = response.data.retrainingSamples;
-            console.log("[manageModelController] eligible samples: " + JSON.stringify($scope.retrainSamples));
+            
+            $scope.retrainSamples.forEach(function(elem) {
+                if (elem.algCorrect) {
+                    $scope.correctSamples++;
+                } else {
+                    $scope.incorrectSamples++;
+                }
+            });
+
+            console.log(
+                "[manageModelController] eligible samples: " + JSON.stringify($scope.retrainSamples)
+            );
         },
         function error(response) {
             alert('Failed to get samples elibible for retraining.')
@@ -57,5 +73,49 @@ angular.module('laughResearchApp.manageModel', ['ngRoute'])
             alert('Failed to get list of available models.')
         }
     );
+
+    // 2. Begin helper functions
+
+    /**
+     * For changing between models
+     */
+    $scope.switchModel = function() {
+        let confirmed = window.confirm(
+            "Are you sure you want to switch the model used?"
+        );
+
+        if (confirmed) {
+            let id = $("#model-select option:selected").val();
+
+            manageModelService.switchModel(id).then(
+                function success(response) {
+                    alert("Model successfully switched to ID #" + id + "!");
+                },
+                function error(response) {
+                    alert('Failed to switch the model. Try again later.')
+                }
+            );
+        }
+    }
+
+    /**
+     * For training new models
+     */
+    $scope.trainModel = function() {
+        let confirmed = window.confirm(
+            "Are you sure you want to generate a new model using the given samples?"
+        );
+
+        if (confirmed) {
+            manageModelService.retrainModel().then(
+                function success(response) {
+                    alert("Model successfully created!");
+                },
+                function error(response) {
+                    alert('Failed to train new model. Try again later.')
+                }
+            );
+        }
+    }
 
 }]);

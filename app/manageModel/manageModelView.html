@@ -1,19 +1,27 @@
 <h1>Manage Laughter Model</h1>
 
 <h2>Use a different model:</h2>
-<select ng-repeat="model in models">
-    <option value="{{model.id}}">
-    ID: {{model.id}} &mdash; {{model.createdBy}} &mdash; {{model.createdDate}}
+<select id="model-select">
+    <option ng-repeat="model in models" value="{{model.id}}">
+        ID: {{model.id}} &mdash; {{model.createdBy}} &mdash; {{model.createdDate}}
     </option>
 </select>
-<input type="button" value="Switch Model"></input>
+<input type="button" value="Switch Model" ng-click="switchModel()"></input>
 
 <h2>Train a new model:</h2>
 
 <p>The below items will be used for retraining. If they are not correct, then you may enter the video by clicking its link and updating the instance.</p>
 <br>
 <p>Please note that we will record your account email as having created the resulting model: <strong>{{user_email}}</strong></p>
-
+<br>
+<input type="button" value="Begin Training" ng-click="trainModel()"></input>
+<h3>Number of Samples selected:</h3>
+<table id="sample-totals">
+    <tr><th>Correct</th><td>{{correctSamples}}</td></tr>
+    <tr><th>Incorrect</th><td>{{incorrectSamples}}</td></tr>
+    <tr><th>Total</th><td>{{correctSamples + incorrectSamples}}</td></tr>
+</table>
+<h3>Selected Learning Samples:</h3>
 <ul id="training-instances" ng-repeat="sample in retrainSamples">
     <li>
         <span class="pos" ng-if="sample.algCorrect">+</span>
@@ -23,7 +31,3 @@
         </a>
     </li>
 </ul>
-
-<!-- TODO: have this button retrain by calling the service -->
-<!-- TODO: have this button prompt user to confrim choice -->
-<input type="button" value="Begin Training"></input>

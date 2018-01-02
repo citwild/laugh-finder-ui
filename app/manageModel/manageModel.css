@@ -17,6 +17,7 @@ ul#training-instances {
 	list-style: none;
 	display: flex;
 	flex-direction: column;
+    margin-left: 2em;
 }
 
 ul#training-instances li {
@@ -36,4 +37,14 @@ span.pos {
 span.neg {
     background-color: red;
     color: darkred;
+}
+
+table#sample-totals {
+    border: 1px solid;
+    padding: 0.5em;
+}
+
+table#sample-totals tr {
+    display: inline-grid;
+    margin: 0em 1em 0em 1em;
 }
