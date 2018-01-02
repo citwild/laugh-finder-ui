@@ -14,10 +14,20 @@ a {
 }
 
 ul#training-instances {
+    margin-left: 2em;
+}
+
+ul#training-instances li ul{
 	list-style: none;
+
 	display: flex;
 	flex-direction: column;
+    flex-wrap: wrap;
+
     margin-left: 2em;
+
+    max-height: 165px;
+    width: 800px;
 }
 
 ul#training-instances li {
@@ -42,6 +52,7 @@ span.neg {
 table#sample-totals {
     border: 1px solid;
     padding: 0.5em;
+	margin-left: 2em;
 }
 
 table#sample-totals tr {

@@ -43,16 +43,32 @@ angular.module('laughResearchApp.manageModel', ['ngRoute'])
     $scope.correctSamples = 0;
     $scope.incorrectSamples = 0;
 
+    $scope.samplesPerVideo = {};
+
     manageModelService.getEligibleSamples().then(
         function success(response) {
             $scope.retrainSamples = response.data.retrainingSamples;
             
             $scope.retrainSamples.forEach(function(elem) {
+                // Determine correctness
                 if (elem.algCorrect) {
                     $scope.correctSamples++;
                 } else {
                     $scope.incorrectSamples++;
                 }
+
+                // Add to map (so list can be organized per video)
+                let vid = elem.bucket + "/" + elem.key;
+                if (!$scope.samplesPerVideo[vid]) {
+                    $scope.samplesPerVideo[vid] = [];
+                }
+                $scope.samplesPerVideo[vid].push({
+                    correct: elem.algCorrect,
+                    start: elem.startTime,
+                    stop: elem.stopTime,
+                    url: "bucket=" + elem.bucket + "&key=" + elem.key,
+
+                });
             });
 
             console.log(

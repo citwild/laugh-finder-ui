@@ -1,3 +1,7 @@
+<header>
+	<a href="https://137.135.51.94/home">Go Back</a>
+</header>
+
 <h1>Manage Laughter Model</h1>
 
 <h2>Use a different model:</h2>
@@ -22,12 +26,17 @@
     <tr><th>Total</th><td>{{correctSamples + incorrectSamples}}</td></tr>
 </table>
 <h3>Selected Learning Samples:</h3>
-<ul id="training-instances" ng-repeat="sample in retrainSamples">
-    <li>
-        <span class="pos" ng-if="sample.algCorrect">+</span>
-        <span class="neg" ng-if="!sample.algCorrect">-</span>
-        <a class="train-instance-link" href="https://137.135.51.94/viewer?bucket={{sample.bucket}}&key={{sample.key}}&b={{sample.startTime}}&e={{sample.stopTime}}&play=true">
-            {{sample.bucket}}/{{sample.key}} &mdash; {{sample.startTime}} - {{sample.stopTime}}
-        </a>
+<ul id="training-instances">
+    <li ng-repeat="(video, data) in samplesPerVideo">
+        {{video}}
+        <ul>
+            <li ng-repeat="instance in data">
+                <span class="pos" ng-if="instance.correct">+</span>
+                <span class="neg" ng-if="!instance.correct">-</span>
+                <a class="train-instance-link" href="https://137.135.51.94/viewer?{{instance.url}}&b={{instance.start}}&e={{instance.stop}}&play=true">
+                    {{instance.start}} - {{instance.stop}}
+                </a>
+            </li>
+        </ul>
     </li>
 </ul>
