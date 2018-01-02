@@ -21,10 +21,41 @@ angular.module('laughResearchApp.manageModel', ['ngRoute'])
             return $http.post(
                 'https://137.135.51.94/rest/model/changeto/' + modelId
             );
+        },
+        getAllModels: function () {
+            return $http.get(
+                'https://137.135.51.94/rest/model/get/all'
+            );
+        },
+        getEligibleSamples: function () {
+            return $http.get(
+                'https://137.135.51.94/rest/instance/training-eligible-samples'
+            );
         }
     }
 }])
 
-.controller('manageModelController', ['$scope', '$location', 'adalAuthenticationService', function($scope, $location, adalService) {
+.controller('manageModelController', ['$scope', '$location', 'manageModelService', 'adalAuthenticationService', function($scope, $location, manageModelService, adalService) {
     $scope.user_email = adalService.userInfo.profile.email;
+
+    manageModelService.getEligibleSamples().then(
+        function success(response) {
+            $scope.retrainSamples = response.data.retrainingSamples;
+            console.log("[manageModelController] eligible samples: " + JSON.stringify($scope.retrainSamples));
+        },
+        function error(response) {
+            alert('Failed to get samples elibible for retraining.')
+        }
+    );
+
+    manageModelService.getAllModels().then(
+        function success(response) {
+            $scope.models = response.data.models;
+            console.log("[manageModelController] models: " + JSON.stringify($scope.models));
+        },
+        function error(response) {
+            alert('Failed to get list of available models.')
+        }
+    );
+
 }]);
