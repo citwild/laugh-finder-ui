@@ -6,7 +6,7 @@
 
 <h2>Use a different model:</h2>
 <select id="model-select">
-    <option ng-repeat="model in models" value="{{model.id}}">
+    <option ng-repeat="model in models" value="{{model.id}}" ng-selected="{{model.inUse}}">
         ID: {{model.id}} &mdash; {{model.createdBy}} &mdash; {{model.createdDate}}
     </option>
 </select>
