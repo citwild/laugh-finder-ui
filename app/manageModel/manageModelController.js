@@ -13,7 +13,7 @@ angular.module('laughResearchApp.manageModel', ['ngRoute'])
 /**
  * A filter to affect display of instance timestamps
  */
-.filter('hmsTime', function(){
+.filter('hmsTime2', function(){
     return function (s) {
         s = s * 1000
         var ms = s % 1000;

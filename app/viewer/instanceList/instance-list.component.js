@@ -36,6 +36,9 @@ angular.module('laughResearchApp.viewer')
     templateUrl: 'app/viewer/instanceList/instance-list.html',
     controller: function InstanceListController($scope, instanceListService) {
 
+        // Hide instance unless it's the one currently selected
+        $scope.selectedIndex = 1;
+
         // 1. Watch for changes in parent scope
         $scope.$parent.$watch('video', function () {
             if ($scope.$parent.video) {
@@ -54,6 +57,11 @@ angular.module('laughResearchApp.viewer')
         $scope.$parent.$watch('player', function() {
             if ($scope.$parent.player) {
                 $scope.player = $scope.$parent.player;
+
+                // Use initial instance if present
+                if ($scope.$parent.initialInstance) {
+                    $scope.selectedIndex = parseInt($scope.$parent.initialInstance);
+                }
             }
         });
 
@@ -78,8 +86,6 @@ angular.module('laughResearchApp.viewer')
             }
         };
 
-        // Hide instance unless it's the one currently selected
-        $scope.selectedIndex = 1;
         $scope.showInstance = function(instanceIndex) {
             return $scope.selectedIndex - 1 === instanceIndex;
         };

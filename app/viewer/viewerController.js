@@ -59,15 +59,16 @@ angular.module('laughResearchApp.viewer', ['ngRoute'])
 
         // 4.a. Remove unused components
         $scope.player.removeChild('BigPlayButton');
-        $scope.player.getChild('ControlBar').removeChild('PlayToggle');
-        $scope.player.getChild('ControlBar').removeChild('ChaptersButton');
         $scope.player.getChild('ControlBar').removeChild('FullscreenToggle');
 
 
         // 4.b. Play time segment if start/stop times present as query params
-        let beginTime     = getParameterByName("b");
-        let endTime       = getParameterByName("e");
-        let playFromStart = getParameterByName("play");
+        let beginTime       = getParameterByName("b");
+        let endTime         = getParameterByName("e");
+        let playFromStart   = getParameterByName("play");
+
+        $scope.initialInstance = getParameterByName("instance");
+
         if (beginTime) {
             $scope.player.currentTime(beginTime);
 
