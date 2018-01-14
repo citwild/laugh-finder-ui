@@ -56,12 +56,12 @@ angular.module('laughResearchApp.viewer')
                 };
 
                 $scope.skipBack = function skipBack() {
-                    let skipAmt = parseInt(document.getElementById('skip-amt').value);
+                    let skipAmt = parseFloat(document.getElementById('skip-amt').value);
                     this.goToTime($scope.player.currentTime() - skipAmt);
                 };
 
                 $scope.skipForward = function skipForward() {
-                    let skipAmt = parseInt(document.getElementById('skip-amt').value);
+                    let skipAmt = parseFloat(document.getElementById('skip-amt').value);
                     this.goToTime($scope.player.currentTime() + skipAmt);
                 };
             }
